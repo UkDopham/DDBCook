@@ -42,5 +42,6 @@ namespace DDBCook.Models
             this._phoneNumber = phoneNumber;
             this._money = money;
         }
+
     }
 }
