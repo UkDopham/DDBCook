@@ -5,8 +5,79 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DDBCook.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-            
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <!-- bar -->
+        <Border Grid.Row="0"
+                Margin="10,0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource grey}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--home button-->
+                <Button Margin="20,10"
+                        BorderThickness="0"
+                        Grid.Column="0">
+                    
+                </Button>
+                
+                <!-- search bar-->
+                <Grid Grid.Column="1"
+                      Margin="60,10"
+                      Background="{StaticResource grey}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"
+                           />
+                    
+                    <TextBox  Grid.Column="1"
+                          Background="Transparent"
+                          VerticalContentAlignment="Center"
+                          BorderThickness="0"/>
+                    
+                </Grid>
+                
+                <!--User -->
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Margin="5,10"
+                            Grid.Column="0"
+                            BorderThickness="0">
+                        
+                    </Button>
+
+                    <Button Margin="5,10"
+                            Grid.Column="1"
+                            BorderThickness="0">
+
+                    </Button>
+
+                    <Button Margin="5,10"
+                            Grid.Column="2"
+                            BorderThickness="0">
+
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

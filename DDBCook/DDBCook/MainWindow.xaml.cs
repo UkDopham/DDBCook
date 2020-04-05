@@ -28,18 +28,8 @@ namespace DDBCook
             InitializeComponent();
             DDB ddb = new DDB("cook", "root", "alexandre1");
 
-            ddb.InsertUser("test@test.fr", "test", Models.Enums.UserType.user);
-            DebugConsole debugConsole = new DebugConsole();
-
-            debugConsole.Show();
-
-            for (int i = 0;
-                i < 100;
-                i++)
-            {                
-                debugConsole.AddNewLine(i.ToString());
-            }
-            //DataContext = new MainMenu();
+           
+            DataContext = new MainMenu();
         }
     }
 }

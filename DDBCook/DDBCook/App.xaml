@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:DDBCook"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="purple" Color="#706fd3"/>
+        <SolidColorBrush x:Key="grey" Color="#EEEEEE"/>
     </Application.Resources>
 </Application>
