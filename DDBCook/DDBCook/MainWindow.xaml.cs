@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +26,19 @@ namespace DDBCook
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainMenu();
+            DDB ddb = new DDB("cook", "root", "alexandre1");
+            ddb.InsertSupplier("Carrefour", "2");
+            DebugConsole debugConsole = new DebugConsole();
+
+            debugConsole.Show();
+
+            for (int i = 0;
+                i < 100;
+                i++)
+            {                
+                debugConsole.AddNewLine(i.ToString());
+            }
+            //DataContext = new MainMenu();
         }
     }
 }

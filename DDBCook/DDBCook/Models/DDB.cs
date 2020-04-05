@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DDBCook.Models.Enums;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,71 @@ namespace DDBCook.Models
                 string connectionString = $"SERVER=localhost;PORT=3306;DATABASE={database};UID={username};PASSWORD={password};";
                 this._mySqlConnection = new MySqlConnection(connectionString);
                 this._mySqlConnection.Open();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// insert a new supplier in the table
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="number"></param>
+        public void InsertSupplier(string name, string number)
+        {
+            Supplier supplier = new Supplier(name, number);
+            Insert<Supplier>(supplier);
+        }
+        public void InsertClient(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money)
+        {
+            Client client = new Client(email, password, userType, name, phoneNumber, adress, money);
+            Insert<Client>(client);
+        }
+        public void InsertOrder(string id, DateTime orderDate, string clientNumber, string recipeName)
+        {
+            Order order = new Order(id, orderDate, clientNumber, recipeName);
+            Insert<Order>(order);
+        }
+        public void InsertProduct(string name, ProductCategory productCategory, int quantity, int currentQuantity, int minQuantity, int maxQuantity, string provider, string reference, string unity)
+        {
+            Product product = new Product(name, productCategory, quantity, currentQuantity, minQuantity, maxQuantity, provider, reference, unity);
+            Insert<Product>(product);
+        }
+        public void InsertProudctComposition(string id, int quantity, string refProduct, string recipeName)
+        {
+            ProductComposition productComposition = new ProductComposition(id, quantity, refProduct, recipeName);
+            Insert<ProductComposition>(productComposition);
+        }
+        public void InsertRecipe(string name, RecipeType recipeType, string description, List<ProductComposition> products, RecipeCreator recipeCreator, int price = 2)
+        {
+            Recipe recipe = new Recipe(name, recipeType, description, products, recipeCreator, price);
+            Insert<Recipe>(recipe);
+        }
+        public void InsertRecipeCreator(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money = 0)
+        {
+            RecipeCreator recipeCreator = new RecipeCreator(email, password, userType, name, phoneNumber, adress, money);
+            Insert<RecipeCreator>(recipeCreator);
+        }
+        public void InsertUser(string email, string password, UserType userType)
+        {
+            User user = new User(email, password, userType);
+            Insert<User>(user);
+        }
+        /// <summary>
+        /// custom method to insert into sql command
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table"></param>
+        private void Insert<T>(T table) where T:ITable
+        {
+            try
+            {
+                MySqlCommand command = this._mySqlConnection.CreateCommand();
+                command.CommandText = $"insert into {table.GetTableName()} ({table.GetTableProperties()}) values ({table.GetTableValues()});";
+                MySqlDataReader reader;
+                reader = command.ExecuteReader();
             }
             catch(Exception ex)
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDBCook.Models
 {
-    public class Product
+    public class Product : ITable
     {
         private string _name;
         private ProductCategory _productCategory;
@@ -17,6 +17,7 @@ namespace DDBCook.Models
         private int _maxQuantity;
         private string _provider;
         private string _reference;
+        private string _unit;
 
         public string Name
         {
@@ -90,6 +91,13 @@ namespace DDBCook.Models
                 return this._reference;
             }
         }
+        public string Unit
+        {
+            get
+            {
+                return this._unit;
+            }
+        }
 
         public Product(
             string name,
@@ -99,7 +107,8 @@ namespace DDBCook.Models
             int minQuantity,
             int maxQuantity,
             string provider,
-            string reference)
+            string reference,
+            string unit)
         {
             this._name = name;
             this._productCategory = ProductCategory;
@@ -109,6 +118,22 @@ namespace DDBCook.Models
             this._maxQuantity = maxQuantity;
             this._provider = provider;
             this._reference = reference;
+            this._unit = unit;
+        }
+
+        public string GetTableName()
+        {
+            return "cook.produit";
+        }
+
+        public string GetTableProperties()
+        {
+            return "ref, nom, categorie, quantite_actuelle, quantite_min, quantite_max, unite, numeroFournisseur";
+        }
+
+        public string GetTableValues()
+        {
+            return $"{this._reference}, {this._name}, {this._productCategory}, {this._currentQuantity}, {this._minQuantity}, {this._maxQuantity}, {this._reference}, {this._unit}";
         }
     }
 }
