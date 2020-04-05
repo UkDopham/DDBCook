@@ -53,7 +53,7 @@ namespace DDBCook.Models
 
         public virtual string GetTableValues()
         {
-            return $"{this._email}, {this._password}";
+            return $"'{this._email}', '{this._password}'";
         }
     }
 }

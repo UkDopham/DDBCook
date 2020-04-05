@@ -27,7 +27,8 @@ namespace DDBCook
         {
             InitializeComponent();
             DDB ddb = new DDB("cook", "root", "alexandre1");
-            ddb.InsertSupplier("Carrefour", "2");
+
+            ddb.InsertUser("test@test.fr", "test", Models.Enums.UserType.user);
             DebugConsole debugConsole = new DebugConsole();
 
             debugConsole.Show();

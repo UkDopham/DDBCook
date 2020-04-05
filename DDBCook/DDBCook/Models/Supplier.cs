@@ -28,7 +28,7 @@ namespace DDBCook.Models
 
         public string GetTableValues()
         {
-            return $"{this._number}, '{this._name}'";
+            return $"'{this._number}', '{this._name}'";
         }
     }
 }

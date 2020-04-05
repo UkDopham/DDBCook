@@ -66,7 +66,7 @@ namespace DDBCook.Models
 
         public override string GetTableValues()
         {
-            return $"{this._name}, {this._money}, {this._adress}, {this._phoneNumber}, {this._email}";
+            return $"'{this._name}', {this._money}, '{this._adress}', '{this._phoneNumber}', '{this._email}'";
         }
     }
 }

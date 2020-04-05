@@ -35,7 +35,7 @@ namespace DDBCook.Models
 
         public override string GetTableValues()
         {
-            return $"{this._id}";
+            return $"'{this._id}'";
         }
     }
 }

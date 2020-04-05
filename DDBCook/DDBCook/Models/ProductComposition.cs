@@ -65,7 +65,7 @@ namespace DDBCook.Models
 
         public string GetTableValues()
         {
-            return $"{this._id}, {this._quantity}, {this._refProduct}, {this._recipeName}";
+            return $"'{this._id}', {this._quantity}, '{this._refProduct}', '{this._recipeName}'";
         }
     }
 }

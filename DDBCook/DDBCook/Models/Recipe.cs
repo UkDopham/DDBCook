@@ -80,7 +80,7 @@ namespace DDBCook.Models
 
         public string GetTableValues()
         {
-            return $"{this._name}, {this._recipeCreator}, {this._description}, {this._price}, {this._recipeCreator.PhoneNumber}";
+            return $"'{this._name}', '{this._recipeCreator}', '{this._description}', {this._price}, '{this._recipeCreator.PhoneNumber}'";
         }
     }
 }

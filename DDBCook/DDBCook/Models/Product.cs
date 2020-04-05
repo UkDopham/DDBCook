@@ -133,7 +133,7 @@ namespace DDBCook.Models
 
         public string GetTableValues()
         {
-            return $"{this._reference}, {this._name}, {this._productCategory}, {this._currentQuantity}, {this._minQuantity}, {this._maxQuantity}, {this._reference}, {this._unit}";
+            return $"'{this._reference}', '{this._name}', '{this._productCategory}', {this._currentQuantity}, {this._minQuantity}, {this._maxQuantity}, '{this._reference}', '{this._unit}'";
         }
     }
 }
