@@ -23,38 +23,39 @@
 
                 <TextBlock Grid.Row="0"
                                VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
+                               Margin="10"
                                Text="Email"
                                FontSize="20"
                                Foreground="{StaticResource purple}"/>
 
                 <TextBox Grid.Row="1"
                              VerticalAlignment="Center"
-                             Margin="60,0"
+                             Margin="10,0"
                              VerticalContentAlignment="Center"
                              Foreground="{StaticResource purple}"/>
 
                 <TextBlock Grid.Row="2"
                                VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
+                           Margin="10"
                                Text="mot de passe"
                                FontSize="20"
                                Foreground="{StaticResource purple}"/>
 
                 <TextBox Grid.Row="3"
                              VerticalAlignment="Center"
-                             Margin="60,0"
+                             Margin="10,0"
                              VerticalContentAlignment="Center"
                              Foreground="{StaticResource purple}"/>
 
                 <Button Grid.Row="4"
-                            Margin="90,40"
-                            BorderBrush="{StaticResource grey}"
-                            Background="Transparent"
-                            Content="Login"
-                            FontSize="18"
-                            Foreground="{StaticResource purple}"
-                            Click="Button_Click"/>
+                Margin="90,30"
+                BorderThickness="0"
+                Background="{StaticResource grey}"
+                Content="Continuer"
+                FontSize="22"
+                Foreground="White"
+                FontWeight="Bold"
+                Click="Button_Click"/>
             </Grid>
         </Border>
     </Grid>
