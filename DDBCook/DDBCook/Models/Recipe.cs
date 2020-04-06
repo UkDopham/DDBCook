@@ -15,7 +15,59 @@ namespace DDBCook.Models
         private List<ProductComposition> _productsComposition;
         private RecipeCreator _recipeCreator;
         private int _price;
+        private bool _isHealthy;
+        private bool _isBio;
+        private bool _isVegan;
+        private bool _isChimical;
+        private bool _isTrending;
+        private int _rating;
 
+        public bool IsHealthy
+        {
+            get
+            {
+                return this._isHealthy;
+            }
+        }
+        public bool IsBio
+        {
+            get
+            {
+                return this._isBio;
+            }
+        }
+        public bool IsVegan
+        {
+            get
+            {
+                return this._isVegan;
+            }
+        }
+        public bool IsChimical
+        {
+            get
+            {
+                return this._isChimical;
+            }
+        }
+        public bool IsTrending
+        {
+            get
+            {
+                return this._isTrending;
+            }
+        }
+        public int Rating
+        {
+            get
+            {
+                return this._rating;
+            }
+            set
+            {
+                this._rating = value;
+            }
+        }
         public RecipeCreator RecipeCreator
         {
             get
@@ -58,7 +110,19 @@ namespace DDBCook.Models
                 return this._price;
             }
         }
-        public Recipe(string name, RecipeType recipeType, string description, List<ProductComposition> productsComposition, RecipeCreator recipeCreator, int price = 2)
+        public Recipe(
+            string name,
+            RecipeType recipeType,
+            string description,
+            List<ProductComposition> productsComposition,
+            RecipeCreator recipeCreator,
+            int price = 2,
+            bool isHealthy = false,
+            bool isBio = false,
+            bool isVegan = false,
+            bool isChimical = false,
+            bool isTrending = false,
+            int rating = 0)
         {
             this._name = name;
             this._recipeType = recipeType;
@@ -66,6 +130,12 @@ namespace DDBCook.Models
             this._productsComposition = productsComposition;
             this._recipeCreator = recipeCreator;
             this._price = price;
+            this._isHealthy = isHealthy;
+            this._isBio = isBio;
+            this._isVegan = isVegan;
+            this._isChimical = isChimical;
+            this._isTrending = isTrending;
+            this._rating = rating;
         }
 
         public string GetTableName()
