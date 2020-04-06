@@ -71,11 +71,7 @@ namespace DDBCook.Models
             RecipeCreator recipeCreator = new RecipeCreator(email, password, userType, name, phoneNumber, adress, money);
             Insert<RecipeCreator>(recipeCreator);
         }
-        public void InsertUser(string email, string password, UserType userType)
-        {
-            User user = new User(email, password, userType);
-            Insert<User>(user);
-        }
+        
         /// <summary>
         /// custom method to insert into sql command
         /// </summary>
