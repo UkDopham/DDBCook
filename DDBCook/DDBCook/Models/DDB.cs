@@ -53,7 +53,7 @@ namespace DDBCook.Models
         }
         public void InsertProduct(string name, ProductCategory productCategory, int quantity, int currentQuantity, int minQuantity, int maxQuantity, string provider, string reference, string unity)
         {
-            Product product = new Product(name, productCategory, quantity, currentQuantity, minQuantity, maxQuantity, provider, reference, unity);
+            Product product = new Product(name, productCategory, currentQuantity, minQuantity, maxQuantity, provider, reference, unity);
             Insert<Product>(product);
         }
         public void InsertProudctComposition(string id, int quantity, string refProduct, string recipeName)
@@ -61,14 +61,14 @@ namespace DDBCook.Models
             ProductComposition productComposition = new ProductComposition(id, quantity, refProduct, recipeName);
             Insert<ProductComposition>(productComposition);
         }
-        public void InsertRecipe(string name, RecipeType recipeType, string description, List<ProductComposition> products, RecipeCreator recipeCreator, int price = 2)
+        public void InsertRecipe(string name, RecipeType recipeType, string description, List<ProductComposition> products, string numberCreator, int price = 2)
         {
-            Recipe recipe = new Recipe(name, recipeType, description, products, recipeCreator, price);
+            Recipe recipe = new Recipe(name, recipeType, description, numberCreator, price);
             Insert<Recipe>(recipe);
         }
         public void InsertRecipeCreator(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money = 0)
         {
-            RecipeCreator recipeCreator = new RecipeCreator(email, password, userType, name, phoneNumber, adress, money);
+            RecipeCreator recipeCreator = new RecipeCreator(phoneNumber);
             Insert<RecipeCreator>(recipeCreator);
         }
         

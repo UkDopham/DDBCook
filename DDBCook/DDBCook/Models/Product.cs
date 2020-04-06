@@ -15,7 +15,7 @@ namespace DDBCook.Models
         private int _currentQuantity;
         private int _minQuantity;
         private int _maxQuantity;
-        private string _provider;
+        private string _providerNumber;
         private string _reference;
         private string _unit;
 
@@ -77,11 +77,11 @@ namespace DDBCook.Models
                 this._maxQuantity = value;
             }
         }
-        public string Provider
+        public string ProviderNumber
         {
             get
             {
-                return this._provider;
+                return this._providerNumber;
             }
         }
         public string Reference
@@ -102,21 +102,19 @@ namespace DDBCook.Models
         public Product(
             string name,
             ProductCategory productCategory,
-            int quantity,
             int currentQuantity,
             int minQuantity,
             int maxQuantity,
-            string provider,
+            string providerNumber,
             string reference,
             string unit)
         {
             this._name = name;
             this._productCategory = ProductCategory;
-            this._quantity = quantity;
             this._currentQuantity = currentQuantity;
             this._minQuantity = minQuantity;
             this._maxQuantity = maxQuantity;
-            this._provider = provider;
+            this._providerNumber = providerNumber;
             this._reference = reference;
             this._unit = unit;
         }

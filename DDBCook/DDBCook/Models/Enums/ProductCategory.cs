@@ -11,5 +11,9 @@ namespace DDBCook.Models.Enums
         meat,
         fruit,
         vegetable,
+
+        viande,
+        legume,
+        eauGlace,
     }
 }

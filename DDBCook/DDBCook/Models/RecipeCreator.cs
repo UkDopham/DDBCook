@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDBCook.Models
 {
-    public class RecipeCreator : Client, ITable
+    public class RecipeCreator : ITable
     {
         private string _id;
 
@@ -18,22 +18,21 @@ namespace DDBCook.Models
                 return this._id;
             }
         }
-        public RecipeCreator(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money = 0):
-            base(email, password, userType, name, phoneNumber, adress, money)
+        public RecipeCreator(string id)
         {
-
+            this._id = Id;
         }
-        public override string GetTableName()
+        public string GetTableName()
         {
             return "cook.cdr";
         }
 
-        public override string GetTableProperties()
+        public string GetTableProperties()
         {
             return "numero";
         }
 
-        public override string GetTableValues()
+        public string GetTableValues()
         {
             return $"'{this._id}'";
         }

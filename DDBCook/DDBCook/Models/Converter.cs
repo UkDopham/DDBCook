@@ -16,14 +16,70 @@ namespace DDBCook.Models
             switch(tableType)
             {
                 case TableType.client:
-                    valueConverted = new Client(name: values[0], money: Convert.ToInt32(values[1]), adress: values[2],phoneNumber: values[3],email: values[4], password: values[5], userType: (UserType)(Enum.Parse(typeof(UserType), values[6])));
+                    valueConverted = new Client(
+                        name: values[0], 
+                        money: Convert.ToInt32(values[1]),
+                        adress: values[2],
+                        phoneNumber: values[3],
+                        email: values[4], 
+                        password: values[5], 
+                        userType: (UserType)(Enum.Parse(typeof(UserType), values[6])));
                     break;
-                // case TableType.order:
-                //     valueConverted = new Order(values[0], DateTime.Parse(values[1]),values[2], values[3]);
-                //     break;     //  dateValue.ToString("yyyy-MM-dd HH:mm:ss"); dans l'autre sens
-                // case TableType.recipe:
-                //     valueConverted = new Recipe(values[0],(RecipeType)(Enum.Parse(typeof(RecipeType), values[1])), values[2],Convert.ToInt32(values[3]),  values[5]);
-                //     break;
+                case TableType.order:
+                    valueConverted = new Order(
+                        id: values[0], 
+                        orderDate: DateTime.Parse(values[1]),
+                        clientNumber: values[2], 
+                        recipeName: values[3]
+                        );
+                    break;     //  dateValue.ToString("yyyy-MM-dd HH:mm:ss"); dans l'autre sens
+                case TableType.recipe:
+                    valueConverted = new Recipe(
+                        name:values[0],
+                        recipeType:(RecipeType)(Enum.Parse(typeof(RecipeType),values[1])),
+                        description:  values[2],
+                        price: Convert.ToInt32(values[3]),
+                        numberCreator : values[4],
+                        isHealthy: Convert.ToInt32(values[4]) == 1,
+                        isBio: Convert.ToInt32(values[5]) == 1,
+                        isVegan: Convert.ToInt32(values[6]) == 1,
+                        isChimical: Convert.ToInt32(values[7]) == 1,
+                        isTrending: Convert.ToInt32(values[8]) == 1,
+                        rating: Convert.ToInt32(values[9]));
+                    break;
+                case TableType.product:
+                    valueConverted = new Product(
+                        reference:values[0],
+                        name:values[1],
+                        productCategory:(ProductCategory)(Enum.Parse(typeof(ProductCategory),values[2])),
+                        currentQuantity: Convert.ToInt32(values[3]),
+                        minQuantity: Convert.ToInt32(values[4]),
+                        maxQuantity: Convert.ToInt32(values[5]),
+                        unit:values[6],
+                        providerNumber:values[7]
+                        );
+                    break;
+                case TableType.supplier:
+                    valueConverted = new Supplier(
+                        name:values[0],
+                        number: values[1]
+                        );
+                    break;
+                case TableType.recipeCreator:
+                    valueConverted = new RecipeCreator(
+                        id:values[0]
+                        );
+                    break;
+                case TableType.productComposition:
+                    valueConverted = new ProductComposition(
+                        id:values[0],
+                        quantity: Convert.ToInt32(values[1]),
+                        refProduct:values[2],
+                        recipeName:values[3]
+                        );
+                    break;
+
+
                 default:
                     Console.WriteLine("ERROR : TableType unknown!   (Converter : ConvertFromString)");
                     break;

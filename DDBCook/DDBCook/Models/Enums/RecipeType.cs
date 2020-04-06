@@ -10,5 +10,8 @@ namespace DDBCook.Models.Enums
     {
         salty,
         sweet,
+        plat,
+        boisson,
+        dessert,
     }
 }

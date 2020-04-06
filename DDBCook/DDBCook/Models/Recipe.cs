@@ -21,6 +21,7 @@ namespace DDBCook.Models
         private bool _isChimical;
         private bool _isTrending;
         private int _rating;
+        private string _numberCreator;
 
         public bool IsHealthy
         {
@@ -66,6 +67,13 @@ namespace DDBCook.Models
             set
             {
                 this._rating = value;
+            }
+        }
+        public string NumberCreator
+        {
+            get
+            {
+                return this._numberCreator;
             }
         }
         public RecipeCreator RecipeCreator
@@ -116,21 +124,23 @@ namespace DDBCook.Models
             string name,
             RecipeType recipeType,
             string description,
-            List<ProductComposition> productsComposition,
-            RecipeCreator recipeCreator,
+            // List<ProductComposition> productsComposition,
+            // RecipeCreator recipeCreator,
+            string numberCreator, 
             int price = 2,
             bool isHealthy = false,
             bool isBio = false,
             bool isVegan = false,
             bool isChimical = false,
             bool isTrending = false,
-            int rating = 0)
+            int rating = 0
+            )
         {
             this._name = name;
             this._recipeType = recipeType;
             this._description = description;
-            this._productsComposition = productsComposition;
-            this._recipeCreator = recipeCreator;
+            // this._productsComposition = productsComposition;
+            // this._recipeCreator = recipeCreator;
             this._price = price;
             this._isHealthy = isHealthy;
             this._isBio = isBio;
@@ -138,6 +148,7 @@ namespace DDBCook.Models
             this._isChimical = isChimical;
             this._isTrending = isTrending;
             this._rating = rating;
+            this._numberCreator = numberCreator;
         }
 
         public string GetTableName()
@@ -152,7 +163,7 @@ namespace DDBCook.Models
 
         public string GetTableValues()
         {
-            return $"'{this._name}', '{this._recipeCreator}', '{this._description}', {this._price}, '{this._recipeCreator.PhoneNumber}'";
+            return $"'{this._name}', '{this._recipeCreator}', '{this._description}', {this._price}, '{this._numberCreator}'";
         }
     }
 }
