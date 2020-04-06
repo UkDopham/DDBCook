@@ -16,19 +16,20 @@ using System.Windows.Shapes;
 namespace DDBCook.Views
 {
     /// <summary>
-    /// Logique d'interaction pour MainMenu.xaml
+    /// Logique d'interaction pour EmailLogin.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class EmailLogin : UserControl
     {
-        public MainMenu()
+        private RegisterOrLogin _registerOrLogin;
+        public EmailLogin(RegisterOrLogin registerOrLogin)
         {
             InitializeComponent();
+            this._registerOrLogin = registerOrLogin;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow.DataContext = new RegisterOrLogin();
+            //check if email exists
         }
     }
 }

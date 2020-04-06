@@ -30,5 +30,7 @@ namespace DDBCook
             
             DataContext = new MainMenu();
         }
+
+        
     }
 }

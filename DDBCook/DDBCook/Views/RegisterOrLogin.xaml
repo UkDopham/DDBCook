@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DDBCook.Views.RegisterOrLogin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DDBCook.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <!--Bar-->
+            <Border Grid.Row="0"
+                Margin="10,0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource grey}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--home button-->
+                    <Button Margin="10,10"
+                        BorderThickness="0"
+                        Grid.Column="0"
+                        Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0"
+                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
+                            <TextBlock Grid.Column="1"
+                                   Margin="4,0"
+                                   Text="Crevet"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource purple}"
+                                   FontSize="13"
+                                       FontWeight="Bold"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!--Login-->
+            <Grid Grid.Row="1" 
+              Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="1"
+                    BorderBrush="{StaticResource grey}"
+                    BorderThickness="1">
+                    <ContentControl x:Name="MainContentControl"
+                                    Content="{Binding}"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
