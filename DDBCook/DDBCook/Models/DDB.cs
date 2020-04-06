@@ -89,6 +89,7 @@ namespace DDBCook.Models
                 command.CommandText = $"insert into {table.GetTableName()} ({table.GetTableProperties()}) values ({table.GetTableValues()});";
                 MySqlDataReader reader;
                 reader = command.ExecuteReader();
+                reader.Close();
             }
             catch(Exception ex)
             {

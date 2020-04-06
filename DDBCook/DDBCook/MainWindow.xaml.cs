@@ -27,8 +27,7 @@ namespace DDBCook
         {
             InitializeComponent();
             DDB ddb = new DDB("cook", "root", "alexandre1");
-
-           
+            
             DataContext = new MainMenu();
         }
     }

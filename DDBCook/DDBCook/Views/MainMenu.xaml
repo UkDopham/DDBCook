@@ -20,16 +20,31 @@
                 BorderBrush="{StaticResource grey}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="20,10"
+                <Button Margin="10,10"
                         BorderThickness="0"
-                        Grid.Column="0">
-                    
+                        Grid.Column="0"
+                        Background="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0"
+                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
+                        <TextBlock Grid.Column="1"
+                                   Margin="4,0"
+                                   Text="Crevet"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource purple}"
+                                   FontSize="14"/>
+                    </Grid>
                 </Button>
                 
                 <!-- search bar-->
@@ -42,12 +57,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Column="0"
-                           />
+                           Margin="5"
+                           Source="pack://siteoforigin:,,,/Resources/search.png"/>
                     
                     <TextBox  Grid.Column="1"
                           Background="Transparent"
                           VerticalContentAlignment="Center"
-                          BorderThickness="0"/>
+                          BorderThickness="0"
+                              Foreground="{StaticResource purple}"/>
                     
                 </Grid>
                 
@@ -55,29 +72,53 @@
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Button Margin="5,10"
                             Grid.Column="0"
-                            BorderThickness="0">
-                        
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource grey}"
+                            Background="Transparent">
+                        <TextBlock Text="CDR"
+                                 Foreground="{StaticResource purple}"/>
                     </Button>
 
                     <Button Margin="5,10"
                             Grid.Column="1"
-                            BorderThickness="0">
-
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource grey}"
+                            Background="Transparent">
+                        <TextBlock Text="Inscription ou Connexion"
+                                 Foreground="{StaticResource purple}"/>
                     </Button>
 
                     <Button Margin="5,10"
                             Grid.Column="2"
-                            BorderThickness="0">
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource grey}"
+                            Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
+                            <Image Grid.Column="0"
+                                   Margin="0,4"
+                                   Source="pack://siteoforigin:,,,/Resources/basket.png"/>
+                            <TextBlock Text="Panier"
+                                       Grid.Column="1"
+                                       Margin="2,0"
+                                       Foreground="{StaticResource purple}"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
                     </Button>
                 </Grid>
             </Grid>
         </Border>
+        
+        
     </Grid>
 </UserControl>

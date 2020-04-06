@@ -16,6 +16,8 @@ namespace DDBCook.Models
             this._number = number;
         }
 
+        
+
         public string GetTableName()
         {
             return $"cook.fournisseur";
