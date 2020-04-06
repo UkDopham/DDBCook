@@ -134,11 +134,22 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
-                    
+
+                    <!--Sort-->
+                    <Expander Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Margin="10">
+                        
+                    </Expander>
+
+                    <!--Filter-->
+                    <Expander Grid.Row="1"
+                              VerticalAlignment="Center"
+                              Margin="10">
+
+                    </Expander>
                 </Grid>
 
             </Border>

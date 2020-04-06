@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:DDBCook"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" 
-        Width="800">
+        Width="800"
+        ResizeMode="NoResize">
     <Grid>
         <ContentControl Content="{Binding}"/>
     </Grid>
