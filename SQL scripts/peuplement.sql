@@ -3,15 +3,10 @@
 
 use cook; 
 
--- insertion dans utilisateur
-INSERT INTO `cook`.`utilisateur` (`email`,`password`) VALUES ('jj@monmail.fr.com', '1234');
-INSERT INTO `cook`.`utilisateur` (`email`,`password`) VALUES ('gg@monmail.fr.com', '0000');
-
-
 
 -- insertion dans clients
-INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`emailUtilisateur`) VALUES ('Juniot',0,'46 rue du pigeon Paris', '07456321','jj@monmail.fr.com');
-INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`emailUtilisateur`) VALUES ('Gerard',0,'45 rue de la mouette Nice', '07987456','gg@monmail.fr.com');
+INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Juniot',0,'46 rue du pigeon Paris', '07456321','jj@monmail.fr.com','1234');
+INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Gerard',0,'45 rue de la mouette Nice', '07987456','gg@monmail.fr.com','0000');
 
 
 -- insertion dans cdr

@@ -4,19 +4,16 @@ CREATE DATABASE cook;
 
 use cook; 
 
-create table cook.utilisateur(
-	`email` varchar(20) not null,
-    `password` varchar(20) not null,
-    primary key (`email`));
-
 CREATE TABLE cook.client (
   `nom` VARCHAR(20) NOT NULL,
   `balance` INT NULL,
   `adresse` VARCHAR(50) NULL,
   `numero` VARCHAR(20) not NULL,
-  `emailUtilisateur` varchar(20) not null,
-  foreign key (`emailUtilisateur`) references cook.utilisateur(email),
+  `email` varchar(20) not null,
+  `password` varchar(20) not null,
+  `type` varchar(20) DEFAULT 'user', 
   PRIMARY KEY (`numero`) );
+  
     
 create table cook.cdr(	
 	`numero` VARCHAR(20) not NULL,

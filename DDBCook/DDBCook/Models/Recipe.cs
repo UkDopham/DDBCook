@@ -110,6 +110,8 @@ namespace DDBCook.Models
                 return this._price;
             }
         }
+
+
         public Recipe(
             string name,
             RecipeType recipeType,
