@@ -6,5 +6,6 @@
     <Application.Resources>
         <SolidColorBrush x:Key="purple" Color="#706fd3"/>
         <SolidColorBrush x:Key="grey" Color="#EEEEEE"/>
+        <SolidColorBrush x:Key="dark grey" Color="#666666 "/>
     </Application.Resources>
 </Application>

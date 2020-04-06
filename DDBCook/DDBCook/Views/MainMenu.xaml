@@ -43,7 +43,8 @@
                                    Text="Crevet"
                                    VerticalAlignment="Center"
                                    Foreground="{StaticResource purple}"
-                                   FontSize="14"/>
+                                   FontSize="13"
+                                   FontWeight="Bold"/>
                     </Grid>
                 </Button>
                 
@@ -89,7 +90,8 @@
                             Grid.Column="1"
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
-                            Background="Transparent">
+                            Background="Transparent"
+                            Click="LoginButton_Click">
                         <TextBlock Text="Inscription ou Connexion"
                                  Foreground="{StaticResource purple}"/>
                     </Button>
@@ -127,32 +129,86 @@
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
 
+            <!--Filter and sort-->
             <Border Grid.Column="0"
                     BorderBrush="{StaticResource grey}"
                     BorderThickness="0,0,1,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="6*"/>
-                    </Grid.RowDefinitions>
+                <StackPanel>
 
                     <!--Sort-->
-                    <Expander Grid.Row="0"
+                    <Expander 
                               VerticalAlignment="Center"
-                              Margin="10">
-                        
+                              Margin="10"
+                              Header="Trier"
+                              IsExpanded="False">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <CheckBox Grid.Row="0"
+                                      Margin="10"
+                                      Content="Alphabetique"/>
+                            
+                            <CheckBox Grid.Row="1"
+                                      Margin="10"
+                                      Content="Note"/>
+
+                            <CheckBox Grid.Row="2"
+                                      Margin="10"
+                                      Content="Prix"/>
+                        </Grid>
                     </Expander>
 
                     <!--Filter-->
-                    <Expander Grid.Row="1"
+                    <Expander 
                               VerticalAlignment="Center"
-                              Margin="10">
+                              Margin="10"
+                              Header="Filtre"
+                              IsExpanded="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
+                            <CheckBox Grid.Row="0"
+                                      Margin="10"
+                                      Content="Healthy"/>
+                            
+                            <CheckBox Grid.Row="1"
+                                      Margin="10"
+                                      Content="Bio"/>
+                            
+                            <CheckBox Grid.Row="2"
+                                      Margin="10"
+                                      Content="Vegan"/>
+                            
+                            <CheckBox Grid.Row="3"
+                                      Margin="10"
+                                      Content="Chimique"/>
+                            
+                            <CheckBox Grid.Row="4"
+                                      Margin="10"
+                                      Content="Tendance"/>
+                        </Grid>
+        
                     </Expander>
-                </Grid>
+                </StackPanel>
 
             </Border>
+            
+            <!--Content-->
+            <Grid Grid.Column="1" 
+                  Margin="10">
+                <ContentControl/>
+            </Grid>
             
         </Grid>
         
