@@ -94,5 +94,11 @@ namespace DDBCook.Models
         {
             return $"'{this._name}', {this._money}, '{this._adress}', '{this._phoneNumber}', '{this._email}', '{this._password}', '{this._userType}'";
         }
+
+
+        public override string ToString()
+        {
+            return this.Name;
+        } 
     }
 }
