@@ -1,6 +1,6 @@
 -- Creation des tables pour le projet
 
-CREATE DATABASE cook;
+-- CREATE DATABASE cook;
 
 use cook; 
 
@@ -71,6 +71,6 @@ create table cook.commande(
     foreign key (`nomRecette`) references cook.recette(`nom`),
     foreign key (`numero`) references cook.client(`numero`));
     
-drop table cook.commande;
+
 
     

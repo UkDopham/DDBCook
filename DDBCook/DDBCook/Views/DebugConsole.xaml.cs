@@ -22,7 +22,7 @@ namespace DDBCook.Views
         public DebugConsole()
         {
             InitializeComponent();
-            this.Topmost = true;
+           // this.Topmost = true;
         }
         public void AddNewLine(string lineText)
         {

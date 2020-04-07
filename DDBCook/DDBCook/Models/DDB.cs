@@ -25,7 +25,7 @@ namespace DDBCook.Models
                 this._mySqlConnection = new MySqlConnection(connectionString);
                 this._mySqlConnection.Open();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -71,13 +71,13 @@ namespace DDBCook.Models
             RecipeCreator recipeCreator = new RecipeCreator(phoneNumber);
             Insert<RecipeCreator>(recipeCreator);
         }
-        
+
         /// <summary>
         /// custom method to insert into sql command
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="table"></param>
-        private void Insert<T>(T table) where T:ITable
+        private void Insert<T>(T table) where T : ITable
         {
             try
             {
@@ -87,11 +87,99 @@ namespace DDBCook.Models
                 reader = command.ExecuteReader();
                 reader.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
         }
+
+        private List<string> Select(string className, string whereColumn = "", string whereValue ="" )
+        {
+            string[] requestResult = new string[0];
+            try
+            {
+            MySqlCommand command = this._mySqlConnection.CreateCommand();
+            command.CommandText = "select * from " + className;
+            if (!whereColumn.Equals("") && !whereValue.Equals(""))
+                command.CommandText += " WHERE "+whereColumn + " = " + whereValue;
+            command.CommandText += "; ";
+            MySqlDataReader reader;
+            reader = command.ExecuteReader();
+
+            List<string> valueString = new List<string>();
+            int cpt = 0;
+            while (reader.Read())
+            {
+                valueString.Add("");
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    valueString[cpt] += reader.GetValue(i).ToString();
+                    valueString[cpt] += ";";
+                }
+                cpt++;
+            }
+
+
+            reader.Close();
+            requestResult = valueString.ToArray();
+             }
+             catch(Exception ex)
+             {
+
+             }
+            return requestResult.ToList();
+        }
+        public List<ProductComposition> SelectProudctComposition(string whereColumn = "", string whereValue ="" )
+        {
+            List<ProductComposition> listPC = new List<ProductComposition>();
+            Select("compose", whereColumn,whereValue).ForEach(x => listPC.Add((ProductComposition)Converter.ConvertFromString(x, TableType.productComposition)));
+
+            return listPC;
+        }
+        public List<Client> SelectClient(string whereColumn = "", string whereValue ="" )
+        {
+            List<Client> listPC = new List<Client>();
+            Select("client", whereColumn,whereValue).ForEach(x => listPC.Add((Client)Converter.ConvertFromString(x, TableType.client)));
+
+            return listPC;
+        }
+        public List<Supplier> SelectSupplier(string whereColumn = "", string whereValue ="" )
+        {
+            List<Supplier> listPC = new List<Supplier>();
+            Select("fournisseur", whereColumn,whereValue).ForEach(x => listPC.Add((Supplier)Converter.ConvertFromString(x, TableType.client)));
+            
+            return listPC;
+        }
+        public List<Order> SelectOrder(string whereColumn = "", string whereValue ="" )
+        {
+            List<Order> listPC = new List<Order>();
+            Select("commande", whereColumn,whereValue).ForEach(x => listPC.Add((Order)Converter.ConvertFromString(x, TableType.client)));
+
+            return listPC;
+        }
+        public List<Product> SelectProduct(string whereColumn = "", string whereValue ="" )
+        {
+            List<Product> listPC = new List<Product>();
+            Select("produit", whereColumn,whereValue).ForEach(x => listPC.Add((Product)Converter.ConvertFromString(x, TableType.client)));
+
+            return listPC;
+        }
+        public List<Recipe> SelectRecipe(string whereColumn = "", string whereValue ="" )
+        {
+            List<Recipe> listPC = new List<Recipe>();
+            Select("recette", whereColumn,whereValue).ForEach(x => listPC.Add((Recipe)Converter.ConvertFromString(x, TableType.client)));
+
+            return listPC;
+        }
+        public List<RecipeCreator> SelectRecipeCreator(string whereColumn = "", string whereValue ="" )
+        {
+            List<RecipeCreator> listPC = new List<RecipeCreator>();
+            Select("cdr", whereColumn,whereValue).ForEach(x => listPC.Add((RecipeCreator)Converter.ConvertFromString(x, TableType.client)));
+
+            return listPC;
+        }
+
+
 
     }
 }
