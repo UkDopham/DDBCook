@@ -16,43 +16,32 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
+               
 
                 <TextBlock Grid.Row="0"
-                               VerticalAlignment="Center"
-                               Margin="10"
-                               Text="Email"
-                               FontSize="20"
-                               Foreground="{StaticResource purple}"/>
-
-                <TextBox Grid.Row="1"
-                             VerticalAlignment="Center"
-                             Margin="10,0"
-                             VerticalContentAlignment="Center"
-                             Foreground="{StaticResource purple}"/>
-
-                <TextBlock Grid.Row="2"
-                               VerticalAlignment="Center"
+                           VerticalAlignment="Center"
                            Margin="10"
-                               Text="mot de passe"
-                               FontSize="20"
-                               Foreground="{StaticResource purple}"/>
+                           Text="Mot de passe"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource dark grey}"/>
 
-                <TextBox Grid.Row="3"
-                             VerticalAlignment="Center"
-                             Margin="10,0"
-                             VerticalContentAlignment="Center"
-                             Foreground="{StaticResource purple}"/>
+                <PasswordBox Grid.Row="1"
+                         VerticalAlignment="Center"
+                         Margin="10,0"
+                         Height="50"
+                         FontSize="20"
+                         VerticalContentAlignment="Center"
+                         Foreground="{StaticResource purple}"/>
 
-                <Button Grid.Row="4"
+                <Button Grid.Row="2"
                 Margin="90,30"
                 BorderThickness="0"
                 Background="{StaticResource grey}"
                 Content="Continuer"
-                FontSize="22"
+                FontSize="30"
                 Foreground="White"
                 FontWeight="Bold"
                 Click="Button_Click"/>

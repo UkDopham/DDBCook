@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ContainerButton.cs" />
     <Compile Include="Models\Converter.cs" />
     <Compile Include="Models\Enums\RecipeType.cs" />
     <Compile Include="Models\Enums\TableType.cs" />
@@ -88,7 +89,6 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\ITable.cs" />
     <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Views\DebugConsole.xaml.cs">
       <DependentUpon>DebugConsole.xaml</DependentUpon>
     </Compile>
@@ -101,11 +101,17 @@
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecipeInformation.xaml.cs">
+      <DependentUpon>RecipeInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterOrLogin.xaml.cs">
       <DependentUpon>RegisterOrLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -135,11 +141,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RecipeInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterOrLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +210,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chef.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

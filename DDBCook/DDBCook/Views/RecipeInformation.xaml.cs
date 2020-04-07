@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDBCook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,21 +17,15 @@ using System.Windows.Shapes;
 namespace DDBCook.Views
 {
     /// <summary>
-    /// Logique d'interaction pour EmailLogin.xaml
+    /// Logique d'interaction pour RecipeInformation.xaml
     /// </summary>
-    public partial class EmailLogin : UserControl
+    public partial class RecipeInformation : UserControl
     {
-        private RegisterOrLogin _registerOrLogin;
-        public EmailLogin(RegisterOrLogin registerOrLogin)
+        private Recipe _recipe;
+        public RecipeInformation(Recipe recipe)
         {
             InitializeComponent();
-            this._registerOrLogin = registerOrLogin;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this._registerOrLogin.DataContext = new Register();
-            //check if email exists
+            this._recipe = recipe;
         }
     }
 }

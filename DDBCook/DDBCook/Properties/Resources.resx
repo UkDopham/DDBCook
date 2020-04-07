@@ -121,6 +121,9 @@
   <data name="basket" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\basket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="chef" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chef.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="home_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home-run.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

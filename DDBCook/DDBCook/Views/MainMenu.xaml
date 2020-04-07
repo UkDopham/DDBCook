@@ -91,9 +91,11 @@
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
                             Background="Transparent"
-                            Click="LoginButton_Click">
+                            Click="LoginButton_Click"
+                            x:Name="ClientButton">
                         <TextBlock Text="Inscription ou Connexion"
-                                 Foreground="{StaticResource purple}"/>
+                                 Foreground="{StaticResource purple}"
+                                   x:Name="ClientTextBlock"/>
                     </Button>
 
                     <Button Margin="5,10"
@@ -207,7 +209,7 @@
             <!--Content-->
             <Grid Grid.Column="1" 
                   Margin="10">
-                <ContentControl/>
+                <ContentControl Content="{Binding}"/>
             </Grid>
             
         </Grid>
