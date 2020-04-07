@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\ContainerButton.cs" />
     <Compile Include="Models\Converter.cs" />
     <Compile Include="Models\Enums\RecipeType.cs" />
@@ -89,6 +90,9 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\ITable.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Views\BasketInformation.xaml.cs">
+      <DependentUpon>BasketInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DebugConsole.xaml.cs">
       <DependentUpon>DebugConsole.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BasketInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DebugConsole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +223,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chef.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteBasket.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

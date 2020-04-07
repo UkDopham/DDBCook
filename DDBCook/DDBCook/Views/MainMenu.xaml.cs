@@ -39,5 +39,11 @@ namespace DDBCook.Views
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             mainWindow.DataContext = new RegisterOrLogin();
         }
+
+        private void BasketButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new BasketInformation();
+        }
     }
 }

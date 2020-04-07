@@ -7,6 +7,150 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+
+                <!--Bar-->
+                <Border Grid.Row="0"
+                Margin="10,0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource grey}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="11*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--home button-->
+                        <Button Margin="10,10"
+                        BorderThickness="0"
+                        Grid.Column="0"
+                        Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
+                                <TextBlock Grid.Column="1"
+                                   Margin="4,0"
+                                   Text="Crevet"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource purple}"
+                                   FontSize="13"
+                                       FontWeight="Bold"/>
+                            </Grid>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!--Recipe information -->
+            <Border Grid.Row="1">
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title -->
+                    <Border BorderBrush="{StaticResource dark grey}"
+                            BorderThickness="0,0,0,1"
+                            Grid.Row="0"
+                            Margin="10,0">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding RecipePrice}"
+                                               Foreground="{StaticResource orange}"
+                                               FontWeight="Bold"
+                                               FontSize="14"/>
+                                    
+                                    <Button Grid.Column="1"
+                                        Width="50"
+                                        Margin="10"
+                                        HorizontalAlignment="Center"
+                                        BorderThickness="0"
+                                        Background="{StaticResource purple}"
+                                            Click="ShopButton_Click">
+
+                                        <Image Margin="2"
+                                    Source="pack://siteoforigin:,,,/Resources/whiteBasket.png"/>
+                                    </Button>
+                                </Grid>
+                                
+
+                                <TextBlock Text="{Binding Recipe.Name}"
+                               Margin="10,0"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource purple}"/>
+                            </Grid>
+
+                            <StackPanel Grid.Row="1"
+                                Margin="10">
+                                <TextBlock Text="{Binding Recipe.RecipeType}"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource dark grey}"
+                                   FontSize="14"/>
+
+                                <TextBlock Text="{Binding Recipe.Description}"
+                                   FontWeight="Bold"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"
+                                   Width="500"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Products-->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Les ingrédients : "
+                                   VerticalAlignment="Center"
+                                   Margin="10"
+                                   Foreground="{StaticResource purple}"
+                                   FontWeight="Bold"
+                                   FontSize="15"/>
+
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Disabled"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalAlignment="Top">
+                            <StackPanel Margin="10"
+                                    Orientation="Horizontal"
+                                        x:Name="ProductsStackPanel"/>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Border>
             
+            </Grid>
     </Grid>
 </UserControl>
