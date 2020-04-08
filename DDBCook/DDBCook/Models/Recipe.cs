@@ -126,7 +126,7 @@ namespace DDBCook.Models
             string description,
             // List<ProductComposition> productsComposition,
             // RecipeCreator recipeCreator,
-            string numberCreator, 
+            string numberCreator,
             int price = 2,
             bool isHealthy = false,
             bool isBio = false,
@@ -158,7 +158,7 @@ namespace DDBCook.Models
 
         public string GetTableProperties()
         {
-            return "nom, categorie, description, prix, numeroCreateur";
+            return "nom, categorie, description, prix, numeroCreateur,estHealthy,estBio,estVegan,estChimique,estTendance";
         }
 
         public string GetTableValues()

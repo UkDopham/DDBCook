@@ -87,7 +87,7 @@ namespace DDBCook.Models
 
         public virtual string GetTableProperties()
         {
-            return $"nom, balance, adresse, numero, emailUtilisateur, password, type";
+            return $"nom,balance,adresse,numero,email,password,type";
         }
 
         public virtual string GetTableValues()
