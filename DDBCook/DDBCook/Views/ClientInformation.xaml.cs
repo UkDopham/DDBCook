@@ -34,6 +34,15 @@ namespace DDBCook.Views
                 this._client = value;
             }
         }
+        public string GetName
+        {
+            get
+            {
+                DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+                
+                return this._client.Name +" - "+ (ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { $"'{this._client.PhoneNumber}'" }).Count > 0 ? "CDR" : "Client");
+            }
+        }
         public string Balance
         {
             get
@@ -41,26 +50,24 @@ namespace DDBCook.Views
                 return $"{this._client.Money} cook";
             }
         }
-        public ClientInformation(Client client)
+        public ClientInformation()
         {
+            this._client = User.ConnectedClient;
             InitializeComponent();
-            this._client = client;
             InitilizationRecipes();
+            DDB ddb  = new DDB(User.DataBase, User.Username, User.Password);
+            cdrGrid.Visibility = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { $"'{this._client.PhoneNumber}'" }).Count > 0 ? Visibility.Visible : Visibility.Hidden;
+            ddb.Close();
         }
         
         private void InitilizationRecipes()
         {
             RecipeStackPanel.Children.Clear();
             //Get recipes created by the client
-            
-            List<Recipe> recipes = new List<Recipe>();
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
 
-            recipes.Add(new Recipe("couscous", Models.Enums.RecipeType.boisson, "desc couscousdesc couscousdesc couscousdesc couscousdesc couscous", "John doe"));
-            recipes.Add(new Recipe("couscous", Models.Enums.RecipeType.boisson, "desc couscous", "John doe"));
-            recipes.Add(new Recipe("couscous", Models.Enums.RecipeType.boisson, "desc couscous", "John doe"));
-            recipes.Add(new Recipe("couscous", Models.Enums.RecipeType.boisson, "desc couscous", "John doe"));
-            recipes.Add(new Recipe("couscous", Models.Enums.RecipeType.boisson, "desc couscous", "John doe"));
-
+            List<Recipe> recipes = ddb.SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"'{this._client.PhoneNumber}'" });
+            ddb.Close();
             foreach (Recipe recipe in recipes)
             {
                 AddRecipe(recipe);

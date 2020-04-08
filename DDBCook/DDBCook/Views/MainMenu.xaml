@@ -62,6 +62,7 @@
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
                             Background="Transparent"
+                            x:Name="CDRButton"
                             Click="CDRButton_Click">
                         <TextBlock Text="CDR"
                                    FontWeight="Bold"
@@ -88,7 +89,8 @@
                             BorderBrush="{StaticResource grey}"
                             Background="Transparent"
                                    FontWeight="Bold"
-                            Click="BasketButton_Click">
+                            Click="BasketButton_Click"
+                            x:Name="BaksetButton">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

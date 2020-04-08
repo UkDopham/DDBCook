@@ -20,7 +20,7 @@ namespace DDBCook.Models
         }
         public RecipeCreator(string id)
         {
-            this._id = Id;
+            this._id = id;
         }
         public string GetTableName()
         {

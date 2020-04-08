@@ -60,6 +60,7 @@
         
         <!-- Textbox -->
         <TextBox Grid.Row="0"
+                 x:Name="nameTB"
                  Grid.Column="1"
                  Margin="10"
                  Foreground="{StaticResource purple}"
@@ -70,6 +71,7 @@
                  VerticalContentAlignment="Center"/>
 
         <TextBox Grid.Row="1"
+                 x:Name="adressTB"
                  Grid.Column="1"
                  Margin="10"
                  Foreground="{StaticResource purple}"
@@ -81,6 +83,7 @@
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
+                 x:Name="numberTB"
                  Margin="10"
                  Foreground="{StaticResource purple}"
                  FontWeight="Bold"
@@ -92,6 +95,7 @@
         <PasswordBox Grid.Row="3"
                  Grid.Column="1"
                  Margin="10"
+                   x:Name="passwordTB"
                  Foreground="{StaticResource purple}"
                  FontWeight="Bold"
                  FontSize="14"

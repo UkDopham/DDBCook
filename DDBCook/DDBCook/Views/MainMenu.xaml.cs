@@ -21,17 +21,19 @@ namespace DDBCook.Views
     /// </summary>
     public partial class MainMenu : UserControl
     {
-        private Client _connectedClient;
-        public MainMenu(Client client = null)
+
+        public MainMenu()
         {
             InitializeComponent();
+            
+            CDRButton.Visibility = User.ConnectedClient != null ? Visibility.Visible : Visibility.Hidden;
+            BaksetButton.Visibility = User.ConnectedClient != null ? Visibility.Visible : Visibility.Hidden;
             //DataContext = new WelcomePage();
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             DataContext = new RecipesViewer(ddb.SelectRecipe());
-            if (client != null)
+            if (User.ConnectedClient != null)
             {
-                this._connectedClient = client;
-                ClientTextBlock.Text = this._connectedClient.Name;
+                ClientTextBlock.Text = User.ConnectedClient.Name;
                 //ClientButton.IsEnabled = false; if we want to disconnect from the client account
             }
         }
@@ -130,7 +132,7 @@ namespace DDBCook.Views
         private void CDRButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow.DataContext = new ClientInformation(new Client("John", "Alex", Models.Enums.UserType.user, "John doe", "1222", "adress", 123));
+            mainWindow.DataContext = new ClientInformation();
         }
     }
 }
