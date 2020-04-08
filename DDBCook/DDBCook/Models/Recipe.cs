@@ -165,5 +165,10 @@ namespace DDBCook.Models
         {
             return $"'{this._name}', '{this._recipeCreator}', '{this._description}', {this._price}, '{this._numberCreator}'";
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

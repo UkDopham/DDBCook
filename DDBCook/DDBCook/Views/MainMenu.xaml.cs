@@ -40,6 +40,86 @@ namespace DDBCook.Views
             mainWindow.DataContext = new RegisterOrLogin();
         }
 
+
+        /// <summary>
+        /// Sort the list of recipes depending on the name of the 'sender'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sort_Changed(object sender, RoutedEventArgs e)
+        {
+            DDB ddb = new DDB("cook", "root", "root");
+            List<Recipe> listeRecettes = ddb.SelectRecipe();
+            ddb.Close();
+
+            if (((CheckBox)sender).Name.Equals(AlphabetiqueCB.Name))
+            {
+                listeRecettes.Sort((a, b) => (a.Name.CompareTo(b.Name)));
+                NoteCB.IsChecked = false;
+                PrixCB.IsChecked = false;
+            }
+            if (((CheckBox)sender).Name.Equals(NoteCB.Name))
+            {
+                listeRecettes.Sort((a, b) => (a.Rating.CompareTo(b.Rating)));
+                AlphabetiqueCB.IsChecked = false;
+                PrixCB.IsChecked = false;
+            }
+            if (((CheckBox)sender).Name.Equals(PrixCB.Name))
+            {
+                listeRecettes.Sort((a, b) => (a.Price.CompareTo(b.Price)));
+                NoteCB.IsChecked = false;
+                AlphabetiqueCB.IsChecked = false;
+            }
+
+
+            // listeRecettes
+        }
+
+        /// <summary>
+        /// Filter the list of recipes by looking at which checkboxes are checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Filter_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            List<Recipe> recettesFiltrees;
+            List<string> colonnesAfiltrer = new List<string>();
+            List<string> valeurscolonnes = new List<string>();
+
+            if (HealthyCB?.IsChecked == true)
+            {
+                colonnesAfiltrer.Add("estHealthy");
+                valeurscolonnes.Add("true");
+            }
+            if (BioCB?.IsChecked == true)
+            {
+                colonnesAfiltrer.Add("estBio");
+                valeurscolonnes.Add("true");
+            }
+            if (VeganCB?.IsChecked == true)
+            {
+                colonnesAfiltrer.Add("estVegan");
+                valeurscolonnes.Add("true");
+            }
+            if (ChimiqueCB?.IsChecked == true)
+            {
+                colonnesAfiltrer.Add("estChimique");
+                valeurscolonnes.Add("true");
+            }
+            if (TendanceCB?.IsChecked == true)
+            {
+                colonnesAfiltrer.Add("estTendance");
+                valeurscolonnes.Add("true");
+            }
+
+            DDB ddb = new DDB("cook", "root", "root");
+            recettesFiltrees = ddb.SelectRecipe(colonnesAfiltrer.ToArray(), valeurscolonnes.ToArray());
+            ddb.Close();
+
+
+            // recettesFiltrees
+        }
+
         private void BasketButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
