@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,53 +18,37 @@ using System.Windows.Shapes;
 namespace DDBCook.Views
 {
     /// <summary>
-    /// Logique d'interaction pour RecipeInformation.xaml
+    /// Logique d'interaction pour RecipeCreation.xaml
     /// </summary>
-    public partial class RecipeInformation : UserControl
+    public partial class RecipeCreation : UserControl
     {
-        private Recipe _recipe;
-
-        public string RecipePrice
-        {
-            get
-            {
-                return $"{this._recipe.Price} cook";
-            }
-        }
-        public Recipe Recipe
-        {
-            get
-            {
-                return this._recipe;
-            }
-        }
-        public RecipeInformation(Recipe recipe)
+        private List<ProductComposition> _allProducts = new List<ProductComposition>();
+        private List<ProductComposition> _products = new List<ProductComposition>();
+        public RecipeCreation()
         {
             InitializeComponent();
-            this._recipe = recipe;
-            InitilizationProduct();
+            LoadProducts();
+            InitializeProducts();
         }
-
-        /// <summary>
-        /// Show the recipe products
-        /// </summary>
-        private void InitilizationProduct()
+        private void LoadProducts()
         {
-            //Request sql for the products
-            List<ProductComposition> products = new List<ProductComposition>();
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            foreach (ProductComposition product in products)
+            DDB ddb = new DDB("cook", "root", "alexandre1");
+            this._allProducts = ddb.SelectProudctComposition();
+            ProductsComboBox.ItemsSource = this._allProducts;
+        }
+        
+        private void InitializeProducts()
+        {
+            ProductsStackPanel.Children.Clear();
+            foreach(ProductComposition productComposition in this._products)
             {
-                AddProduct(product);
+                AddProduct(productComposition);
             }
         }
 
-        private void AddProduct(ProductComposition product)
+        private void AddProduct(ProductComposition productComposition)
         {
-            ProductsStackPanel.Children.Add(GetBorder(product));
+            ProductsStackPanel.Children.Add(GetBorder(productComposition));
         }
 
         private Border GetBorder(ProductComposition product)
@@ -75,7 +60,7 @@ namespace DDBCook.Views
                 BorderThickness = new Thickness(0),
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Margin = new Thickness(5)               
+                Margin = new Thickness(5)
             };
         }
         private TextBlock GetTextBlock(ProductComposition product, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
@@ -104,19 +89,16 @@ namespace DDBCook.Views
                 Foreground = colorBrush,
             };
         }
-
-        private void ShopButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            //Add the recipe to the basket;
-            Basket.Recipes.Add(this.Recipe);
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             mainWindow.DataContext = new MainMenu();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow.DataContext = new MainMenu();
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

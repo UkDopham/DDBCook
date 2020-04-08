@@ -93,6 +93,9 @@
     <Compile Include="Views\BasketInformation.xaml.cs">
       <DependentUpon>BasketInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ClientInformation.xaml.cs">
+      <DependentUpon>ClientInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DebugConsole.xaml.cs">
       <DependentUpon>DebugConsole.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,9 @@
     </Compile>
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipeCreation.xaml.cs">
+      <DependentUpon>RecipeCreation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipeInformation.xaml.cs">
       <DependentUpon>RecipeInformation.xaml</DependentUpon>
@@ -133,6 +139,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ClientInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DebugConsole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipeCreation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,9 +212,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\shrimp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

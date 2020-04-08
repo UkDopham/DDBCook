@@ -53,6 +53,11 @@ namespace DDBCook.Models
             this._recipeName = recipeName;
         }
 
+        public override string ToString()
+        {
+            return this._refProduct;
+        }
+
         public string GetTableName()
         {
             return $"cook.compose";

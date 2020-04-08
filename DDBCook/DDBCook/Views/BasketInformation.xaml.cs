@@ -26,7 +26,9 @@ namespace DDBCook.Views
             InitializeComponent();
             InitializationBasket();
         }
-
+        /// <summary>
+        /// Initilization of the visual
+        /// </summary>
         private void InitializationBasket()
         {
             BasketStackPanel.Children.Clear();
@@ -35,7 +37,10 @@ namespace DDBCook.Views
                 AddRow(recipe);
             }
         }
-
+        /// <summary>
+        /// Add a row 
+        /// </summary>
+        /// <param name="recipe"></param>
         private void AddRow(Recipe recipe)
         {
             BasketStackPanel.Children.Add(GetGrid(recipe));

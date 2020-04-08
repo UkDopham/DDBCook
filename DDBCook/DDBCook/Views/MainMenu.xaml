@@ -81,8 +81,10 @@
                             Grid.Column="0"
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
-                            Background="Transparent">
+                            Background="Transparent"
+                            Click="CDRButton_Click">
                         <TextBlock Text="CDR"
+                                   FontWeight="Bold"
                                  Foreground="{StaticResource purple}"/>
                     </Button>
 
@@ -93,8 +95,10 @@
                             Background="Transparent"
                             Click="LoginButton_Click"
                             x:Name="ClientButton">
-                        <TextBlock Text="Inscription ou Connexion"
+                        <TextBlock Text="Connexion"
+                                   
                                  Foreground="{StaticResource purple}"
+                                   FontWeight="Bold"
                                    x:Name="ClientTextBlock"/>
                     </Button>
 
@@ -103,6 +107,7 @@
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
                             Background="Transparent"
+                                   FontWeight="Bold"
                             Click="BasketButton_Click">
                         <Grid>
                             <Grid.ColumnDefinitions>

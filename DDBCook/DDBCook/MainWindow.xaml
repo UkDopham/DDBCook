@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DDBCook"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" 
+        mc:Ignorable="d"        
+        Title="Crevet" 
+        Height="450" 
         Width="800"
-        ResizeMode="NoResize">
-    <Grid>
-        <ContentControl Content="{Binding}"/>
-    </Grid>
+        ResizeMode="NoResize" 
+        Icon="pack://siteoforigin:,,,/Resources/shrimp.png">
+    <Border BorderThickness="0,1,0,0"
+            BorderBrush="{StaticResource purple}">
+        <Grid>
+            <ContentControl Content="{Binding}"/>
+        </Grid>
+    </Border>
 </Window>
