@@ -22,7 +22,7 @@ namespace DDBCook.Views
     /// </summary>
     public partial class RecipeCreation : UserControl
     {
-        private List<ProductComposition> _allProducts = new List<ProductComposition>();
+        private List<Product> _allProducts = new List<Product>();
         private List<ProductComposition> _products = new List<ProductComposition>();
         public RecipeCreation()
         {
@@ -33,8 +33,10 @@ namespace DDBCook.Views
         private void LoadProducts()
         {
             DDB ddb = new DDB("cook", "root", "alexandre1");
-            this._allProducts = ddb.SelectProudctComposition();
+            this._allProducts = ddb.SelectProduct();
+
             ProductsComboBox.ItemsSource = this._allProducts;
+            ProductsComboBox.SelectedIndex = 0;
         }
         
         private void InitializeProducts()
