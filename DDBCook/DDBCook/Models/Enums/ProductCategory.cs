@@ -11,9 +11,11 @@ namespace DDBCook.Models.Enums
         meat,
         fruit,
         vegetable,
-
+        feculent,
         viande,
         legume,
         eauGlace,
+        magic,
+        sucre,
     }
 }

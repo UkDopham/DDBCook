@@ -158,12 +158,12 @@ namespace DDBCook.Models
 
         public string GetTableProperties()
         {
-            return "nom, categorie, description, prix, numeroCreateur,estHealthy,estBio,estVegan,estChimique,estTendance";
+            return "`nom`,`categorie`,`description`,`prix`,`numeroCreateur` ,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note`";
         }
 
         public string GetTableValues()
         {
-            return $"'{this._name}', '{this._recipeCreator}', '{this._description}', {this._price}, '{this._numberCreator}'";
+            return $"'{this._name}','{this._recipeType}', '{this._description}', {this._price}, '{this._numberCreator}',{this._isHealthy}, {this._isBio}, {this._isVegan}, {this._isChimical}, {this._isTrending}, {this._rating}";
         }
 
         public override string ToString()

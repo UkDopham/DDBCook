@@ -50,11 +50,8 @@ namespace DDBCook.Views
         private void InitilizationProduct()
         {
             //Request sql for the products
-            List<ProductComposition> products = new List<ProductComposition>();
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
-            products.Add(new ProductComposition("1", 2, "banane", "Chocolat"));
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<ProductComposition> products = ddb.SelectProudctComposition(new string[] { "nomRecette" }, new string[] { $"'{this._recipe.Name}'" });
             foreach (ProductComposition product in products)
             {
                 AddProduct(product);
@@ -78,9 +75,11 @@ namespace DDBCook.Views
                 Margin = new Thickness(5)               
             };
         }
-        private TextBlock GetTextBlock(ProductComposition product, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
+        private TextBlock GetTextBlock(ProductComposition productCompo, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
         {
-            string text = product.RefProduct;
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            Product product = ddb.SelectProduct(new string[] { "ref" }, new string[] { $"'{productCompo.RefProduct}'" })[0];
+            string text = productCompo.RefProduct;
             if (text.Length > 10)
             {
                 string tmp = string.Empty;
@@ -94,7 +93,7 @@ namespace DDBCook.Views
             }
             return new TextBlock()
             {
-                Text = $"{text} x{product.Quantity}",
+                Text = $"{product.Name} {productCompo.Quantity}{product.Unit}",
                 Margin = new Thickness(10),
                 FontSize = fontSize,
                 VerticalAlignment = VerticalAlignment.Center,

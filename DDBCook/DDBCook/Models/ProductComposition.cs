@@ -44,6 +44,10 @@ namespace DDBCook.Models
             {
                 return this._recipeName;
             }
+            set
+            {
+                this._recipeName = value;
+            }
         }
         public ProductComposition(string id, int quantity, string refProduct, string recipeName)
         {
