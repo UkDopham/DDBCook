@@ -9,6 +9,12 @@ namespace DDBCook.Models
 {
     public static class Converter
     {
+        /// <summary>
+        /// Convert the result of the sql request in an object
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="tableType"></param>
+        /// <returns></returns>
         public static ITable ConvertFromString(string value, TableType tableType)
         {
             string[] values = value.Split(';');
@@ -40,12 +46,12 @@ namespace DDBCook.Models
                         description:  values[2],
                         price: Convert.ToInt32(values[3]),
                         numberCreator : values[4],
-                        isHealthy: Convert.ToInt32(values[4]) == 1,
-                        isBio: Convert.ToInt32(values[5]) == 1,
-                        isVegan: Convert.ToInt32(values[6]) == 1,
-                        isChimical: Convert.ToInt32(values[7]) == 1,
-                        isTrending: Convert.ToInt32(values[8]) == 1,
-                        rating: Convert.ToInt32(values[9]));
+                        isHealthy: values[5].Equals("True"),
+                        isBio: values[6].Equals("True"),
+                        isVegan: values[7].Equals("True"),
+                        isChimical: values[8].Equals("True"),
+                        isTrending: values[9].Equals("True"),
+                        rating: Convert.ToInt32(values[10]));
                     break;
                 case TableType.product:
                     valueConverted = new Product(

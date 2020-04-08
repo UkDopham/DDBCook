@@ -153,14 +153,20 @@
 
                             <CheckBox Grid.Row="0"
                                       Margin="10"
+                                      Checked="Sort_Changed"
+                                      Name ="AlphabetiqueCB"
                                       Content="Alphabetique"/>
                             
                             <CheckBox Grid.Row="1"
                                       Margin="10"
+                                      Checked="Sort_Changed"
+                                      Name ="NoteCB"
                                       Content="Note"/>
 
                             <CheckBox Grid.Row="2"
                                       Margin="10"
+                                      Checked="Sort_Changed"
+                                      Name ="PrixCB"
                                       Content="Prix"/>
                         </Grid>
                     </Expander>
@@ -182,22 +188,37 @@
 
                             <CheckBox Grid.Row="0"
                                       Margin="10"
+                                      Checked="Filter_CheckedChanged"
+                                      Unchecked="Filter_CheckedChanged"
+                                      Name ="HealthyCB"
                                       Content="Healthy"/>
                             
                             <CheckBox Grid.Row="1"
                                       Margin="10"
+                                      Checked="Filter_CheckedChanged"
+                                      Unchecked="Filter_CheckedChanged"
+                                      Name ="BioCB"
                                       Content="Bio"/>
                             
                             <CheckBox Grid.Row="2"
                                       Margin="10"
+                                      Checked="Filter_CheckedChanged"
+                                      Unchecked="Filter_CheckedChanged"
+                                      Name ="VeganCB"
                                       Content="Vegan"/>
                             
                             <CheckBox Grid.Row="3"
                                       Margin="10"
+                                      Checked="Filter_CheckedChanged"
+                                      Unchecked="Filter_CheckedChanged"
+                                      Name ="ChimiqueCB"
                                       Content="Chimique"/>
                             
                             <CheckBox Grid.Row="4"
                                       Margin="10"
+                                      Checked="Filter_CheckedChanged"
+                                      Unchecked="Filter_CheckedChanged"
+                                      Name ="TendanceCB"
                                       Content="Tendance"/>
                         </Grid>
         
