@@ -1,4 +1,5 @@
 ﻿using DDBCook.Models;
+using DDBCook.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,37 +24,49 @@ namespace DDBCook.Views
     public partial class RecipeCreation : UserControl
     {
         private List<Product> _allProducts = new List<Product>();
-        private List<ProductComposition> _products = new List<ProductComposition>();
+        private List<DoubleContainer<Product, ProductComposition>> _products = new List<DoubleContainer<Product, ProductComposition>>();
+        private List<DoubleContainer<string, RecipeType>> _recipeTypes = new List<DoubleContainer<string, RecipeType>>();
         public RecipeCreation()
         {
+           //DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+           //User.ConnectedClient = ddb.SelectClient()[0];
             InitializeComponent();
             LoadProducts();
             InitializeProducts();
+            LoadRecipeType();
         }
         private void LoadProducts()
         {
-            DDB ddb = new DDB("cook", "root", "alexandre1");
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             this._allProducts = ddb.SelectProduct();
 
             ProductsComboBox.ItemsSource = this._allProducts;
             ProductsComboBox.SelectedIndex = 0;
         }
-        
+        private void LoadRecipeType()
+        {
+            this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("plat", RecipeType.plat));
+            this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("boisson", RecipeType.boisson));
+            this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("dessert", RecipeType.dessert));
+
+            CategoryComboBox.ItemsSource = this._recipeTypes;
+            CategoryComboBox.SelectedIndex = 0;
+        }
         private void InitializeProducts()
         {
             ProductsStackPanel.Children.Clear();
-            foreach(ProductComposition productComposition in this._products)
+            foreach(DoubleContainer<Product, ProductComposition> productComposition in this._products)
             {
                 AddProduct(productComposition);
             }
         }
 
-        private void AddProduct(ProductComposition productComposition)
+        private void AddProduct(DoubleContainer<Product, ProductComposition> productComposition)
         {
             ProductsStackPanel.Children.Add(GetBorder(productComposition));
         }
 
-        private Border GetBorder(ProductComposition product)
+        private Border GetBorder(DoubleContainer<Product, ProductComposition> product)
         {
             return new Border()
             {
@@ -65,9 +78,9 @@ namespace DDBCook.Views
                 Margin = new Thickness(5)
             };
         }
-        private TextBlock GetTextBlock(ProductComposition product, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
+        private TextBlock GetTextBlock(DoubleContainer<Product, ProductComposition> product, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
         {
-            string text = product.RefProduct;
+            string text = product.Value.Name;
             if (text.Length > 10)
             {
                 string tmp = string.Empty;
@@ -81,7 +94,7 @@ namespace DDBCook.Views
             }
             return new TextBlock()
             {
-                Text = $"{text} x{product.Quantity}",
+                Text = $"{text} {product.OtherValue.Quantity}{product.Value.Unit}",
                 Margin = new Thickness(10),
                 FontSize = fontSize,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -102,5 +115,47 @@ namespace DDBCook.Views
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void ProductsComboBox_Selected(object sender, RoutedEventArgs e)
+        {
+            Product product = ((ComboBox)sender).SelectedItem as Product;
+            UnitTextBlock.Text = product.Unit;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            Product product = ProductsComboBox.SelectedItem as Product;
+            this._products.Add(new DoubleContainer<Product, ProductComposition>(product,new ProductComposition(Guid.NewGuid().ToString(), Convert.ToInt32(QuantityTextBox.Text), product.Reference, NameTextBox.Text)));
+            InitializeProducts();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new MainMenu();
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            DoubleContainer<string, RecipeType> recipeType = CategoryComboBox.SelectedItem as DoubleContainer<string, RecipeType>;
+            ddb.InsertRecipe(NameTextBox.Text, recipeType.OtherValue, DescTextBox.Text, User.ConnectedClient.PhoneNumber, Convert.ToInt32(PriceTextBox.Text), 
+                HealthyCB.IsChecked == true ? true : false,
+                BioCB.IsChecked == true ? true : false,
+                VeganCB.IsChecked == true ? true : false,
+                ChimiCB.IsChecked == true ? true : false); //operator ter because it's bool? not bool
+
+            foreach(DoubleContainer<Product, ProductComposition> productComposition in this._products) // if the user change the name after adding the product composition
+            {
+                productComposition.OtherValue.RecipeName = NameTextBox.Text;
+                ddb.Insert<ProductComposition>(productComposition.OtherValue);
+            }
+
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new MainMenu();
+        }
     }
+
+    
 }

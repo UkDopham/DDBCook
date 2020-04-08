@@ -42,7 +42,7 @@ namespace DDBCook.Models
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="table"></param>
-        private void Insert<T>(T table) where T : ITable
+        public void Insert<T>(T table) where T : ITable
         {
             try
             {
@@ -84,9 +84,9 @@ namespace DDBCook.Models
             ProductComposition productComposition = new ProductComposition(id, quantity, refProduct, recipeName);
             Insert<ProductComposition>(productComposition);
         }
-        public void InsertRecipe(string name, RecipeType recipeType, string description, List<ProductComposition> products, string numberCreator, int price = 2)
+        public void InsertRecipe(string name, RecipeType recipeType, string description, string numberCreator, int price = 2, bool isHealthy = false, bool isBio = false, bool isVegan = false, bool isChimical = false)
         {
-            Recipe recipe = new Recipe(name, recipeType, description, numberCreator, price);
+            Recipe recipe = new Recipe(name, recipeType, description, numberCreator, price, isHealthy, isBio, isBio, isVegan, isChimical);
             Insert<Recipe>(recipe);
         }
         public void InsertRecipeCreator(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money = 0)

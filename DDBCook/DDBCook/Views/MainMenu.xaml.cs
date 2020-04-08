@@ -25,7 +25,9 @@ namespace DDBCook.Views
         public MainMenu(Client client = null)
         {
             InitializeComponent();
-            DataContext = new WelcomePage();
+            //DataContext = new WelcomePage();
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            DataContext = new RecipesViewer(ddb.SelectRecipe());
             if (client != null)
             {
                 this._connectedClient = client;

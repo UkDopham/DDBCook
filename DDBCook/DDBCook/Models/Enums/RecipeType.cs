@@ -8,8 +8,6 @@ namespace DDBCook.Models.Enums
 {
     public enum RecipeType
     {
-        salty,
-        sweet,
         plat,
         boisson,
         dessert,

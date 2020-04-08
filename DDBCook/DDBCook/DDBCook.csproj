@@ -82,6 +82,7 @@
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\ContainerButton.cs" />
     <Compile Include="Models\Converter.cs" />
+    <Compile Include="Models\DoubleContainer.cs" />
     <Compile Include="Models\Enums\RecipeType.cs" />
     <Compile Include="Models\Enums\TableType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\ITable.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Views\BasketInformation.xaml.cs">
       <DependentUpon>BasketInformation.xaml</DependentUpon>
     </Compile>
@@ -113,6 +115,9 @@
     </Compile>
     <Compile Include="Views\RecipeInformation.xaml.cs">
       <DependentUpon>RecipeInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipesViewer.xaml.cs">
+      <DependentUpon>RecipesViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -164,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipeInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipesViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,16 +25,16 @@ INSERT INTO `cook`.`fournisseur` (`nom`,`numero`) VALUES ('100% Pole Nord',333);
 -- insertion dans produit
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('201','tomate','legume',0,0,0,'g',222);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('101','poulet','viande',0,0,0,'g',111);
-INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('102','spaghettis','feculant',0,0,0,'g',111);
+INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('102','spaghettis','feculent',0,0,0,'g',111);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('301','glace','eauGlace',0,0,0,'cL',333);
-INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('202','chocolat','95 pourcent',0,0,0,'g',222);
+INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('202','chocolat','feculent',0,0,0,'g',222);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('203','banane','fruit',0,0,0,'g',222);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('204','semoule','feculent',0,0,0,'g',222);
-INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('103','poudre multicolor','???',0,0,0,'g',111);
+INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('103','poudre multicolor','magic',0,0,0,'g',111);
 
 
 -- insertion dans recette
-INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur` ,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note`) VALUES ('Bolognaise au poulet','plat','Bolagnaise classique avec un arriere gout de petrole',3,'07456321',false,false,false,true,true,3);
+INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note`) VALUES ('Bolognaise au poulet','plat','Bolagnaise classique avec un arriere gout de petrole',3,'07456321',false,false,false,true,true,3);
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Bouteille du Nord','boisson','Un verre d eau bien fraiche venant des icebergs du pole nord',6,'07456321',true,true,true,true,false,4);
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Couscous','plat','Couscous authentique mais moderne',15,'07951487',true,true,false,false,true,5);
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Banane au chocolat','dessert','Dessert 100 poucent bio, vegan, sans glucides, antioxydants, avec vitamines, avec fibres, ....',8,'07951487',true,true,true,false,true,4);

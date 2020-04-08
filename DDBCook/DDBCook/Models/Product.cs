@@ -133,5 +133,10 @@ namespace DDBCook.Models
         {
             return $"'{this._reference}', '{this._name}', '{this._productCategory}', {this._currentQuantity}, {this._minQuantity}, {this._maxQuantity}, '{this._reference}', '{this._unit}'";
         }
+
+        public override string ToString()
+        {
+            return this._name;
+        }
     }
 }
