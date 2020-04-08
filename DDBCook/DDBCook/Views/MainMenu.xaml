@@ -48,26 +48,6 @@
                     </Grid>
                 </Button>
                 
-                <!-- search bar-->
-                <Grid Grid.Column="1"
-                      Margin="60,10"
-                      Background="{StaticResource grey}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image Grid.Column="0"
-                           Margin="5"
-                           Source="pack://siteoforigin:,,,/Resources/search.png"/>
-                    
-                    <TextBox  Grid.Column="1"
-                          Background="Transparent"
-                          VerticalContentAlignment="Center"
-                          BorderThickness="0"
-                              Foreground="{StaticResource purple}"/>
-                    
-                </Grid>
                 
                 <!--User -->
                 <Grid Grid.Column="2">

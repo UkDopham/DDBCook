@@ -121,8 +121,17 @@
   <data name="basket" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\basket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="chef" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chef.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chimical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chimical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="healthy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\healthy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="home_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home-run.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -132,6 +141,12 @@
   </data>
   <data name="shrimp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shrimp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trending" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trending.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vegan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vegan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="whiteBasket" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\whiteBasket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

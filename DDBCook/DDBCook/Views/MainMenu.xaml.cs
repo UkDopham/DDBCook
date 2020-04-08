@@ -50,7 +50,7 @@ namespace DDBCook.Views
         /// <param name="e"></param>
         private void Sort_Changed(object sender, RoutedEventArgs e)
         {
-            DDB ddb = new DDB("cook", "root", "root");
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             List<Recipe> listeRecettes = ddb.SelectRecipe();
             ddb.Close();
 
@@ -73,8 +73,7 @@ namespace DDBCook.Views
                 AlphabetiqueCB.IsChecked = false;
             }
 
-
-            // listeRecettes
+            DataContext = new RecipesViewer(listeRecettes);
         }
 
         /// <summary>
@@ -114,11 +113,11 @@ namespace DDBCook.Views
                 valeurscolonnes.Add("true");
             }
 
-            DDB ddb = new DDB("cook", "root", "root");
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             recettesFiltrees = ddb.SelectRecipe(colonnesAfiltrer.ToArray(), valeurscolonnes.ToArray());
             ddb.Close();
 
-
+            DataContext = new RecipesViewer(recettesFiltrees);
             // recettesFiltrees
         }
 

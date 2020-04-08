@@ -80,18 +80,128 @@ namespace DDBCook.Views
                     },
                 },
             };
-            TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Color.FromRgb(112, 111, 211)), FontWeights.Bold, 26);
+            Grid titlegrid = new Grid()
+            {
+                Width = 400,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Background = new SolidColorBrush(Colors.Transparent),
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(12, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(4, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(2, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                    new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    },
+                },
+            };
+            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Color.FromRgb(255, 115, 115)), FontWeights.Bold, 14);
+            TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Color.FromRgb(112, 111, 211)), FontWeights.Bold, 16);
+
+            titlegrid.Children.Add(price);
+            titlegrid.Children.Add(name);
+
+            Grid.SetColumn(price, 2);
+            Grid.SetColumn(name, 0);
+
+            Grid healthy = new Grid()
+            {
+                Width = 10,
+                Height = 10,
+                Background = new SolidColorBrush(Color.FromRgb(255, 179, 186))
+            };
+            if (recipe.IsHealthy)
+            {
+                titlegrid.Children.Add(healthy);
+                Grid.SetColumn(healthy, 4);
+            }
+            Grid bio = new Grid()
+            {
+                Width = 10,
+                Height = 10,
+                Background = new SolidColorBrush(Color.FromRgb(186, 255, 201))
+            };
+            if (recipe.IsBio)
+            {
+                titlegrid.Children.Add(bio);
+                Grid.SetColumn(bio, 5);
+            }
+            Grid vegan = new Grid()
+            {
+                Width = 10,
+                Height = 10,
+                Background = new SolidColorBrush(Color.FromRgb(186, 225, 255))
+            };
+            if (recipe.IsVegan)
+            {
+                titlegrid.Children.Add(vegan);
+                Grid.SetColumn(vegan, 6);
+            }
+            Grid chimical = new Grid()
+            {
+                Width = 10,
+                Height = 10,
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 186))
+            };
+            if (recipe.IsChimical)
+            {
+                titlegrid.Children.Add(chimical);
+                Grid.SetColumn(chimical, 7);
+            }
+            Grid trending = new Grid()
+            {
+                Width = 10,
+                Height = 10,
+                Background = new SolidColorBrush(Color.FromRgb(255, 223, 186))
+            };
+            if (recipe.IsTrending)
+            {
+                titlegrid.Children.Add(trending);
+                Grid.SetColumn(trending, 8);
+            }
+
+
             TextBlock desc = GetTextBlock(recipe.Description, new SolidColorBrush(Color.FromRgb(218, 218, 218)), FontWeights.Bold, 14);
-            grid.Children.Add(name);
+            grid.Children.Add(titlegrid);
             grid.Children.Add(desc);
 
-            Grid.SetRow(name, 0);
+            Grid.SetRow(titlegrid, 0);
             Grid.SetRow(desc, 1);
             return grid;
         }
         private TextBlock GetTextBlock(string text, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
         {
-            int limit = 20;
+            int limit = 50;
             if (text.Length > limit)
             {
                 string tmp = string.Empty;

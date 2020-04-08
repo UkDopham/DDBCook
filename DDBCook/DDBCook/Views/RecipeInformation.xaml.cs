@@ -23,6 +23,42 @@ namespace DDBCook.Views
     {
         private Recipe _recipe;
 
+        public Visibility IsHealthy
+        {
+            get
+            {
+                return this._recipe.IsHealthy ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+
+        public Visibility IsBio
+        {
+            get
+            {
+                return this._recipe.IsBio ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+        public Visibility IsTrending
+        {
+            get
+            {
+                return this._recipe.IsTrending ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+        public Visibility IsChimical
+        {
+            get
+            {
+                return this._recipe.IsChimical ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+        public Visibility IsVegan
+        {
+            get
+            {
+                return this._recipe.IsVegan ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
         public string RecipePrice
         {
             get
