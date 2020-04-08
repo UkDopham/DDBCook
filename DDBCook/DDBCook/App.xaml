@@ -7,5 +7,7 @@
         <SolidColorBrush x:Key="purple" Color="#706fd3"/>
         <SolidColorBrush x:Key="grey" Color="#EEEEEE"/>
         <SolidColorBrush x:Key="dark grey" Color="#666666 "/>
+        <SolidColorBrush x:Key="orange" Color="#ffa500"/>
+        <SolidColorBrush x:Key="green" Color="#5ac18e"/>
     </Application.Resources>
 </Application>

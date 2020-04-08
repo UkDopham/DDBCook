@@ -26,11 +26,13 @@ namespace DDBCook.Views
         {
             InitializeComponent();
             AddRecipe(RecipeRow.cheaper, new Recipe(" CouscousCouscousCouscous", RecipeType.boisson, "test desc", "122", 23));
-            AddRecipe(RecipeRow.cheaper, new Recipe("Couscous", RecipeType.boisson, "test desc", "122", 23));
-            AddRecipe(RecipeRow.cheaper, new Recipe("Couscous", RecipeType.boisson, "test desc", "122", 23));
-            AddRecipe(RecipeRow.cheaper, new Recipe("Couscous", RecipeType.boisson, "test desc", "122", 23));
         }
 
+        /// <summary>
+        /// Add the recipe in the define row
+        /// </summary>
+        /// <param name="recipeRow"></param>
+        /// <param name="recipe"></param>
         private void AddRecipe(RecipeRow recipeRow, Recipe recipe)
         {
             switch(recipeRow)
@@ -48,7 +50,11 @@ namespace DDBCook.Views
                     break;
             }
         }
-
+        /// <summary>
+        /// return a custom button which contain the recipe
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
         private ContainerButton<Recipe> GetButton(Recipe recipe)
         {
             ContainerButton<Recipe> button = new ContainerButton<Recipe>()
@@ -85,22 +91,8 @@ namespace DDBCook.Views
                     }
                 }
             };
-            Grid priceGrid = new Grid()
-            {
-                ColumnDefinitions =
-                {
-                    new ColumnDefinition()
-                    {
-                        Width = new GridLength(1, GridUnitType.Star)
-                    },
-                    new ColumnDefinition()
-                    {
-                        Width = new GridLength(1, GridUnitType.Star)
-                    },
-                }
-            };
             TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Colors.Black), FontWeights.Bold);
-            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Color.FromRgb(198,198,198)), FontWeights.Normal, 10);
+            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Color.FromRgb(198,198,198)), FontWeights.Thin, 11);
 
             grid.Children.Add(name);
             grid.Children.Add(price);
@@ -130,7 +122,7 @@ namespace DDBCook.Views
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontWeight = fontWeight,
-                Foreground = colorBrush
+                Foreground = colorBrush,
             };
         }
     }
