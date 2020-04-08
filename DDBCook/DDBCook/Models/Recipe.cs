@@ -126,7 +126,7 @@ namespace DDBCook.Models
             string description,
             // List<ProductComposition> productsComposition,
             // RecipeCreator recipeCreator,
-            string numberCreator, 
+            string numberCreator,
             int price = 2,
             bool isHealthy = false,
             bool isBio = false,

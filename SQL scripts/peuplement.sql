@@ -7,7 +7,7 @@ use cook;
 -- insertion dans clients
 INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Juniot',0,'46 rue du pigeon Paris', '07456321','jj@monmail.fr.com','1234');
 INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Robert',0,'22 rue de la mouette Nice', '07987456','gg@monmail.fr.com','0000');
-INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Cousteau',0,'24 rue du rouge gorge Marseille', '07951487','gg@monmail.fr.com','0000');
+INSERT INTO `cook`.`client` (`nom`,`balance`,`adresse`,`numero`,`email`,`password`) VALUES ('Cousteau',0,'24 rue du rouge gorge Marseille', '07951487','cuistot@lacuisine.fr','gateau');
 
 
 -- insertion dans cdr

@@ -26,8 +26,17 @@ namespace DDBCook
         public MainWindow()
         {
             InitializeComponent();
-            DDB ddb = new DDB("cook", "root", "alexandre1");
+            DDB ddb = new DDB("cook", "root", "root");
+
+            Client client = new Client("cuistot@lacuisine.fr", "gateau", Models.Enums.UserType.user, "Cousteau", "07951487", "24 rue du rouge gorge Marseille", 25);
+            ddb.UpdateClient(client, new string[] { "password" }, new string[] { "'gateau'" });
+
+
             ddb.Close();
+
+
+
+
             
             DataContext = new MainMenu();
         }

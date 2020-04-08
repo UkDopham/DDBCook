@@ -10,6 +10,22 @@ namespace DDBCook.Models
     {
         private string _name;
         private string _number;
+
+        public string Name
+        {
+            get
+            {
+                return this._name;
+            }
+        }
+        public string Number
+        {
+            get
+            {
+                return this._number;
+            }
+        }
+
         public Supplier(string name, string number)
         {
             this._name = name;
