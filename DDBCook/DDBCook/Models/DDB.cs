@@ -12,10 +12,11 @@ namespace DDBCook.Models
     {
         private MySqlConnection _mySqlConnection;
 
-        public DDB(string database, string username, string password)
+        public DDB(string database = User.DataBase, string username = User.Username, string password = User.Password)
         {
             Open(database, username, password);
         }
+
 
         private void Open(string database, string username, string password)
         {
@@ -45,7 +46,7 @@ namespace DDBCook.Models
         /// <param name="whereColumns">contains all the 'where columns' </param>
         /// <param name="whereValues">contains all the 'where values' </param>
         /// <returns></returns>
-        private void Delete(string className, string[] whereColumns = null, string[] whereValues = null)
+        private void Delete(string className, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             try
             {
@@ -76,33 +77,33 @@ namespace DDBCook.Models
         }
 
         // Custom methods for each tab of the data tables. They will execute the method above and return a list of objects (corresponding to the table). 
-        public void DeleteProudctComposition(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteProudctComposition(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("compose", whereColumns, whereValues);
+            Delete("compose", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteClient(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteClient(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("client", whereColumns, whereValues);
+            Delete("client", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteSupplier(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteSupplier(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("fournisseur", whereColumns, whereValues);
+            Delete("fournisseur", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteOrder(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteOrder(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("commande", whereColumns, whereValues);
+            Delete("commande", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteProduct(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteProduct(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("produit", whereColumns, whereValues);
+            Delete("produit", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteRecipe(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteRecipe(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("recette", whereColumns, whereValues);
+            Delete("recette", whereColumns, whereValues,comparisonSymbol);
         }
-        public void DeleteRecipeCreator(string[] whereColumns = null, string[] whereValues = null)
+        public void DeleteRecipeCreator(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            Delete("cdr", whereColumns, whereValues);
+            Delete("cdr", whereColumns, whereValues,comparisonSymbol);
         }
 
 
@@ -174,7 +175,7 @@ namespace DDBCook.Models
         /// <param name="whereColumns">contains all the 'where columns' </param>
         /// <param name="whereValues">contains all the 'where values' </param>
         /// <returns></returns>
-        private List<string> Select(string className, string[] whereColumns = null, string[] whereValues = null)
+        private List<string> Select(string className, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             string[] requestResult = new string[0];
             try
@@ -183,14 +184,14 @@ namespace DDBCook.Models
                 command.CommandText = "select * from " + className;
 
                 // add a where statement if necessary
-                if (whereColumns != null && whereValues != null 
-                && whereColumns.Length!=0
+                if (whereColumns != null && whereValues != null
+                && whereColumns.Length != 0
                 && whereColumns.Length == whereValues.Length)
                 {
                     command.CommandText += " WHERE ";
                     for (int i = 0; i < whereColumns.Length; i++)
                     {
-                        command.CommandText += whereColumns[i] + " = " + whereValues[i] + " ";
+                        command.CommandText += whereColumns[i] + " "+comparisonSymbol+" " + whereValues[i] + " ";
                         if (i < whereColumns.Length - 1) command.CommandText += "and ";
                     }
                 }
@@ -223,52 +224,52 @@ namespace DDBCook.Models
         }
 
         // Custom methods for each tab of the data tables. They will execute the method above and return a list of objects (corresponding to the table). 
-        public List<ProductComposition> SelectProudctComposition(string[] whereColumns = null, string[] whereValues = null)
+        public List<ProductComposition> SelectProductComposition(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<ProductComposition> listPC = new List<ProductComposition>();
-            Select("compose", whereColumns, whereValues).ForEach(x => listPC.Add((ProductComposition)Converter.ConvertFromString(x, TableType.productComposition)));
+            Select("compose", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((ProductComposition)Converter.ConvertFromString(x, TableType.productComposition)));
 
             return listPC;
         }
-        public List<Client> SelectClient(string[] whereColumns = null, string[] whereValues = null)
+        public List<Client> SelectClient(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<Client> listPC = new List<Client>();
-            Select("client", whereColumns, whereValues).ForEach(x => listPC.Add((Client)Converter.ConvertFromString(x, TableType.client)));
+            Select("client", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((Client)Converter.ConvertFromString(x, TableType.client)));
 
             return listPC;
         }
-        public List<Supplier> SelectSupplier(string[] whereColumns = null, string[] whereValues = null)
+        public List<Supplier> SelectSupplier(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<Supplier> listPC = new List<Supplier>();
-            Select("fournisseur", whereColumns, whereValues).ForEach(x => listPC.Add((Supplier)Converter.ConvertFromString(x, TableType.supplier)));
+            Select("fournisseur", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((Supplier)Converter.ConvertFromString(x, TableType.supplier)));
 
             return listPC;
         }
-        public List<Order> SelectOrder(string[] whereColumns = null, string[] whereValues = null)
+        public List<Order> SelectOrder(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<Order> listPC = new List<Order>();
-            Select("commande", whereColumns, whereValues).ForEach(x => listPC.Add((Order)Converter.ConvertFromString(x, TableType.order)));
+            Select("commande", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((Order)Converter.ConvertFromString(x, TableType.order)));
 
             return listPC;
         }
-        public List<Product> SelectProduct(string[] whereColumns = null, string[] whereValues = null)
+        public List<Product> SelectProduct(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<Product> listPC = new List<Product>();
-            Select("produit", whereColumns, whereValues).ForEach(x => listPC.Add((Product)Converter.ConvertFromString(x, TableType.product)));
+            Select("produit", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((Product)Converter.ConvertFromString(x, TableType.product)));
 
             return listPC;
         }
-        public List<Recipe> SelectRecipe(string[] whereColumns = null, string[] whereValues = null)
+        public List<Recipe> SelectRecipe(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<Recipe> listPC = new List<Recipe>();
-            Select("recette", whereColumns, whereValues).ForEach(x => listPC.Add((Recipe)Converter.ConvertFromString(x, TableType.recipe)));
+            Select("recette", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((Recipe)Converter.ConvertFromString(x, TableType.recipe)));
 
             return listPC;
         }
-        public List<RecipeCreator> SelectRecipeCreator(string[] whereColumns = null, string[] whereValues = null)
+        public List<RecipeCreator> SelectRecipeCreator(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             List<RecipeCreator> listPC = new List<RecipeCreator>();
-            Select("cdr", whereColumns, whereValues).ForEach(x => listPC.Add((RecipeCreator)Converter.ConvertFromString(x, TableType.recipeCreator)));
+            Select("cdr", whereColumns, whereValues, comparisonSymbol).ForEach(x => listPC.Add((RecipeCreator)Converter.ConvertFromString(x, TableType.recipeCreator)));
 
             return listPC;
         }
@@ -285,15 +286,16 @@ namespace DDBCook.Models
         /// <param name="setValues"></param>
         /// <param name="whereColumns"></param>
         /// <param name="whereValues"></param>
-        private void Update<T>(T table, string[] setColumns = null, string[] setValues = null,string[] whereColumns = null, string[] whereValues = null) where T : ITable
+        private void Update<T>(T table, string[] setColumns = null, string[] setValues = null, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=") where T : ITable
         {
-            bool conditionsValides(){
-                return (setColumns != null && setValues != null 
-                && setColumns.Length!=0
-                && setColumns.Length == setValues.Length) 
+            bool conditionsValides()
+            {
+                return (setColumns != null && setValues != null
+                && setColumns.Length != 0
+                && setColumns.Length == setValues.Length)
                 &&
-                (whereColumns != null && whereValues != null 
-                && whereColumns.Length!=0
+                (whereColumns != null && whereValues != null
+                && whereColumns.Length != 0
                 && whereColumns.Length == whereValues.Length);
             }
 
@@ -305,7 +307,7 @@ namespace DDBCook.Models
 
 
                 // add a where statement if necessary
-                if (conditionsValides() )
+                if (conditionsValides())
                 {
                     command.CommandText += " SET ";
                     for (int i = 0; i < setColumns.Length; i++)
@@ -333,55 +335,55 @@ namespace DDBCook.Models
         }
 
         // Custom methods for each tab of the data tables. They will execute the method above and return a list of objects (corresponding to the table). 
-        public void UpdateProudctComposition(ProductComposition productComposition, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateProudctComposition(ProductComposition productComposition, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "id","quantite_produit","refProduit","nomRecette"};
-            string[] setValues = { "'" + productComposition.Id + "'", Convert.ToString(productComposition.Quantity), "'" + productComposition.RefProduct + "'", "'" + productComposition.RecipeName + "'"};
+            string[] setColumns = { "id", "quantite_produit", "refProduit", "nomRecette" };
+            string[] setValues = { "'" + productComposition.Id + "'", Convert.ToString(productComposition.Quantity), "'" + productComposition.RefProduct + "'", "'" + productComposition.RecipeName + "'" };
 
-            Update<ProductComposition>(productComposition, setColumns, setValues, whereColumns, whereValues);
+            Update<ProductComposition>(productComposition, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateClient(Client client,string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateClient(Client client, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             string[] setColumns = { "nom", "balance", "adresse", "numero", "email", "password", "type" };
-            string[] setValues = { "'"+client.Name+ "'", Convert.ToString(client.Money), "'"+client.Adress+ "'", "'"+client.PhoneNumber+ "'", "'"+client.Email+ "'", "'"+client.Password+ "'", "'"+client.UserType.ToString() + "'" };
+            string[] setValues = { "'" + client.Name + "'", Convert.ToString(client.Money), "'" + client.Adress + "'", "'" + client.PhoneNumber + "'", "'" + client.Email + "'", "'" + client.Password + "'", "'" + client.UserType.ToString() + "'" };
 
-            Update<Client>(client, setColumns, setValues, whereColumns, whereValues);
+            Update<Client>(client, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateSupplier(Supplier supplier, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateSupplier(Supplier supplier, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "numero","nom"};
-            string[] setValues = { "'" + supplier.Name + "'",  "'" + supplier.Number + "'"};
+            string[] setColumns = { "numero", "nom" };
+            string[] setValues = { "'" + supplier.Name + "'", "'" + supplier.Number + "'" };
 
-            Update<Supplier>(supplier, setColumns, setValues, whereColumns, whereValues);
+            Update<Supplier>(supplier, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateOrder(Order order, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateOrder(Order order, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "id","date","numeroClient","nomRecette"};// dateValue.ToString("yyyy-MM-dd HH:mm:ss")
-            string[] setValues = { "'" + order.Id + "'",  "'" + order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss") + "'","'" + order.ClientNumber + "'","'" + order.RecipeName + "'"};
+            string[] setColumns = { "id", "date", "numeroClient", "nomRecette" };// dateValue.ToString("yyyy-MM-dd HH:mm:ss")
+            string[] setValues = { "'" + order.Id + "'", "'" + order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss") + "'", "'" + order.ClientNumber + "'", "'" + order.RecipeName + "'" };
 
-            Update<Order>(order, setColumns, setValues, whereColumns, whereValues);
+            Update<Order>(order, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateProduct(Product product, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateProduct(Product product, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "ref","nom","categorie","quantite_actuelle","quantite_min","quantite_max","unite","numeroFournisseur"};
-            string[] setValues = { "'" + product.Reference + "'",  "'" + product.Name + "'","'" + product.ProductCategory + "'","'" + Convert.ToString(product.Quantity) + "'","'" + Convert.ToString(product.MinQuantity) + "'","'" + Convert.ToString(product.MaxQuantity) + "'","'" + product.Unit + "'","'" + product.ProviderNumber + "'"};
+            string[] setColumns = { "ref", "nom", "categorie", "quantite_actuelle", "quantite_min", "quantite_max", "unite", "numeroFournisseur" };
+            string[] setValues = { "'" + product.Reference + "'", "'" + product.Name + "'", "'" + product.ProductCategory + "'", "'" + Convert.ToString(product.CurrentQuantity) + "'", "'" + Convert.ToString(product.MinQuantity) + "'", "'" + Convert.ToString(product.MaxQuantity) + "'", "'" + product.Unit + "'", "'" + product.ProviderNumber + "'" };
 
-            Update<Product>(product, setColumns, setValues, whereColumns, whereValues);
+            Update<Product>(product, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateRecipe(Recipe recipe, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateRecipe(Recipe recipe, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "nom","categorie","description","nomRecette","prix","numeroCreateur","estHealthy","estBio","estVegan","estChimique","estTendance"};
+            string[] setColumns = { "nom", "categorie", "description", "nomRecette", "prix", "numeroCreateur", "estHealthy", "estBio", "estVegan", "estChimique", "estTendance" };
             string[] setValues = { "'" + recipe.Name + "'",  "'" + recipe.RecipeType + "'","'" + recipe.Description + "'","'" + Convert.ToString(recipe.Price) + "'","'" + recipe.NumberCreator + "'",
             "'"+ "estBio"+ "'",  "'" +"estVegan"+ "'",  "'" +"estChimique"+ "'",  "'" +"estTendance" };
 
-            Update<Recipe>(recipe, setColumns, setValues, whereColumns, whereValues);
+            Update<Recipe>(recipe, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
-        public void UpdateRecipeCreator(RecipeCreator recipeCreator, string[] whereColumns = null, string[] whereValues = null)
+        public void UpdateRecipeCreator(RecipeCreator recipeCreator, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "numero"};
-            string[] setValues = { "'" + recipeCreator.Id + "'"};
+            string[] setColumns = { "numero" };
+            string[] setValues = { "'" + recipeCreator.Id + "'" };
 
-            Update<RecipeCreator>(recipeCreator, setColumns, setValues, whereColumns, whereValues);
+            Update<RecipeCreator>(recipeCreator, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
 
     }

@@ -87,7 +87,7 @@ namespace DDBCook.Views
         {
             //Request sql for the products
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<ProductComposition> products = ddb.SelectProudctComposition(new string[] { "nomRecette" }, new string[] { $"'{this._recipe.Name}'" });
+            List<ProductComposition> products = ddb.SelectProductComposition(new string[] { "nomRecette" }, new string[] { $"'{this._recipe.Name}'" });
             foreach (ProductComposition product in products)
             {
                 AddProduct(product);

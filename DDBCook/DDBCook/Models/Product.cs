@@ -11,7 +11,6 @@ namespace DDBCook.Models
     {
         private string _name;
         private ProductCategory _productCategory;
-        private int _quantity;
         private int _currentQuantity;
         private int _minQuantity;
         private int _maxQuantity;
@@ -33,17 +32,7 @@ namespace DDBCook.Models
                 return this._productCategory;
             }
         }
-        public int Quantity
-        {
-            get
-            {
-                return this._quantity;
-            }
-            set
-            {
-                this._quantity = value;
-            }
-        }
+        
         public int CurrentQuantity
         {
             get
