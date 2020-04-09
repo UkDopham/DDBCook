@@ -30,7 +30,8 @@
                 <Button Margin="10,10"
                         BorderThickness="0"
                         Grid.Column="0"
-                        Background="Transparent">
+                        Background="Transparent"
+                        Click="Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -45,6 +46,7 @@
                                    VerticalAlignment="Center"
                                    Foreground="{StaticResource purple}"
                                    FontSize="13"
+                                   
                                        FontWeight="Bold"/>
                     </Grid>
                 </Button>
