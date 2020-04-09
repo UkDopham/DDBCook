@@ -28,7 +28,7 @@ namespace DDBCook
         {
             DDB ddb = new DDB("cook", "root", "root");
 
-            //ddb.SelectRecipe().ForEach(x=>Stocke.UpdateMinMaxQuantities(x));   //a rajouter a moment des commandes
+            ddb.SelectRecipe().ForEach(x=>Stock.UpdateMinMaxQuantities(x));   //a rajouter a moment des commandes
             Stock.RottenProducts();
 
             ddb.Close();

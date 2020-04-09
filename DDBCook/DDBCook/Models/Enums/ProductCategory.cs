@@ -17,5 +17,7 @@ namespace DDBCook.Models.Enums
         eauGlace,
         magic,
         sucre,
+        liquide,
+        magique,
     }
 }

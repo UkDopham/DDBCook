@@ -48,6 +48,7 @@ namespace DDBCook.Views
             this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("plat", RecipeType.plat));
             this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("boisson", RecipeType.boisson));
             this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("dessert", RecipeType.dessert));
+            this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("complement", RecipeType.complement));
 
             CategoryComboBox.ItemsSource = this._recipeTypes;
             CategoryComboBox.SelectedIndex = 0;

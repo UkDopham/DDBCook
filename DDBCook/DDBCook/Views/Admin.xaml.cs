@@ -90,7 +90,7 @@ namespace DDBCook.Views
         }
         private void FillGridTopCDR()
         {
-            List<Recipe> recipes = GetTop5BestCDR();
+            List<Recipe> recipes = GetTop5RecipesOfBestCdr();
             for (int i = 0;
                 i < recipes.Count;
                 i++)

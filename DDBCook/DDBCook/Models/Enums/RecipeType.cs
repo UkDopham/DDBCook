@@ -11,5 +11,6 @@ namespace DDBCook.Models.Enums
         plat,
         boisson,
         dessert,
+        complement,
     }
 }
