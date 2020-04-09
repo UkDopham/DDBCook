@@ -59,8 +59,8 @@ namespace DDBCook.Views
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             List<Client> clients = new List<Client>();
             List<RecipeCreator> recipeCreators = ddb.SelectRecipeCreator();
-            
-            foreach(RecipeCreator recipeCreator in recipeCreators)
+
+            foreach (RecipeCreator recipeCreator in recipeCreators)
             {
                 clients.Add(ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{recipeCreator.Id}'" })[0]);
             }
@@ -69,12 +69,12 @@ namespace DDBCook.Views
         }
         private void FillGridTop5()
         {
-            List<Recipe> recipes = GetTop5();
+            List<Recipe> recipes = GetTop5Recipes();
             for (int i = 0;
                 i < recipes.Count;
-                i ++)
+                i++)
             {
-                AddTop5Grid(recipes[i],i);
+                AddTop5Grid(recipes[i], i);
             }
 
         }
@@ -88,19 +88,28 @@ namespace DDBCook.Views
                 AddBestCDRGrid(recipes[i], i);
             }
         }
-        private List<Recipe> GetTop5BestCDR()
+        private List<RecipeCreator> GetTop5BestCDR(int nb = 5)
         {
-            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<Recipe> tmp = ddb.SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"'{this._bestCDR.Id}'" });
-            SortByOrder(tmp);
-            List<Recipe> recipes = new List<Recipe>();
-            for (int i = 0;
-                i < 5;
-                i++)
+            List<Recipe> recipes = GetTop5Recipes();
+            List<RecipeCreator> top5 = new List<RecipeCreator>();
+
+            DDB ddb = new DDB();
+
+            int cpt = 0;
+            nb = (nb == -1) ? ddb.SelectRecipeCreator().Count() : nb;
+            while (top5.Count < 5 && recipes.Count < cpt)
             {
-                recipes.Add(tmp[i]);
+                RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { "'" + recipes[cpt].NumberCreator + "'" }).First();
+                if (!top5.Contains(recipeCreator))
+                {
+                    top5.Add(recipeCreator);
+                }
+                cpt++;
             }
-            return recipes;
+
+            ddb.Close();
+
+            return top5;
         }
         private void SortByOrder(List<Recipe> recipes)
         {
@@ -167,13 +176,16 @@ namespace DDBCook.Views
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             Client client = ddb.SelectClient(new string[] { "nom" }, new string[] { $"'{numberCreator}'" })[0];
+            ddb.Close();
             return client;
         }
 
         private int GetOrder(string recipeName)
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            return ddb.SelectOrder(new string[] { "nomRecette" }, new string[] { $"'{recipeName}'" }).Count();
+            int nbOrders = ddb.SelectOrder(new string[] { "nomRecette" }, new string[] { $"'{recipeName}'" }).Count();
+            ddb.Close();
+            return nbOrders;
         }
         private TextBlock GetTextBlock(string text, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
         {
@@ -201,22 +213,66 @@ namespace DDBCook.Views
             };
         }
 
-        private List<Recipe> GetTop5()
+        private List<Recipe> GetTop5Recipes(int nb = 5)
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<Recipe> tmp = new List<Recipe>();
-            return tmp;
+            List<Recipe> recipes = ddb.SelectRecipe();
+            List<Order> orders = ddb.SelectOrder();
+            ddb.Close();
+
+            List<List<int>> compteur = new List<List<int>>();
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                compteur.Add(new List<int>());
+                compteur[i].Add(0);
+                compteur[i].Add(i);
+                for (int j = 0; j < orders.Count; j++)
+                {
+                    if (recipes[i].Name.Equals(orders[j].RecipeName))
+                    {
+                        compteur[i][0] += 1;
+                    }
+                }
+            }
+            compteur.Sort((a, b) => (a[0].CompareTo(b[0])));
+
+
+            List<Recipe> top5 = new List<Recipe>();
+            nb = (nb == -1) ? compteur.Count() : nb;
+            for (int i = 0; i < nb; i++)
+            {
+                top5.Add(recipes[compteur[i][1]]);
+            }
+
+            return top5;
+        }
+
+        private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5){
+            RecipeCreator bestCdr = GetTop5BestCDR(1).First();
+            DDB ddb = new DDB();
+            List<Recipe> recipes = GetTop5Recipes(-1);
+            List<Recipe> top5RecipesOfBestCdr = new List<Recipe>();
+
+            ddb.Close();
+            
+            nb = (nb == -1) ? recipes.Count() : nb;
+            int cpt=0;
+            while(nb<top5RecipesOfBestCdr.Count && nb < recipes.Count){
+                if (recipes[cpt].NumberCreator.Equals(bestCdr.Id))
+                    top5RecipesOfBestCdr.Add(recipes[cpt]);
+
+                cpt++;
+            }
+
+            return top5RecipesOfBestCdr ;
         }
 
         private void CdrButton_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
-        private void DeletRecipe(Recipe recipe)
-        {
-            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<ProductComposition> productCompositions = ddb.SelectProudctComposition(new string[] { ""});
-        }
+
         private void RecipeButton_Click(object sender, RoutedEventArgs e)
         {
 
