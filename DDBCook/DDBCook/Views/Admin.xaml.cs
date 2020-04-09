@@ -51,8 +51,13 @@ namespace DDBCook.Views
         private void LoadRecipeComboBox()
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            recipeCB.ItemsSource = ddb.SelectRecipe();
-            recipeCB.SelectedIndex = 0;
+            List<Recipe> recipes = ddb.SelectRecipe();
+            if (recipes.Count > 0)
+            {
+                recipeCB.ItemsSource = recipes;
+                recipeCB.SelectedIndex = 0;
+            }
+            ddb.Close();
         }
         private void LoadCDRComboBox()
         {
@@ -64,8 +69,13 @@ namespace DDBCook.Views
             {
                 clients.Add(ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{recipeCreator.Id}'" })[0]);
             }
-            cdrCB.ItemsSource = clients;
-            cdrCB.SelectedIndex = 0;
+            if (clients.Count > 0)
+            {
+                cdrCB.ItemsSource = clients;
+                cdrCB.SelectedIndex = 0;
+            }
+
+            ddb.Close();
         }
         private void FillGridTop5()
         {
@@ -210,16 +220,21 @@ namespace DDBCook.Views
 
         private void CdrButton_Click(object sender, RoutedEventArgs e)
         {
+            Client client = cdrCB.SelectedItem as Client;
 
-        }
-        private void DeletRecipe(Recipe recipe)
-        {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<ProductComposition> productCompositions = ddb.SelectProudctComposition(new string[] { ""});
+            RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { $"'{client.PhoneNumber}'" })[0];
+            ddb.DeleteRecipeCreator(recipeCreator);
+            ddb.Close();
+            LoadComboBox();
         }
         private void RecipeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Recipe recipe = recipeCB.SelectedItem as Recipe;
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            ddb.DeleteRecipe(recipe);
+            ddb.Close();
+            LoadComboBox();
         }
     }
 }

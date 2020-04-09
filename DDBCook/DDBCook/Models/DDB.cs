@@ -46,12 +46,12 @@ namespace DDBCook.Models
         /// <param name="whereColumns">contains all the 'where columns' </param>
         /// <param name="whereValues">contains all the 'where values' </param>
         /// <returns></returns>
-        private void Delete(string className, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
+        private void Delete(ITable table, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
             try
             {
                 MySqlCommand command = this._mySqlConnection.CreateCommand();
-                command.CommandText = "DELETE FROM " + className;
+                command.CommandText = "DELETE FROM " + table.GetTableName();
 
                 // add a where statement if necessary
                 if (whereColumns != null && whereValues != null
@@ -77,36 +77,26 @@ namespace DDBCook.Models
         }
 
         // Custom methods for each tab of the data tables. They will execute the method above and return a list of objects (corresponding to the table). 
-        public void DeleteProudctComposition(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
+        
+        public void DeleteRecipe(Recipe recipe)
         {
-            Delete("compose", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteClient(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("client", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteSupplier(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("fournisseur", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteOrder(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("commande", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteProduct(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("produit", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteRecipe(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("recette", whereColumns, whereValues,comparisonSymbol);
-        }
-        public void DeleteRecipeCreator(string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
-        {
-            Delete("cdr", whereColumns, whereValues,comparisonSymbol);
+            List<ProductComposition> productCompositions = SelectProductComposition(new string[] { "nomRecette" }, new string[] { $"'{recipe.Name}'" });
+            foreach(ProductComposition productComposition in productCompositions)
+            {
+                Delete(productComposition, new string[] { "id" }, new string[] { $"'{productComposition.Id}'" });
+            }
+            Delete(recipe, new string[] { "nom"}, new string[] { $"'{recipe.Name}'" });
         }
 
-
+        public void DeleteRecipeCreator(RecipeCreator recipeCreator)
+        {
+            List<Recipe> recipes = SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"'{recipeCreator.Id}'" });
+            foreach(Recipe recipe in recipes)
+            {
+                DeleteRecipe(recipe);
+            }
+            Delete(recipeCreator, new string[] { "numero" }, new string[] { $"'{recipeCreator.Id}'" });
+        }
 
         /// <summary>
         /// custom method to insert into sql command
