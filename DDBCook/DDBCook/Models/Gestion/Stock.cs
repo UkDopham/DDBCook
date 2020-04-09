@@ -137,7 +137,7 @@ namespace DDBCook.Models.Gestion
         private static void OrderSuplies(Product product, int quantityNeeded, string cause = "plus de stockes")
         {
 
-            CreationRapport();
+           // CreationRapport();
             product.CurrentQuantity += quantityNeeded;
 
 

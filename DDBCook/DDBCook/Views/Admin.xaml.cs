@@ -26,8 +26,8 @@ namespace DDBCook.Views
         {
             InitializeComponent();
             LoadComboBox();
-            //FillGridTop5();
-            //FillGridTopCDR();
+            FillGridTop5();
+            FillGridTopCDR();
         }
         public string BestWeek
         {
@@ -100,17 +100,17 @@ namespace DDBCook.Views
         }
         private List<RecipeCreator> GetTop5BestCDR(int nb = 5)
         {
-            List<Recipe> recipes = GetTop5Recipes();
+            List<Recipe> recipes = GetTop5Recipes(-1);
             List<RecipeCreator> top5 = new List<RecipeCreator>();
 
             DDB ddb = new DDB();
 
             int cpt = 0;
             nb = (nb == -1) ? ddb.SelectRecipeCreator().Count() : nb;
-            while (top5.Count < 5 && recipes.Count < cpt)
+            while (top5.Count < nb && cpt < recipes.Count)
             {
                 RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { "'" + recipes[cpt].NumberCreator + "'" }).First();
-                if (!top5.Contains(recipeCreator))
+                if (Contain(top5,recipeCreator))
                 {
                     top5.Add(recipeCreator);
                 }
@@ -120,6 +120,17 @@ namespace DDBCook.Views
             ddb.Close();
 
             return top5;
+
+            bool Contain(List<RecipeCreator> list, RecipeCreator rc)
+            {
+                foreach (RecipeCreator r in list)
+                {
+                    if (r.Id.Equals(rc.Id))
+                        return false;
+                }
+                return true;
+            }
+
         }
         private void SortByOrder(List<Recipe> recipes)
         {
@@ -185,7 +196,7 @@ namespace DDBCook.Views
         private Client GetClient(string numberCreator)
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            Client client = ddb.SelectClient(new string[] { "nom" }, new string[] { $"'{numberCreator}'" })[0];
+            Client client = ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{numberCreator}'" })[0];
             ddb.Close();
             return client;
         }
@@ -245,7 +256,7 @@ namespace DDBCook.Views
                 }
             }
             compteur.Sort((a, b) => (a[0].CompareTo(b[0])));
-
+            compteur.Reverse();
 
             List<Recipe> top5 = new List<Recipe>();
             nb = (nb == -1) ? compteur.Count() : nb;
@@ -267,7 +278,7 @@ namespace DDBCook.Views
             
             nb = (nb == -1) ? recipes.Count() : nb;
             int cpt=0;
-            while(nb<top5RecipesOfBestCdr.Count && nb < recipes.Count){
+            while(top5RecipesOfBestCdr.Count< nb && nb < recipes.Count){
                 if (recipes[cpt].NumberCreator.Equals(bestCdr.Id))
                     top5RecipesOfBestCdr.Add(recipes[cpt]);
 
