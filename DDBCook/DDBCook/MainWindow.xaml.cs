@@ -1,4 +1,5 @@
 ﻿using DDBCook.Models;
+using DDBCook.Models.Gestion;
 using DDBCook.Views;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,13 @@ namespace DDBCook
     {
         public MainWindow()
         {
-            InitializeComponent();
             DDB ddb = new DDB("cook", "root", "root");
 
-            Client client = new Client("cuistot@lacuisine.fr", "gateau", Models.Enums.UserType.user, "Cousteau", "07951487", "24 rue du rouge gorge Marseille", 25);
-            ddb.UpdateClient(client, new string[] { "password" }, new string[] { "'gateau'" });
-
+            //ddb.SelectRecipe().ForEach(x=>Stocke.UpdateMinMaxQuantities(x));   //a rajouter a moment des commandes
+            Stock.RottenProducts();
 
             ddb.Close();
+            InitializeComponent();
 
 
 

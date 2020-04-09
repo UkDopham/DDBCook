@@ -86,6 +86,7 @@
     <Compile Include="Models\Enums\RecipeType.cs" />
     <Compile Include="Models\Enums\TableType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
+    <Compile Include="Models\Gestion\Stock.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ProductComposition.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -276,5 +277,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
