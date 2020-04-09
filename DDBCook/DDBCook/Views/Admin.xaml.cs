@@ -21,24 +21,98 @@ namespace DDBCook.Views
     /// </summary>
     public partial class Admin : UserControl
     {
+        private RecipeCreator _bestCDR;
         public Admin()
         {
             InitializeComponent();
-            FillGrid();
+            LoadComboBox();
+            //FillGridTop5();
+            //FillGridTopCDR();
         }
-
-        private void FillGrid()
+        public string BestWeek
+        {
+            get
+            {
+                return "bestweek";
+            }
+        }
+        public string BestAll
+        {
+            get
+            {
+                return "bestall";
+            }
+        }
+        private void LoadComboBox()
+        {
+            LoadRecipeComboBox();
+            LoadCDRComboBox();
+        }
+        private void LoadRecipeComboBox()
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            recipeCB.ItemsSource = ddb.SelectRecipe();
+            recipeCB.SelectedIndex = 0;
+        }
+        private void LoadCDRComboBox()
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<Client> clients = new List<Client>();
+            List<RecipeCreator> recipeCreators = ddb.SelectRecipeCreator();
+            
+            foreach(RecipeCreator recipeCreator in recipeCreators)
+            {
+                clients.Add(ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{recipeCreator.Id}'" })[0]);
+            }
+            cdrCB.ItemsSource = clients;
+            cdrCB.SelectedIndex = 0;
+        }
+        private void FillGridTop5()
         {
             List<Recipe> recipes = GetTop5();
             for (int i = 0;
                 i < recipes.Count;
                 i ++)
             {
-                AddGrid(recipes[i],i);
+                AddTop5Grid(recipes[i],i);
             }
 
         }
-        private void AddGrid(Recipe recipe, int count)
+        private void FillGridTopCDR()
+        {
+            List<Recipe> recipes = GetTop5BestCDR();
+            for (int i = 0;
+                i < recipes.Count;
+                i++)
+            {
+                AddBestCDRGrid(recipes[i], i);
+            }
+        }
+        private List<Recipe> GetTop5BestCDR()
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<Recipe> tmp = ddb.SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"'{this._bestCDR.Id}'" });
+            SortByOrder(tmp);
+            List<Recipe> recipes = new List<Recipe>();
+            for (int i = 0;
+                i < 5;
+                i++)
+            {
+                recipes.Add(tmp[i]);
+            }
+            return recipes;
+        }
+        private void SortByOrder(List<Recipe> recipes)
+        {
+
+        }
+        private void AddBestCDRGrid(Recipe recipe, int count)
+        {
+            Grid grid = GetGrid(recipe);
+            BestCDRRecipes.Children.Add(grid);
+            Grid.SetRow(grid, count);
+        }
+        private void AddTop5Grid(Recipe recipe, int count)
         {
             Grid grid = GetGrid(recipe);
             TopRecipeGrid.Children.Add(grid);
@@ -131,8 +205,21 @@ namespace DDBCook.Views
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             List<Recipe> tmp = new List<Recipe>();
-
             return tmp;
+        }
+
+        private void CdrButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DeletRecipe(Recipe recipe)
+        {
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<ProductComposition> productCompositions = ddb.SelectProudctComposition(new string[] { ""});
+        }
+        private void RecipeButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

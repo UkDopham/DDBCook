@@ -9,9 +9,9 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <!--Bar-->
@@ -22,18 +22,15 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
                 <Button Margin="10,10"
                         BorderThickness="0"
                         Grid.Column="0"
-                        Background="Transparent"
-                        Click="HomeButton_Click">
+                        Background="Transparent">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -53,7 +50,7 @@
                 </Button>
 
                 <TextBlock Grid.Column="1"
-                           Text="Admin"
+                           Text="Gestionnaire de l'application"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            FontSize="20"
@@ -63,20 +60,12 @@
         </Border>
         
         <!--Board -->
-        <TextBlock Grid.Row="1"
-                   Text="Tableau de bord"
-                   VerticalAlignment="Center"
-                   Margin="10"
-                   FontSize="18"
-                   FontWeight="Bold"
-                   Foreground="{StaticResource purple}"/>
         
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Margin="10,10"
@@ -104,35 +93,7 @@
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"/>
-            </Grid>
-
-            <Grid Margin="10,10"
-                  Grid.Column="2"
-                  Background="{StaticResource yellow}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Image Source="pack://siteoforigin:,,,/Resources/crown.png"
-                       Margin="5"/>
-
-                <TextBlock Grid.Row="1"
-                           Text="Best CDR"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Foreground="White"
-                           FontWeight="Bold"
-                           FontSize="14"/>
-
-                <TextBlock Grid.Row="2"
-                           Text="{Binding BestAll}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Foreground="White"
-                           FontWeight="Bold"/>
-            </Grid>
+            </Grid>           
 
             <Grid Grid.Column="1"
                   Margin="10"
@@ -163,6 +124,160 @@
 
                     
                 </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+          
+
+            <Grid Margin="10,10"
+                  Grid.Column="0"
+                  Background="{StaticResource yellow}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="pack://siteoforigin:,,,/Resources/crown.png"
+                       Margin="5"/>
+
+                <TextBlock Grid.Row="1"
+                           Text="Best CDR"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           FontSize="14"/>
+
+                <TextBlock Grid.Row="2"
+                           Text="{Binding BestAll}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"/>
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Margin="10"
+                  Background="{StaticResource yellow}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Top 5 recettes"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           FontSize="16"/>
+
+                <Grid Grid.Row="1"
+                     x:Name="BestCDRRecipes" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!--Delet-->
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="5"
+                  Background="{StaticResource purple}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Margin="5"
+                        BorderBrush="White"
+                        BorderThickness="0,0,2,0">
+
+                    <TextBlock 
+                           Text="Suppression recette"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+                </Border>
+
+                <ComboBox Grid.Column="1"
+                          Margin="5"
+                          x:Name="recipeCB">
+                    
+                </ComboBox>
+
+                <Button Grid.Column="3"
+                        Margin="5"
+                        BorderThickness="0"
+                        Background="{StaticResource red}"
+                        Content="Suppresion"
+                        FontWeight="Bold"
+                        Foreground="White" 
+                        Click="RecipeButton_Click"/>
+            </Grid>
+
+            <Grid Margin="5"
+                  Grid.Row="1"
+                  Background="{StaticResource purple}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Margin="5"
+                        BorderBrush="White"
+                        BorderThickness="0,0,2,0">
+
+                    <TextBlock 
+                           Text="Suppression cdr"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+                </Border>
+
+                <ComboBox Grid.Column="1"
+                          Margin="5"
+                          x:Name="cdrCB">
+
+                </ComboBox>
+
+                <Button Grid.Column="3"
+                        Margin="5"
+                        BorderThickness="0"
+                        Background="{StaticResource red}"
+                        Content="Suppresion"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Click="CdrButton_Click"/>
             </Grid>
         </Grid>
     </Grid>

@@ -36,8 +36,16 @@ namespace DDBCook.Views
             if (clientPasswordBox.Password == ddb.SelectClient(new string[] { "email" }, new string[] { $"'{this._email}'" })[0].Password)
             {
                 User.ConnectedClient = ddb.SelectClient(new string[] { "email" }, new string[] { $"'{this._email}'" })[0];
+
                 MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                mainWindow.DataContext = new MainMenu();
+                if (User.ConnectedClient.UserType == Models.Enums.UserType.admin)
+                {
+                    mainWindow.DataContext = new Admin();
+                }
+                else
+                {
+                    mainWindow.DataContext = new MainMenu();
+                }
             }
         }
     }
