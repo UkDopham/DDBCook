@@ -66,17 +66,19 @@ INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`)
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('4' ,320,'301','Bouteille du Nord');
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('5' ,300,'201','Couscous');
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('6' ,400,'204','Couscous');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('7' ,200,'401','Cookies');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('8' ,100,'202','Cookies');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('9' ,2,  '207','Cookies');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('10',4,  '206','Pizza au courgettes');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('11',150,'205','Pizza au courgettes');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('12',170,'401','Pizza au courgettes');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('13',320,'201','Salade de tomate');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('14',160,'401','Pain');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('15',300,'401','Quiche au poisson');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('16',100,'402','Quiche au poisson');
-INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('17',3,  '207','Quiche au poisson');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('7' ,400,'202','Banane au chocolat');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('8' ,400,'203','Banane au chocolat');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('9' ,200,'401','Cookies');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('10' ,100,'202','Cookies');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('11' ,2,  '207','Cookies');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('12',4,  '206','Pizza au courgettes');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('13',150,'205','Pizza au courgettes');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('14',170,'401','Pizza au courgettes');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('15',320,'201','Salade de tomate');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('16',160,'401','Pain');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('17',300,'401','Quiche au poisson');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('18',100,'402','Quiche au poisson');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('19',3,  '207','Quiche au poisson');
 
 
 -- insertion commande
