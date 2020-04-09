@@ -9,7 +9,7 @@ namespace DDBCook.Models
     public static class User
     {
         public const string Username = "root";
-        public const string Password = "root";
+        public const string Password = "alexandre1";
         public const string DataBase = "cook";
 
         private static Client connectedClient;
