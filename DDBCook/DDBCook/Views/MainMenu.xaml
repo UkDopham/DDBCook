@@ -47,7 +47,20 @@
                                    FontWeight="Bold"/>
                     </Grid>
                 </Button>
-                
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Background="Black"
+                            BorderThickness="0"
+                            Margin="10"
+                            Content="DEMO"
+                            Foreground="Green"
+                            Click="DemoButton_Click"/>
+                </Grid>
                 
                 <!--User -->
                 <Grid Grid.Column="2">

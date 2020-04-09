@@ -1,4 +1,5 @@
 ﻿using DDBCook.Models;
+using DDBCook.Views.Demo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,6 +134,12 @@ namespace DDBCook.Views
         {
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             mainWindow.DataContext = new ClientInformation();
+        }
+
+        private void DemoButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new Views.Demo.DemoClient();
         }
     }
 }
