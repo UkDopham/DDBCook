@@ -103,6 +103,26 @@ namespace DDBCook.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap crown {
+            get {
+                object obj = ResourceManager.GetObject("crown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap date {
+            get {
+                object obj = ResourceManager.GetObject("date", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap healthy {
             get {
                 object obj = ResourceManager.GetObject("healthy", resourceCulture);
@@ -116,6 +136,16 @@ namespace DDBCook.Properties {
         internal static System.Drawing.Bitmap home_run {
             get {
                 object obj = ResourceManager.GetObject("home_run", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recipe {
+            get {
+                object obj = ResourceManager.GetObject("recipe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
