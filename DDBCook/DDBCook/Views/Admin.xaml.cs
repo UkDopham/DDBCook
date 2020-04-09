@@ -140,13 +140,13 @@ namespace DDBCook.Views
         {
             Grid grid = GetGrid(recipe);
             BestCDRRecipes.Children.Add(grid);
-            Grid.SetRow(grid, count);
+            Grid.SetColumn(grid, count);
         }
         private void AddTop5Grid(Recipe recipe, int count)
         {
             Grid grid = GetGrid(recipe);
             TopRecipeGrid.Children.Add(grid);
-            Grid.SetRow(grid, count);
+            Grid.SetColumn(grid, count);
         }
 
         private Grid GetGrid(Recipe recipe)
