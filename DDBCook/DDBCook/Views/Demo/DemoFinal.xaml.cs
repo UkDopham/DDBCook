@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace DDBCook.Views.Demo
 {
     /// <summary>
-    /// Logique d'interaction pour DemoProduct.xaml
+    /// Logique d'interaction pour DemoFinal.xaml
     /// </summary>
-    public partial class DemoProduct : UserControl
+    public partial class DemoFinal : UserControl
     {
-        public DemoProduct()
+        public DemoFinal()
         {
             InitializeComponent();
             LoadProduct();
@@ -30,9 +30,10 @@ namespace DDBCook.Views.Demo
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             List<Product> products = ddb.SelectProduct(new string[] { "quantite_actuelle" }, new string[] { $"quantite_min * 2" }, ">");
-            foreach(Product product in products)
+            ProductComboBox.ItemsSource = products;
+            if (products.Count > 0)
             {
-                contentStackPanel.Children.Add(GetTextBlock($"{product.Name} current :{product.CurrentQuantity}, min :{product.MinQuantity}", new SolidColorBrush(Colors.Green), FontWeights.Bold));
+                ProductComboBox.SelectedIndex = 0;
             }
             ddb.Close();
         }
@@ -66,7 +67,30 @@ namespace DDBCook.Views.Demo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow.DataContext = new DemoFinal();
+            mainWindow.DataContext = new MainMenu();
+        }
+
+        private void ProductComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Product product = ProductComboBox.SelectedValue as Product;
+
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<ProductComposition> productCompositions = ddb.SelectProductComposition(new string[] { "refProduit" }, new string[] { $"'{product.Reference}'" });
+            List<Recipe> recipes = new List<Recipe>();
+            foreach(ProductComposition productComposition in productCompositions)
+            {
+                List<Recipe> tmp = ddb.SelectRecipe(new string[] { "nomRecette" }, new string[] { $"'{productComposition.RecipeName}'" });
+                if (tmp.Count > 0)
+                {
+                    recipes.Add(tmp[0]);
+                }
+            }
+            contentStackPanel.Children.Clear();
+            foreach(Recipe recipe in recipes)
+            {
+                contentStackPanel.Children.Add(GetTextBlock(recipe.Name, new SolidColorBrush(Colors.Green), FontWeights.Bold));
+            }
+            ddb.Close();
         }
     }
 }
