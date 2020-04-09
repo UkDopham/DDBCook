@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDBCook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,24 @@ namespace DDBCook.Views
     /// </summary>
     public partial class Login : UserControl
     {
-        public Login()
+        private string _email;
+        public Login(string email)
         {
+            this._email = email;
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow.DataContext = new MainMenu();
+            //Check if password is right
+
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            if (clientPasswordBox.Password == ddb.SelectClient(new string[] { "email" }, new string[] { $"'{this._email}'" })[0].Password)
+            {
+                User.ConnectedClient = ddb.SelectClient(new string[] { "email" }, new string[] { $"'{this._email}'" })[0];
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow.DataContext = new MainMenu();
+            }
         }
     }
 }

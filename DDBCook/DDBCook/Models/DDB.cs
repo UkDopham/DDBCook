@@ -160,7 +160,7 @@ namespace DDBCook.Models
             Recipe recipe = new Recipe(name, recipeType, description, numberCreator, price, isHealthy, isBio, isVegan, isChimical);
             Insert<Recipe>(recipe);
         }
-        public void InsertRecipeCreator(string email, string password, UserType userType, string name, string phoneNumber, string adress, int money = 0)
+        public void InsertRecipeCreator(string phoneNumber)
         {
             RecipeCreator recipeCreator = new RecipeCreator(phoneNumber);
             Insert<RecipeCreator>(recipeCreator);

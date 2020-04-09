@@ -139,6 +139,10 @@ namespace DDBCook.Views
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            if (ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { $"'{User.ConnectedClient.PhoneNumber}'" }).Count == 0) //if is not a cdr
+            {
+                ddb.InsertRecipeCreator(User.ConnectedClient.PhoneNumber);
+            }
             DoubleContainer<string, RecipeType> recipeType = CategoryComboBox.SelectedItem as DoubleContainer<string, RecipeType>;
             ddb.InsertRecipe(NameTextBox.Text, recipeType.OtherValue, DescTextBox.Text, User.ConnectedClient.PhoneNumber, Convert.ToInt32(PriceTextBox.Text), 
                 HealthyCB.IsChecked == true ? true : false,
@@ -151,7 +155,7 @@ namespace DDBCook.Views
                 productComposition.OtherValue.RecipeName = NameTextBox.Text;
                 ddb.Insert<ProductComposition>(productComposition.OtherValue);
             }
-
+            ddb.Close();
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             mainWindow.DataContext = new MainMenu();
         }

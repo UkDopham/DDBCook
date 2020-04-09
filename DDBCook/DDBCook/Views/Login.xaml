@@ -29,6 +29,7 @@
                            Foreground="{StaticResource dark grey}"/>
 
                 <PasswordBox Grid.Row="1"
+                             x:Name="clientPasswordBox"
                          VerticalAlignment="Center"
                          Margin="10,0"
                          Height="50"

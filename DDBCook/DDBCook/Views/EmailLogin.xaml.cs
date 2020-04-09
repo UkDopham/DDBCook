@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDBCook.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,28 @@ namespace DDBCook.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this._registerOrLogin.DataContext = new Register();
+            
             //check if email exists
+            bool isExisting = false;
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            List<Client> clients = ddb.SelectClient(new string[] { "email" }, new string[] { $"'{EmailTextBox.Text}'" });
+
+            if (clients != null)
+            {
+                if (clients.Count != 0)
+                {
+                    isExisting = true;
+                }
+            }
+
+            if (isExisting)
+            {
+                this._registerOrLogin.DataContext = new Login(EmailTextBox.Text);
+            }
+            else
+            {
+                this._registerOrLogin.DataContext = new Register(EmailTextBox.Text);
+            }
         }
     }
 }
