@@ -1,11 +1,8 @@
 ﻿using DDBCook.Models;
-using DDBCook.Models.Gestion;
-using DDBCook.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,30 +14,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DDBCook
+namespace DDBCook.Views.Demo
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour DemoRecipe.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DemoRecipe : UserControl
     {
-        public MainWindow()
+        public DemoRecipe()
+        {
+            InitializeComponent();
+            View();
+        }
+        private void View()
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-
-            ddb.SelectRecipe().ForEach(x=>Stock.UpdateMinMaxQuantities(x));   //a rajouter a moment des commandes
-            Stock.RottenProducts();
-
+            answerTextBlock.Text = ddb.SelectRecipe().Count.ToString();
             ddb.Close();
-            InitializeComponent();
-
-
-
-
-            
-            DataContext = new MainMenu();
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new DemoProduct();
+        }
     }
 }

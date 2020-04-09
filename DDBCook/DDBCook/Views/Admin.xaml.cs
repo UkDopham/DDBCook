@@ -297,5 +297,11 @@ namespace DDBCook.Views
             ddb.Close();
             LoadComboBox();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow.DataContext = new MainMenu();
+        }
     }
 }

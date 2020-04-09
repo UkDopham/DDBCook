@@ -56,12 +56,12 @@ namespace DDBCook.Models
 
         public string GetTableProperties()
         {
-            return "id, date, numeroClient, nomRecette";
+            return "id, date, numero, nomRecette";
         }
 
         public string GetTableValues()
         {
-            return $"'{this._id}', {this._orderDate}, '{this._clientNumber}', '{this._recipeName}'";
+            return $"'{this._id}', '{this._orderDate.Year}-{this._orderDate.Month}-{this._orderDate.Day}', '{this._clientNumber}', '{this._recipeName}'";
         }
     }
 }

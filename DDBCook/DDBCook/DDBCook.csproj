@@ -105,8 +105,20 @@
     <Compile Include="Views\DebugConsole.xaml.cs">
       <DependentUpon>DebugConsole.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Demo.xaml.cs">
-      <DependentUpon>Demo.xaml</DependentUpon>
+    <Compile Include="Views\Demo\DemoCDR.xaml.cs">
+      <DependentUpon>DemoCDR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\DemoClient.xaml.cs">
+      <DependentUpon>DemoClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\DemoFinal.xaml.cs">
+      <DependentUpon>DemoFinal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\DemoProduct.xaml.cs">
+      <DependentUpon>DemoProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\DemoRecipe.xaml.cs">
+      <DependentUpon>DemoRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmailLogin.xaml.cs">
       <DependentUpon>EmailLogin.xaml</DependentUpon>
@@ -163,7 +175,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Demo.xaml">
+    <Page Include="Views\Demo\DemoCDR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demo\DemoClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demo\DemoFinal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demo\DemoProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demo\DemoRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

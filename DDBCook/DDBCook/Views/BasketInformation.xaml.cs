@@ -188,11 +188,31 @@ namespace DDBCook.Views
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             Basket.Recipes.Clear();
+            BasketStackPanel.Children.Clear();
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             //Do command
+            int count = 0;
+            Basket.Recipes.ForEach(x => count += x.Price);
+            if (count <= User.ConnectedClient.Money) // if the user has enough money 
+            {
+                foreach (Recipe recipe in Basket.Recipes)
+                {
+                    Order order = new Order(Guid.NewGuid().ToString(), DateTime.Now, User.ConnectedClient.PhoneNumber, recipe.Name);
+                    DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+                    ddb.Insert<Order>(order);
+                }
+
+                Basket.Recipes.Clear();
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow.DataContext = new MainMenu();
+            }
+            else
+            {
+                //not enough money 
+            }
         }
     }
 }
