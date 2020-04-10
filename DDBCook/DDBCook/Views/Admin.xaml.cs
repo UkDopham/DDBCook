@@ -66,6 +66,7 @@ namespace DDBCook.Views
         }
         private void FillGridTop5()
         {
+            TopRecipeGrid.Children.Clear();
             List<Recipe> recipes = GetTop5Recipes();
             for (int i = 0;
                 i < recipes.Count;
@@ -77,6 +78,7 @@ namespace DDBCook.Views
         }
         private void FillGridTopCDR()
         {
+            BestCDRRecipes.Children.Clear();
             List<Recipe> recipes = GetTop5RecipesOfBestCdr();
             for (int i = 0;
                 i < recipes.Count;
@@ -342,6 +344,9 @@ namespace DDBCook.Views
             ddb.DeleteRecipeCreator(recipeCreator);
             ddb.Close();
             LoadComboBox();
+            FillGridTop5();
+            FillGridTopCDR();
+            FillCDROfTheWeek();
         }
 
         private void RecipeButton_Click(object sender, RoutedEventArgs e)
@@ -351,6 +356,9 @@ namespace DDBCook.Views
             ddb.DeleteRecipe(recipe);
             ddb.Close();
             LoadComboBox();
+            FillGridTop5();
+            FillGridTopCDR();
+            FillCDROfTheWeek();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -118,9 +118,17 @@ namespace DDBCook.Models
             {
                 Delete(productComposition, new string[] { "id" }, new string[] { $"'{productComposition.Id}'" });
             }
+            List<Order> orders = SelectOrder(new string[] { "nomRecette" }, new string[] { $"'{recipe.Name}'" });
+            foreach(Order order in orders)
+            {
+                DeleteOrder(order);
+            }
             Delete(recipe, new string[] { "nom"}, new string[] { $"'{recipe.Name}'" });
         }
-
+        public void DeleteOrder(Order order)
+        {
+            Delete(order, new string[] { "id" }, new string[] { $"'{order.Id}'" });
+        }
         public void DeleteRecipeCreator(RecipeCreator recipeCreator)
         {
             List<Recipe> recipes = SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"'{recipeCreator.Id}'" });

@@ -1,4 +1,3 @@
-
 drop table cook.compose;
 drop table cook.commande;
 drop table cook.recette;

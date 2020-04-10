@@ -31,7 +31,6 @@ namespace DDBCook.Views
 
         private void LoadTextBlock()
         {
-            databaseTB.Text = "Database";
             usernameTB.Text = "Username";
             passwordTB.Text = "Password";
         }
@@ -43,13 +42,14 @@ namespace DDBCook.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            User.DataBase = databaseTB.Text;
+            User.DataBase = "cook";
             User.Username = usernameTB.Text;
             User.Password = passwordTB.Text;
             File.WriteAllLines(User.Path, new string[] { User.DataBase, User.Username, User.Password });
 
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            ddb.Command($"create database {User.DataBase}");
+            //ddb.Command("drop database cook;");
+            //ddb.Command($"create database cook;");
             string[] create = File.ReadAllLines("creation.sql");
 
             foreach(string line in create) //Excute the sql script
@@ -71,10 +71,6 @@ namespace DDBCook.Views
             mainWindow.DataContext = new MainMenu();
         }
 
-        private void databaseTB_GotFocus(object sender, RoutedEventArgs e)
-        {
-            databaseTB.Text = string.Empty;
-        }
 
         private void usernameTB_GotFocus(object sender, RoutedEventArgs e)
         {

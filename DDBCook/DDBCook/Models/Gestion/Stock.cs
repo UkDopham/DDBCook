@@ -30,6 +30,17 @@ namespace DDBCook.Models.Gestion
 
             if (isOrder)
             {
+                recipe.Rating++; //equivalent à la notation de la recette à chaque fois que quelqu'un commande on l'incremente
+                if (recipe.Rating == 10)
+                {
+                    recipe.Price += 2;
+                }
+                if (recipe.Rating == 50)
+                {
+                    recipe.Price += 5;
+                    recipe.IsTrending = true; //isTrending = true veut dire que la recette a été commandé plus de 50 fois
+                }
+                ddB.UpdateRecipe(recipe, new string[] { "nom" }, new string[] { $"'{recipe.Name}'" });
                 PayingCDR(recipe);
             }
 

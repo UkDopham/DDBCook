@@ -19,8 +19,8 @@ namespace DDBCook.Models
         private bool _isBio;
         private bool _isVegan;
         private bool _isChimical;
-        private bool _isTrending;
-        private int _rating;
+        private bool _isTrending; //isTrending = true veut dire que la recette a été commandé plus de 50 fois
+        private int _rating; //equivalent à la notation de la recette à chaque fois que quelqu'un commande on l'incremente
         private string _numberCreator;
 
         public bool IsHealthy
@@ -51,11 +51,15 @@ namespace DDBCook.Models
                 return this._isChimical;
             }
         }
-        public bool IsTrending
+        public bool IsTrending 
         {
             get
             {
                 return this._isTrending;
+            }
+            set
+            {
+                this._isTrending = value;
             }
         }
         public int Rating
@@ -116,6 +120,10 @@ namespace DDBCook.Models
             get
             {
                 return this._price;
+            }
+            set
+            {
+                this._price = value;
             }
         }
 
