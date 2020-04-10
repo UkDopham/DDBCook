@@ -129,6 +129,9 @@
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PopUp.xaml.cs">
+      <DependentUpon>PopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecipeCreation.xaml.cs">
       <DependentUpon>RecipeCreation.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -331,6 +338,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\crown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteshrimp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

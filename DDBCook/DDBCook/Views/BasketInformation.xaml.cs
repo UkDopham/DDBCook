@@ -1,4 +1,5 @@
 ﻿using DDBCook.Models;
+using DDBCook.Models.Gestion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -198,22 +199,35 @@ namespace DDBCook.Views
             Basket.Recipes.ForEach(x => count += x.Price);
             if (count <= User.ConnectedClient.Money) // if the user has enough money 
             {
-                foreach (Recipe recipe in Basket.Recipes)
+                if (Stock.IsPossible(Basket.Recipes))
                 {
-                    Order order = new Order(Guid.NewGuid().ToString(), DateTime.Now, User.ConnectedClient.PhoneNumber, recipe.Name);
-                    DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-                    ddb.Insert<Order>(order);
+                    foreach (Recipe recipe in Basket.Recipes)
+                    {
+                        Order order = new Order(Guid.NewGuid().ToString(), DateTime.Now, User.ConnectedClient.PhoneNumber, recipe.Name);
+                        DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+                        ddb.Insert<Order>(order);
+                        Stock.ManageOrder(recipe, true);
+                    }
 
+                    Basket.Recipes.Clear();
+                    User.ConnectedClient.Money -= count;
+                    MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                    mainWindow.DataContext = new MainMenu();
+                    PopUp popUp = new PopUp("Commande passé", "Vous allez être livrer bientôt");
+                    popUp.ShowDialog();
                 }
-
-                Basket.Recipes.Clear();
-                User.ConnectedClient.Money -= count;
-                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                mainWindow.DataContext = new MainMenu();
+                else
+                {
+                    //not enough stock
+                    PopUp popUp = new PopUp("Panier incorrect", "Les produits ne sont pas disponibles.");
+                    popUp.ShowDialog();
+                }
             }
             else
             {
                 //not enough money 
+                PopUp popUp = new PopUp("Achat impossible", "Vous n'avez pas assez d'argent sur votre compte.");
+                popUp.ShowDialog();
             }
         }
     }
