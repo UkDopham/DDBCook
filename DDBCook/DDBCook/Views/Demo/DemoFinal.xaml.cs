@@ -79,7 +79,7 @@ namespace DDBCook.Views.Demo
             List<Recipe> recipes = new List<Recipe>();
             foreach(ProductComposition productComposition in productCompositions)
             {
-                List<Recipe> tmp = ddb.SelectRecipe(new string[] { "nomRecette" }, new string[] { $"'{productComposition.RecipeName}'" });
+                List<Recipe> tmp = ddb.SelectRecipe(new string[] { "nom" }, new string[] { $"'{productComposition.RecipeName}'" });
                 if (tmp.Count > 0)
                 {
                     recipes.Add(tmp[0]);

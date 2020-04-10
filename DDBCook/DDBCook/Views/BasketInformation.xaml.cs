@@ -208,11 +208,12 @@ namespace DDBCook.Views
                         ddb.Insert<Order>(order);
                         Stock.ManageOrder(recipe, true);
                     }
-
+                    DDB ddb1 = new DDB(User.DataBase, User.Username, User.Password);
                     Basket.Recipes.Clear();
                     User.ConnectedClient.Money -= count;
                     MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                     mainWindow.DataContext = new MainMenu();
+                    ddb1.UpdateClient(User.ConnectedClient, new string[] { "nom" }, new string[] { $"'{User.ConnectedClient.Name}'" });
                     PopUp popUp = new PopUp("Commande passé", "Vous allez être livrer bientôt");
                     popUp.ShowDialog();
                 }

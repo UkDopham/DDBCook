@@ -9,8 +9,8 @@ namespace DDBCook.Models
     public static class User
     {
         public const string Path = "settings.txt";
-        public static string Username = "root";
-        public static string Password = "root";
+        public static string Username;
+        public static string Password;
         public static string DataBase = "cook";
 
         private static Client connectedClient;
