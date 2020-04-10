@@ -103,37 +103,61 @@ namespace DDBCook.Views
         {
             RecipeCreator bestCdrOfWeek = GetTop5BestCDR(1, true).First();
             DDB ddb = new DDB();
-            CDRWeekTB.Text = ddb.SelectClient(new string[] { "numero" },new string[] { $"'{bestCdrOfWeek.Id}'"}).First().Name;
+            CDRWeekTB.Text = ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{bestCdrOfWeek.Id}'" }).First().Name;
             ddb.Close();
         }
+        /// <summary>
+        /// Recupere les 5 meilleurs cdr de tout les temps
+        /// </summary>
+        /// <param name="nb"> nb de cdr retournees (par defaut 5) (-1 si toutes)</param>
+        /// <param name="ofWeek"> si true => 5 meilleurs cdr de la semaine </param>
+        /// <returns></returns>
         private List<RecipeCreator> GetTop5BestCDR(int nb = 5, bool ofWeek = false)
         {
-            List<Recipe> recipes = GetTop5Recipes(-1, ofWeek);
-            List<RecipeCreator> top5 = new List<RecipeCreator>();
-
             DDB ddb = new DDB();
 
-            int cpt = 0;
-            nb = (nb == -1) ? ddb.SelectRecipeCreator().Count() : nb;
-            while (top5.Count < nb && cpt < recipes.Count)
+            List<RecipeCreator> listCdr = ddb.SelectRecipeCreator();  // recupere tout les cdr
+
+                                                                                   
+            List<Order> orders = new List<Order>();   // recupere les commandes (de la derniere semaine si necessaire)
+            if (ofWeek)                             
+                orders = ddb.SelectOrder(new string[] { "date" }, new string[] { "NOW()" }, "BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND");
+            else
+                orders = ddb.SelectOrder();
+
+            List<int[]> compteur = new List<int[]>(); // compteur stockant le nombre de recettes comandes par cdr
+            for (int i = 0; i < listCdr.Count; i++)
             {
-                RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { "'" + recipes[cpt].NumberCreator + "'" }).First();
-                if (!Contain(top5, recipeCreator))
+                compteur.Add(new int[] { 0, i });
+                List<Recipe> listRecipes = ddb.SelectRecipe(new string[] { "numeroCreateur" }, new string[] { $"{listCdr[i].Id}" });
+
+                foreach (Order order in orders)
                 {
-                    top5.Add(recipeCreator);
+                    if (ContainRecipe(listRecipes, order)) { compteur[i][0]++; }
                 }
-                cpt++;
+
             }
+            compteur.Sort((a, b) => (a[0].CompareTo(b[0])));
+            compteur.Reverse();
+
+            nb = (nb == -1) ? compteur.Count() : nb;
+            List<RecipeCreator> top5 = new List<RecipeCreator>();
+            for (int i = 0; i < nb; i++)  // recupere le nombre de cdr necessaire
+            {
+                top5.Add(listCdr[compteur[i][1]]);
+            }
+           
 
             ddb.Close();
 
             return top5;
 
-            bool Contain(List<RecipeCreator> list, RecipeCreator rc)
+
+            bool ContainRecipe(List<Recipe> list, Order o)
             {
-                foreach (RecipeCreator r in list)
+                foreach (Recipe r in list)
                 {
-                    if (r.Id.Equals(rc.Id))
+                    if (r.Name.Equals(o.RecipeName))
                         return true;
                 }
                 return false;
@@ -242,59 +266,76 @@ namespace DDBCook.Views
             };
         }
 
+        /// <summary>
+        /// Recupere les 5 recettes les plus commandes de tout les temps
+        /// </summary>
+        /// <param name="nb"> nb de recettes retournees (par defaut 5) (-1 si toutes)</param>
+        /// <param name="ofWeek"> si true => 5 meilleurs recettes de la semaine </param>
+        /// <returns></returns>
         private List<Recipe> GetTop5Recipes(int nb = 5, bool ofWeek = false)
         {
+            ///RECUPERATION DES COMMANDES
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-            List<Recipe> recipes = ddb.SelectRecipe();
+            List<Recipe> recipes = ddb.SelectRecipe(); // recupere toutes les recettes
 
-            List<Order> orders = new List<Order>();
-            if (ofWeek)
+            List<Order> orders = new List<Order>(); // recupere les commandes
+            if (ofWeek)                             // (des 7 derniers jours si true)
                 orders = ddb.SelectOrder(new string[] { "date" }, new string[] { "NOW()" }, "BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND");
             else
-                orders = ddb.SelectOrder();
+                orders = ddb.SelectOrder();         // (sinon de tout)
 
             ddb.Close();
 
-            List<List<int>> compteur = new List<List<int>>();
+            ///CALCUL DU NOMBRE DE FOIS QUE CHAQUE RECETTES A ETE COMMANDE
+            List<List<int>> compteur = new List<List<int>>(); // compteur sur le nombre d apparitions de chaque recette
+                                                              //      [nombre d'apparition][indexe recette (par rapport a liste recipe)]
+                                                              // [0] (exemple:    3                       0       
+                                                              // [1]              2                       1   )
+                                                              // ...
             for (int i = 0; i < recipes.Count; i++)
             {
                 compteur.Add(new List<int>());
-                compteur[i].Add(0);
-                compteur[i].Add(i);
+                compteur[i].Add(0);  // compteur (debut 0)
+                compteur[i].Add(i);  // indexe recette
                 for (int j = 0; j < orders.Count; j++)
                 {
-                    if (recipes[i].Name.Equals(orders[j].RecipeName))
+                    if (recipes[i].Name.Equals(orders[j].RecipeName))   // si on trouve une recette dans les commandes
                     {
-                        compteur[i][0] += 1;
+                        compteur[i][0] += 1;                            // compteur + 1
                     }
                 }
             }
-            compteur.Sort((a, b) => (a[0].CompareTo(b[0])));
-            compteur.Reverse();
+            compteur.Sort((a, b) => (a[0].CompareTo(b[0]))); // on trie la colonne par rapport a la colonne des compteurs  ([0])
+            compteur.Reverse();                              // on dispose les resultats dans l ordre decroissant
 
+            ///RECUPERATION DES MEILLEURS RECETTES
+            nb = (nb == -1) ? compteur.Count() : nb;    // recupere la de nb (si nb==-1  nb = le nombre total de recettes)
             List<Recipe> top5 = new List<Recipe>();
-            nb = (nb == -1) ? compteur.Count() : nb;
-            for (int i = 0; i < nb; i++)
+            for (int i = 0; i < nb; i++)                // on garde seulement les 'nb' premieres recettes
             {
                 top5.Add(recipes[compteur[i][1]]);
             }
 
             return top5;
         }
-
-        private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5)
+        /// <summary>
+        /// Recupere les 5 meilleurs recettes du meilleur cdr
+        /// </summary>
+        /// <param name="nb"></param>
+        /// <returns></returns>
+        private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5, bool ofWeek = false)
         {
-            RecipeCreator bestCdr = GetTop5BestCDR(1).First();
+            RecipeCreator bestCdr = GetTop5BestCDR(1, ofWeek).First(); // recupere le meilleur cdr
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             BestCDRAllTB.Text = ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{bestCdr.Id}'" })[0].Name;
-            List<Recipe> recipes = GetTop5Recipes(-1);
-            List<Recipe> top5RecipesOfBestCdr = new List<Recipe>();
+            List<Recipe> recipes = GetTop5Recipes(-1);                 // recupere les meilleurs recettes
+            List<Recipe> top5RecipesOfBestCdr = new List<Recipe>(); 
 
             ddb.Close();
 
             nb = (nb == -1) ? recipes.Count() : nb;
             int cpt = 0;
-            while (top5RecipesOfBestCdr.Count < nb && nb < recipes.Count)
+            while (top5RecipesOfBestCdr.Count < nb && cpt < recipes.Count) // recupre les nb premieres
             {
                 if (recipes[cpt].NumberCreator.Equals(bestCdr.Id))
                     top5RecipesOfBestCdr.Add(recipes[cpt]);
