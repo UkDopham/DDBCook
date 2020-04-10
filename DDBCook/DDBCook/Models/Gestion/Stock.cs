@@ -17,20 +17,68 @@ namespace DDBCook.Models.Gestion
         /// Method appele a chaque commande. Elle permet de simuler la gestion des stockes
         /// </summary>
         /// <param name="recipe"></param>
-        public static void ManageOrder(Recipe recipe)
+        public static void ManageOrder(Recipe recipe, bool isOrder = false)
         {
             DDB ddB = new DDB(User.DataBase, User.Username, User.Password);
 
             List<ProductComposition> productCompositions = ddB.SelectProductComposition(new string[] { "nomRecette" }, new string[] { "'" + recipe.Name + "'" });
 
             List<Product> products = new List<Product>();
-            productCompositions.ForEach(p => products.AddRange(ddB.SelectProduct(new string[] { "refProduit" }, new string[] { "'" + p.RefProduct + "'" })));
-
+            productCompositions.ForEach(p => products.AddRange(ddB.SelectProduct(new string[] { "ref" }, new string[] { "'" + p.RefProduct + "'" })));
 
             products.ForEach(p => ConsumeProduct(p, productCompositions));
 
+            if (isOrder)
+            {
+                PayingCDR(recipe);
+            }
 
             ddB.Close();
+        }
+        /// <summary>
+        /// Pay the creator of the recipe
+        /// </summary>
+        /// <param name="recipe"></param>
+        private static void PayingCDR(Recipe recipe)
+        {
+            DDB ddB = new DDB(User.DataBase, User.Username, User.Password);
+
+            RecipeCreator recipeCreator = ddB.SelectRecipeCreator(new string[] { "numero" }, new string[] { $"'{recipe.NumberCreator}'" })[0];
+            Client client = ddB.SelectClient(new string[] { "numero" }, new string[] { $"'{recipeCreator.Id}'" })[0];
+
+            client.Money += recipe.IsTrending ? 4 : 2;
+            ddB.UpdateClient(client, new string[] { "nom" }, new string[] { $"'{client}'" });
+            ddB.Close();
+        }
+        /// <summary>
+        /// check if the basket can be created (enough product in stock)
+        /// </summary>
+        /// <param name="recipes"></param>
+        /// <returns></returns>
+        public static bool IsPossible(List<Recipe> recipes)
+        {
+            bool isPossible = true;
+            DDB ddB = new DDB(User.DataBase, User.Username, User.Password);
+            List<Product> products = ddB.SelectProduct();
+            foreach (Recipe recipe in recipes)
+            {
+                List<ProductComposition> productCompositions = ddB.SelectProductComposition(new string[] { "nomRecette" }, new string[] { $"'{recipe.Name}'" });
+                foreach(ProductComposition productComposition in productCompositions)
+                {
+                    Product product = products.FirstOrDefault(x => x.Reference == productComposition.RefProduct);
+                    if (product != null)
+                    {
+                        product.CurrentQuantity -= productComposition.Quantity;
+                        if (product.CurrentQuantity < 0)
+                        {
+                            isPossible = false;
+                        }
+                    }
+                }
+            }
+            ddB.Close();
+
+            return isPossible;
         }
 
 

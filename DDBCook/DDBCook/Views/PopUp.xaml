@@ -1,0 +1,59 @@
+﻿<Window x:Class="DDBCook.Views.PopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DDBCook.Views"
+        mc:Ignorable="d"
+        Title="Alerte" 
+        Height="200"
+        Width="400"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="{StaticResource purple}">
+            <Image Source="pack://siteoforigin:,,,/Resources/whiteshrimp.png"
+                   Margin="10"/>
+        </Border>
+
+        <Grid Grid.Column="1"
+              Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Title"
+                       FontWeight="Bold"
+                       FontSize="30"
+                       Foreground="{StaticResource dark grey}"
+                       x:Name="titleTB"/>
+
+            <TextBlock Text="textTB"
+                       Grid.Row="1"
+                       FontWeight="Bold"
+                       FontSize="14"
+                       Foreground="{StaticResource dark grey}"
+                       x:Name="textTB"/>
+
+            <Button Grid.Row="2"
+                    BorderThickness="0"
+                    Width="150"
+                    Height="40"
+                    Background="{StaticResource red}"
+                    Foreground="White"
+                    Content="OK"
+                    FontWeight="Bold"
+                    FontSize="20"
+                    Click="Button_Click"/>
+        </Grid>
+    </Grid>
+</Window>
