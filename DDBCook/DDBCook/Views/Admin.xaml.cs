@@ -110,7 +110,7 @@ namespace DDBCook.Views
             while (top5.Count < nb && cpt < recipes.Count)
             {
                 RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { "'" + recipes[cpt].NumberCreator + "'" }).First();
-                if (Contain(top5,recipeCreator))
+                if (!Contain(top5,recipeCreator))
                 {
                     top5.Add(recipeCreator);
                 }
@@ -126,9 +126,9 @@ namespace DDBCook.Views
                 foreach (RecipeCreator r in list)
                 {
                     if (r.Id.Equals(rc.Id))
-                        return false;
+                        return true;
                 }
-                return true;
+                return false;
             }
 
         }

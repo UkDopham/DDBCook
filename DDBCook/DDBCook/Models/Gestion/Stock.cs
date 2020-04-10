@@ -11,6 +11,7 @@ namespace DDBCook.Models.Gestion
 {
     public class Stock
     {
+        private const string fichierCommande = "Commandes.xml";
 
         /// <summary>
         /// Method appele a chaque commande. Elle permet de simuler la gestion des stockes
@@ -67,8 +68,8 @@ namespace DDBCook.Models.Gestion
             {
                 int quantityConsumed = prodComp.Quantity;
 
-                Product product= ddB.SelectProduct(new string[] { "ref" }, new string[] { "'" + prodComp.RefProduct + "'" }).First();
-                
+                Product product = ddB.SelectProduct(new string[] { "ref" }, new string[] { "'" + prodComp.RefProduct + "'" }).First();
+
                 if (product.MinQuantity < quantityConsumed)
                 {
                     product.MinQuantity = quantityConsumed;
@@ -77,12 +78,12 @@ namespace DDBCook.Models.Gestion
 
 
                     ddB.UpdateProduct(product, new string[] { "ref" }, new string[] { "'" + product.Reference + "'" });
-                    
+
                 }
 
             }
             ddB.Close();
-            
+
         }
 
 
@@ -90,7 +91,7 @@ namespace DDBCook.Models.Gestion
         /// Verifie si il y a des produits qui n'ont pas ete utilises depuis plus de 30 jours
         /// </summary>
         /// <returns></returns>
-        public static List<Product> RottenProducts()
+        public static List<Product> RottenProducts(int jourMax = 30)
         {
             DDB ddb = new DDB();
 
@@ -111,22 +112,52 @@ namespace DDBCook.Models.Gestion
             List<Product> allProducts = ddb.SelectProduct();
 
             //On soustrait les deux ensembles
-            List<Product> rottenProducts = allProducts.FindAll(x => !products.Contains(x));
+            List<Product> rottenProducts = allProducts.FindAll(x => !Contain(products, x));
 
 
             foreach (Product rotten in rottenProducts)
             {
-                rotten.CurrentQuantity /= 2;
 
-                if (rotten.CurrentQuantity < rotten.MinQuantity)
+
+                if (VerificationRapportCommande(rotten))
                 {
-                    int orderQuantity = rotten.MinQuantity - rotten.CurrentQuantity;
-                    OrderSuplies(rotten, orderQuantity, "reserves pourries");
-                    ddb.UpdateProduct(rotten, new string[] { "ref" }, new string[] { "'" + rotten.Reference + "'" });
+                    rotten.CurrentQuantity /= 2;
+
+                    if (rotten.CurrentQuantity < rotten.MinQuantity)
+                    {
+                        int orderQuantity = rotten.MinQuantity - rotten.CurrentQuantity;
+                        OrderSuplies(rotten, orderQuantity, "reserves pourries");
+                        ddb.UpdateProduct(rotten, new string[] { "ref" }, new string[] { "'" + rotten.Reference + "'" });
+                    }
                 }
             }
             ddb.Close();
             return rottenProducts;
+
+
+            bool Contain(List<Product> list, Product prod)
+            {
+                foreach (Product p in list)
+                {
+                    if (p.Reference.Equals(prod.Reference))
+                        return true;
+                }
+                return false;
+            }
+
+            /// Verifie grace au rapport de commande si le produit na pas deja pourris il y a moins de 1 mois
+            bool VerificationRapportCommande(Product rottenProduct)
+            {
+                XDocument xDocument = XDocument.Load(fichierCommande);
+                XElement root = xDocument.Element("Commandes");
+                IEnumerable<XElement> rows = root.Descendants("Commande");
+
+                return !rows.Any(product =>
+                (product.Descendants().Any
+                (prod => (((((string)prod.Attribute("name")).Equals(rottenProduct.Name)) && (((string)prod.Attribute("cause")).Equals("reserves pourries")))
+                && (DateTime.Now.Subtract(DateTime.Parse((string)product.Attribute("Date"))).Days < jourMax)))
+                ));
+            }
         }
 
 
@@ -137,11 +168,11 @@ namespace DDBCook.Models.Gestion
         private static void OrderSuplies(Product product, int quantityNeeded, string cause = "plus de stockes")
         {
 
-           // CreationRapport();
+            CreationRapport();
             product.CurrentQuantity += quantityNeeded;
 
 
-            void CreationRapport(string nomDoc = "Commandes.xml")  //TODO: rajouter produit a date correspondante  ET enlever hhmmss au format
+            void CreationRapport(string nomDoc = fichierCommande)
             {
                 if (!File.Exists(nomDoc))
                 {
@@ -151,7 +182,7 @@ namespace DDBCook.Models.Gestion
                     using (XmlWriter xmlWriter = XmlWriter.Create(nomDoc, xmlWriterSettings))
                     {
                         xmlWriter.WriteStartDocument(); //commence le document
-                        xmlWriter.WriteComment("Ce fichier comporte l'ensemble des commandes effectues par");  //cree un commentaire
+                        xmlWriter.WriteComment("Ce fichier comporte l'ensemble des commandes effectues par les clients");  //cree un commentaire
 
                         xmlWriter.WriteStartElement("Commandes");    //cree un element
 
@@ -178,20 +209,24 @@ namespace DDBCook.Models.Gestion
                     XElement root = xDocument.Element("Commandes");
                     IEnumerable<XElement> rows = root.Descendants("Commande");
 
-                    XElement el = rows.First(c => ((string)c.Attribute("Date")).Equals(DateTime.Now.ToShortDateString()));
-                    if (el == null)
+
+                    bool exists = rows.Any(x => ((string)x.Attribute("Date")).Equals(DateTime.Now.ToShortDateString()));
+
+
+                    if (!exists) // cree une nouvelle date pour mettre la commande
                     {
                         XElement firstRow = rows.First();
                         firstRow.AddBeforeSelf(
                       new XElement("Commande",
-                      new XAttribute("Date", DateTime.Now.ToString()),
+                      new XAttribute("Date", DateTime.Now.ToShortDateString()),
                       new XElement("Product",
                       new XAttribute("name", product.Name), new XAttribute("amount", Convert.ToString(quantityNeeded)), new XAttribute("cause", cause)
                       )));
 
                     }
-                    else
+                    else // rajoute la commande a la date deja cree
                     {
+                        XElement el = rows.First(c => ((string)c.Attribute("Date")).Equals(DateTime.Now.ToShortDateString()));
                         IEnumerable<XElement> productsRows = el.Descendants();
                         XElement lastRow = productsRows.Last();
                         lastRow.AddAfterSelf(new XElement("Product",
@@ -200,6 +235,7 @@ namespace DDBCook.Models.Gestion
                     }
                     xDocument.Save(nomDoc);
                 }
+                //}
             }
         }
 

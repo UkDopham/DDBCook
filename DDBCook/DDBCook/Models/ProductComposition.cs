@@ -57,10 +57,6 @@ namespace DDBCook.Models
             this._recipeName = recipeName;
         }
 
-        public override string ToString()
-        {
-            return this._refProduct;
-        }
 
         public string GetTableName()
         {
@@ -75,6 +71,11 @@ namespace DDBCook.Models
         public string GetTableValues()
         {
             return $"'{this._id}', {this._quantity}, '{this._refProduct}', '{this._recipeName}'";
+        }
+
+
+        public override string ToString(){
+            return $"{this.RecipeName} - {this.RefProduct}({this.Quantity}";
         }
     }
 }

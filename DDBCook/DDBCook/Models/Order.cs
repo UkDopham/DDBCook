@@ -63,5 +63,9 @@ namespace DDBCook.Models
         {
             return $"'{this._id}', '{this._orderDate.Year}-{this._orderDate.Month}-{this._orderDate.Day}', '{this._clientNumber}', '{this._recipeName}'";
         }
+
+        public override string ToString(){
+            return $"{this.OrderDate} - {this.RecipeName} ({this.ClientNumber})";
+        }
     }
 }

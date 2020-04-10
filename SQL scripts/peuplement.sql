@@ -44,6 +44,7 @@ INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quant
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('301','glace','eauGlace',0,0,0,'cL',333);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('401','farine','feculent',0,0,0,'g',444);
 INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('402','lait','liquide',0,0,0,'cL',444);
+INSERT INTO `cook`.`produit` (`ref`,`nom`,`categorie`,`quantite_actuelle`,`quantite_min`,`quantite_max`,`unite`,`numeroFournisseur`) VALUES ('403','brocoli','legume',0,0,0,'g',444);
 
 
 -- insertion dans recette
@@ -57,6 +58,7 @@ INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCrea
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Salade de tomate','plat','Il y a beaucoup de tomates et pas grand chose d autre',17,'07456321',true,true,true,false,false,9);
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Pain','complement','Ca va bien avec tout',5,'07987456',false,false,true,false,false,9);
 INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Quiche au poisson','plat','Une quiche pas tres conventionel',36,'07951487',true,true,false,false,false,9);
+INSERT INTO `cook`.`recette` (`nom`,`categorie`,`description`,`prix`,`numeroCreateur`,   `estHealthy`, `estBio` , `estVegan`,   `estChimique` ,  `estTendance`,`note` ) VALUES ('Un brocoli','plat','C est tout.',10,'07951487',true,true,true,false,false,9);
 
 
 -- insertion dans compose
@@ -79,21 +81,24 @@ INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`)
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('17',300,'401','Quiche au poisson');
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('18',100,'402','Quiche au poisson');
 INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('19',3,  '207','Quiche au poisson');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('20',150,'104','Quiche au poisson');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('21',150,'103','Soda T');
+INSERT INTO `cook`.`compose` (`id`,`quantite_produit`,`refProduit`,`nomRecette`) VALUES ('22',120,'403','Un brocoli');
 
 
 -- insertion commande
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('1','2020-02-26 00:00:00','07741654','Pizza au courgettes');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('2','2020-02-26 00:00:00','07741654','Pain');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('3','2020-02-26 00:00:00','07852654','Bolognaise au poulet');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('4','2020-02-26 00:00:00','07852654','Soda T');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('5','2020-02-26 00:00:00','07852654','Cookies');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('6','2020-02-26 00:00:00','07951263','Couscous');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('7','2020-02-26 00:00:00','07951263','Banane au chocolat');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('8','2020-02-26 00:00:00','07852147','Bouteille du Nord');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('9','2020-02-26 00:00:00','07852147','Pain');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('10','2020-02-26 00:00:00','07852147','Salade de tomate');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('11','2020-02-26 00:00:00','07456321','Soda T');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('12','2020-02-26 00:00:00','07456321','Quiche au poisson');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('13','2020-02-26 00:00:00','07987456','Quiche au poisson');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('14','2020-02-26 00:00:00','07987456','Quiche au poisson');
-INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('15','2020-02-26 00:00:00','07987456','Pizza au courgettes');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('1','2020-04-10 00:00:00','07741654','Pizza au courgettes');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('2','2020-04-08 00:00:00','07741654','Pain');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('3','2020-04-06 00:00:00','07852654','Bolognaise au poulet');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('4','2020-04-06 00:00:00','07852654','Soda T');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('5','2020-04-07 00:00:00','07852654','Cookies');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('6','2020-04-06 00:00:00','07951263','Couscous');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('7','2020-04-08 00:00:00','07951263','Banane au chocolat');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('8','2020-04-09 00:00:00','07852147','Bouteille du Nord');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('9','2020-04-06 00:00:00','07852147','Pain');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('10','2020-04-08 00:00:00','07852147','Salade de tomate');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('11','2020-04-05 00:00:00','07456321','Soda T');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('12','2020-04-06 00:00:00','07456321','Quiche au poisson');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('13','2020-04-01 00:00:00','07987456','Quiche au poisson');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('14','2020-04-04 00:00:00','07987456','Quiche au poisson');
+INSERT INTO `cook`.`commande` (`id`,`date`,`numero`,`nomRecette`) VALUES ('15','2020-04-02 00:00:00','07987456','Pizza au courgettes');

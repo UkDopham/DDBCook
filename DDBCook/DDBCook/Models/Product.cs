@@ -125,7 +125,7 @@ namespace DDBCook.Models
 
         public override string ToString()
         {
-            return this._name;
+            return $"{this._name} ({this.Reference})";
         }
     }
 }
