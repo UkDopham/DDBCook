@@ -203,9 +203,11 @@ namespace DDBCook.Views
                     Order order = new Order(Guid.NewGuid().ToString(), DateTime.Now, User.ConnectedClient.PhoneNumber, recipe.Name);
                     DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
                     ddb.Insert<Order>(order);
+
                 }
 
                 Basket.Recipes.Clear();
+                User.ConnectedClient.Money -= count;
                 MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 mainWindow.DataContext = new MainMenu();
             }

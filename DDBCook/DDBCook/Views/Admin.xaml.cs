@@ -270,7 +270,8 @@ namespace DDBCook.Views
 
         private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5){
             RecipeCreator bestCdr = GetTop5BestCDR(1).First();
-            DDB ddb = new DDB();
+            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
+            BestCDRAllTB.Text = ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{bestCdr.Id}'" })[0].Name;
             List<Recipe> recipes = GetTop5Recipes(-1);
             List<Recipe> top5RecipesOfBestCdr = new List<Recipe>();
 

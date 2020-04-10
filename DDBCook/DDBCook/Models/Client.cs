@@ -30,6 +30,10 @@ namespace DDBCook.Models
             {
                 return this._money;
             }
+            set
+            {
+                this._money = value;
+            }
         }
 
         public string Name
