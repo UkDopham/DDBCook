@@ -8,9 +8,7 @@ namespace DDBCook.Models.Enums
 {
     public enum ProductCategory
     {
-        meat,
         fruit,
-        vegetable,
         feculent,
         viande,
         legume,
