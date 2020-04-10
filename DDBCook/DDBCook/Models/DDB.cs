@@ -403,9 +403,9 @@ namespace DDBCook.Models
         }
         public void UpdateRecipe(Recipe recipe, string[] whereColumns = null, string[] whereValues = null, string comparisonSymbol = "=")
         {
-            string[] setColumns = { "nom", "categorie", "description", "nomRecette", "prix", "numeroCreateur", "estHealthy", "estBio", "estVegan", "estChimique", "estTendance" };
+            string[] setColumns = { "nom", "categorie", "description", "prix", "numeroCreateur", "estHealthy", "estBio", "estVegan", "estChimique", "estTendance" ,"note"};
             string[] setValues = { "'" + recipe.Name + "'",  "'" + recipe.RecipeType + "'","'" + recipe.Description + "'","'" + Convert.ToString(recipe.Price) + "'","'" + recipe.NumberCreator + "'",
-            "'"+ "estBio"+ "'",  "'" +"estVegan"+ "'",  "'" +"estChimique"+ "'",  "'" +"estTendance" };
+            $"{recipe.IsHealthy}",$"{recipe.IsBio}", $"{recipe.IsVegan}", $"{recipe.IsChimical}",  $"{recipe.IsTrending}", recipe.Rating.ToString()};
 
             Update<Recipe>(recipe, setColumns, setValues, whereColumns, whereValues,comparisonSymbol);
         }
