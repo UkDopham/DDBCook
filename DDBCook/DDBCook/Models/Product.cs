@@ -99,7 +99,7 @@ namespace DDBCook.Models
             string unit)
         {
             this._name = name;
-            this._productCategory = ProductCategory;
+            this._productCategory = productCategory;
             this._currentQuantity = currentQuantity;
             this._minQuantity = minQuantity;
             this._maxQuantity = maxQuantity;

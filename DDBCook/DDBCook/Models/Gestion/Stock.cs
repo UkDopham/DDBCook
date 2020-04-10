@@ -24,7 +24,7 @@ namespace DDBCook.Models.Gestion
             List<ProductComposition> productCompositions = ddB.SelectProductComposition(new string[] { "nomRecette" }, new string[] { "'" + recipe.Name + "'" });
 
             List<Product> products = new List<Product>();
-            productCompositions.ForEach(p => products.AddRange(ddB.SelectProduct(new string[] { "refProduit" }, new string[] { "'" + p.RefProduct + "'" })));
+            productCompositions.ForEach(p => products.AddRange(ddB.SelectProduct(new string[] { "ref" }, new string[] { "'" + p.RefProduct + "'" })));
 
 
             products.ForEach(p => ConsumeProduct(p, productCompositions));
