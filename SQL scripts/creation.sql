@@ -27,7 +27,7 @@ create table cook.fournisseur(
     
 create table cook.produit(
 	`ref` varchar(20) not null,
-	`nom` varchar(20) not null,
+	`nom` varchar(30) not null,
     `categorie` varchar(20) not null,
     `quantite_actuelle`int null,
     `quantite_min` int null,

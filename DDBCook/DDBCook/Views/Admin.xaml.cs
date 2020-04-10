@@ -28,6 +28,7 @@ namespace DDBCook.Views
             LoadComboBox();
             FillGridTop5();
             FillGridTopCDR();
+            FillCDROfTheWeek();
         }
         public string BestWeek
         {
@@ -98,9 +99,16 @@ namespace DDBCook.Views
                 AddBestCDRGrid(recipes[i], i);
             }
         }
-        private List<RecipeCreator> GetTop5BestCDR(int nb = 5)
+        private void FillCDROfTheWeek()
         {
-            List<Recipe> recipes = GetTop5Recipes(-1);
+            RecipeCreator bestCdrOfWeek = GetTop5BestCDR(1, true).First();
+            DDB ddb = new DDB();
+            CDRWeekTB.Text = ddb.SelectClient(new string[] { "numero" },new string[] { $"'{bestCdrOfWeek.Id}'"}).First().Name;
+            ddb.Close();
+        }
+        private List<RecipeCreator> GetTop5BestCDR(int nb = 5, bool ofWeek = false)
+        {
+            List<Recipe> recipes = GetTop5Recipes(-1, ofWeek);
             List<RecipeCreator> top5 = new List<RecipeCreator>();
 
             DDB ddb = new DDB();
@@ -110,7 +118,7 @@ namespace DDBCook.Views
             while (top5.Count < nb && cpt < recipes.Count)
             {
                 RecipeCreator recipeCreator = ddb.SelectRecipeCreator(new string[] { "numero" }, new string[] { "'" + recipes[cpt].NumberCreator + "'" }).First();
-                if (!Contain(top5,recipeCreator))
+                if (!Contain(top5, recipeCreator))
                 {
                     top5.Add(recipeCreator);
                 }
@@ -234,11 +242,17 @@ namespace DDBCook.Views
             };
         }
 
-        private List<Recipe> GetTop5Recipes(int nb = 5)
+        private List<Recipe> GetTop5Recipes(int nb = 5, bool ofWeek = false)
         {
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             List<Recipe> recipes = ddb.SelectRecipe();
-            List<Order> orders = ddb.SelectOrder();
+
+            List<Order> orders = new List<Order>();
+            if (ofWeek)
+                orders = ddb.SelectOrder(new string[] { "date" }, new string[] { "NOW()" }, "BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND");
+            else
+                orders = ddb.SelectOrder();
+
             ddb.Close();
 
             List<List<int>> compteur = new List<List<int>>();
@@ -268,7 +282,8 @@ namespace DDBCook.Views
             return top5;
         }
 
-        private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5){
+        private List<Recipe> GetTop5RecipesOfBestCdr(int nb = 5)
+        {
             RecipeCreator bestCdr = GetTop5BestCDR(1).First();
             DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
             BestCDRAllTB.Text = ddb.SelectClient(new string[] { "numero" }, new string[] { $"'{bestCdr.Id}'" })[0].Name;
@@ -276,17 +291,18 @@ namespace DDBCook.Views
             List<Recipe> top5RecipesOfBestCdr = new List<Recipe>();
 
             ddb.Close();
-            
+
             nb = (nb == -1) ? recipes.Count() : nb;
-            int cpt=0;
-            while(top5RecipesOfBestCdr.Count< nb && nb < recipes.Count){
+            int cpt = 0;
+            while (top5RecipesOfBestCdr.Count < nb && nb < recipes.Count)
+            {
                 if (recipes[cpt].NumberCreator.Equals(bestCdr.Id))
                     top5RecipesOfBestCdr.Add(recipes[cpt]);
 
                 cpt++;
             }
 
-            return top5RecipesOfBestCdr ;
+            return top5RecipesOfBestCdr;
         }
 
 
