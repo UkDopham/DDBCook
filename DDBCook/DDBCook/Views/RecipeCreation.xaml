@@ -133,20 +133,14 @@
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"/>
-                            <TextBox Foreground="{StaticResource dark grey}"
-                                     FontSize="12"
-                                     FontWeight="Bold"
-                                     Grid.Column="1"
-                                     Text="2"
-                                     VerticalContentAlignment="Center"
-                                     PreviewTextInput="NumberValidationTextBox"
-                                     Margin="5"
-                                     x:Name="PriceTextBox"/>
+                            <ComboBox Grid.Column="1"
+                                      x:Name="PriceCB"
+                                      Margin="2"/>
                         </Grid>
 
                         <ComboBox x:Name="CategoryComboBox"
                                   Grid.Row="1"
-                                  Margin="80,0">
+                                  Margin="80,2">
                             
                         </ComboBox>
                     </Grid>

@@ -10,16 +10,35 @@ namespace DDBCook.Models
 {
     public class DDB
     {
+        private bool _isOpen = false;
         private MySqlConnection _mySqlConnection;
 
-        public DDB(string database = User.DataBase, string username = User.Username, string password = User.Password)
+        public bool IsOpen
         {
-            Open(database, username, password);
+            get
+            {
+                return this._isOpen;
+            }
+        }
+        public DDB(string database, string username, string password)
+        {
+            this._isOpen = Open(database, username, password);
+        }
+        public DDB()
+        {
+            this._isOpen = Open(User.DataBase, User.Username, User.Password);
         }
 
-
-        private void Open(string database, string username, string password)
+        /// <summary>
+        /// Open the connection with the database if the id are wrong return false
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool Open(string database, string username, string password)
         {
+            bool isPossible = true;
             try
             {
                 string connectionString = $"SERVER=localhost;PORT=3306;DATABASE={database};UID={username};PASSWORD={password};";
@@ -28,15 +47,29 @@ namespace DDBCook.Models
             }
             catch (Exception ex)
             {
-
+                isPossible = false;
             }
+            return isPossible;
         }
         public void Close()
         {
             this._mySqlConnection.Close();
         }
 
+        public void Command(string commandText)
+        {
+            try
+            {
+                MySqlCommand command = this._mySqlConnection.CreateCommand();
+                command.CommandText = commandText; MySqlDataReader reader;
+                reader = command.ExecuteReader();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
 
+            }
+        }
 
         /// <summary>
         /// custom method to execute a sql delete method. It can use the where statement if whereColumn and whereValue are not null or empty.

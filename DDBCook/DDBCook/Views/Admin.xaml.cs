@@ -30,20 +30,6 @@ namespace DDBCook.Views
             FillGridTopCDR();
             FillCDROfTheWeek();
         }
-        public string BestWeek
-        {
-            get
-            {
-                return "bestweek";
-            }
-        }
-        public string BestAll
-        {
-            get
-            {
-                return "bestall";
-            }
-        }
         private void LoadComboBox()
         {
             LoadRecipeComboBox();

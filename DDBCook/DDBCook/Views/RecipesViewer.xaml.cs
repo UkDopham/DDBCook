@@ -89,7 +89,7 @@ namespace DDBCook.Views
                 {
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(12, GridUnitType.Star)
+                        Width = new GridLength(16, GridUnitType.Star)
                     },
                     new ColumnDefinition()
                     {
@@ -101,7 +101,7 @@ namespace DDBCook.Views
                     },
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(2, GridUnitType.Star)
+                        Width = new GridLength(1, GridUnitType.Star)
                     },
                     new ColumnDefinition()
                     {
@@ -125,8 +125,8 @@ namespace DDBCook.Views
                     },
                 },
             };
-            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Color.FromRgb(255, 115, 115)), FontWeights.Bold, 14);
-            TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Color.FromRgb(112, 111, 211)), FontWeights.Bold, 16);
+            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Color.FromRgb(255, 115, 115)), FontWeights.Bold, 12);
+            TextBlock name = GetTextBlock($"{StringLimit(recipe.Name)} - {recipe.Rating} points", new SolidColorBrush(Color.FromRgb(112, 111, 211)), FontWeights.Bold, 16);
 
             titlegrid.Children.Add(price);
             titlegrid.Children.Add(name);
@@ -199,9 +199,8 @@ namespace DDBCook.Views
             Grid.SetRow(desc, 1);
             return grid;
         }
-        private TextBlock GetTextBlock(string text, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
+        private string StringLimit(string text, int limit = 20)
         {
-            int limit = 50;
             if (text.Length > limit)
             {
                 string tmp = string.Empty;
@@ -213,6 +212,11 @@ namespace DDBCook.Views
                 }
                 text = $"{tmp} ...";
             }
+            return text;
+        }
+        private TextBlock GetTextBlock(string text, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
+        {
+            
             return new TextBlock()
             {
                 Margin = new Thickness(5),

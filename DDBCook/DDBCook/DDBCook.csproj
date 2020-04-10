@@ -99,6 +99,9 @@
     <Compile Include="Views\BasketInformation.xaml.cs">
       <DependentUpon>BasketInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BDDLogin.xaml.cs">
+      <DependentUpon>BDDLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientInformation.xaml.cs">
       <DependentUpon>ClientInformation.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BasketInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BDDLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -59,11 +59,13 @@
                             Margin="10"
                             Content="DEMO"
                             Foreground="Green"
-                            Click="DemoButton_Click"/>
+                            Click="DemoButton_Click"
+                            x:Name="DemoButton"/>
                 </Grid>
                 
                 <!--User -->
-                <Grid Grid.Column="2">
+                <Grid Grid.Column="2"
+                      x:Name="UserGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
@@ -135,7 +137,8 @@
             <!--Filter and sort-->
             <Border Grid.Column="0"
                     BorderBrush="{StaticResource grey}"
-                    BorderThickness="0,0,1,0">
+                    BorderThickness="0,0,1,0"
+                    x:Name="FilterBorder">
                 <StackPanel>
 
                     <!--Sort-->

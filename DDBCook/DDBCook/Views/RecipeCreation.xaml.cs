@@ -43,6 +43,18 @@ namespace DDBCook.Views
             ProductsComboBox.ItemsSource = this._allProducts;
             ProductsComboBox.SelectedIndex = 0;
         }
+        private void LoadPriceComboBox()
+        {
+            List<int> prices = new List<int>();
+            for (int i = 10;
+                i < 41;
+                i++)
+            {
+                prices.Add(i);
+            }
+            PriceCB.ItemsSource = prices;
+            PriceCB.SelectedIndex = 0;
+        }
         private void LoadRecipeType()
         {
             this._recipeTypes.Add(new DoubleContainer<string, RecipeType>("plat", RecipeType.plat));
@@ -145,7 +157,7 @@ namespace DDBCook.Views
                 ddb.InsertRecipeCreator(User.ConnectedClient.PhoneNumber);
             }
             DoubleContainer<string, RecipeType> recipeType = CategoryComboBox.SelectedItem as DoubleContainer<string, RecipeType>;
-            ddb.InsertRecipe(NameTextBox.Text, recipeType.OtherValue, DescTextBox.Text, User.ConnectedClient.PhoneNumber, Convert.ToInt32(PriceTextBox.Text), 
+            ddb.InsertRecipe(NameTextBox.Text, recipeType.OtherValue, DescTextBox.Text, User.ConnectedClient.PhoneNumber, Convert.ToInt32(PriceCB.SelectedValue), 
                 HealthyCB.IsChecked == true ? true : false,
                 BioCB.IsChecked == true ? true : false,
                 VeganCB.IsChecked == true ? true : false,

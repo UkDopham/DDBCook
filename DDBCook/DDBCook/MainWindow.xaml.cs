@@ -26,18 +26,8 @@ namespace DDBCook
     {
         public MainWindow()
         {
-            DDB ddb = new DDB(User.DataBase, User.Username, User.Password);
-
-            ddb.SelectRecipe().ForEach(x=>Stock.UpdateMinMaxQuantities(x));   //a rajouter a moment des commandes
-            ddb.SelectRecipe().ForEach(x => Stock.ManageOrder(x));
-            Stock.RottenProducts();
-
-            ddb.Close();
+            
             InitializeComponent();
-
-
-
-
             
             DataContext = new MainMenu();
         }
