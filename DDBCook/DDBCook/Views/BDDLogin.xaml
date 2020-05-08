@@ -27,7 +27,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="pack://siteoforigin:,,,/Resources/whiteshrimp.png"
+                <Image Source="pack://siteoforigin:,,,/Resources/crevet.png"
                        Margin="10"/>
 
                 <Grid Grid.Row="1">
@@ -41,9 +41,10 @@
 
                     <TextBlock Text="Identifiant MYSQL"
                                Foreground="White"
-                               FontSize="20"
+                               FontSize="25"
                                VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center" 
+                               FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                     <TextBlock Margin="5"
                              Grid.Row="1"
@@ -51,27 +52,29 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                Foreground="White"
-                               FontSize="18"
-                               FontWeight="Bold"/>
+                               FontSize="20"
+                               FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                     <TextBox Margin="5"
                              Grid.Row="2"
-                             x:Name="usernameTB"
-                             GotFocus="usernameTB_GotFocus"/>
+                             x:Name="usernameTB"                             
+                             GotFocus="usernameTB_GotFocus" 
+                             FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                     <TextBox Margin="5"
                              Grid.Row="3"
                              x:Name="passwordTB"
-                             GotFocus="passwordTB_GotFocus"/>
+                             GotFocus="passwordTB_GotFocus" 
+                             FontFamily="/DDBCook;component/Resources/#Priborg Sans"
+                             />
 
                     <Button Grid.Row="4"
                             Width="100"
                             BorderThickness="0"
-                            Background="White"
-                            Foreground="{StaticResource purple}"
-                            Content="Login"
-                            FontSize="15"
+                            Background="Transparent"
                             FontWeight="Bold"
                             Margin="5"
-                            Click="Button_Click"/>
+                            Click="Button_Click">
+                        <Image Source="pack://siteoforigin:,,,/Resources/login.png"/>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>

@@ -12,15 +12,16 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         >
-    <Grid Background="White">
+    <Grid Background="#e5e5e5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Background="{StaticResource purple}">
-            <Image Source="pack://siteoforigin:,,,/Resources/whiteshrimp.png"
-                   Margin="10"/>
+        <Border >
+            <Image Source="pack://siteoforigin:,,,/Resources/crevet.png"
+                   Margin="10"
+                   VerticalAlignment="Top"/>
         </Border>
 
         <Grid Grid.Column="1"
@@ -33,27 +34,25 @@
 
             <TextBlock Text="Title"
                        FontWeight="Bold"
-                       FontSize="30"
-                       Foreground="{StaticResource dark grey}"
+                       FontSize="30"                       
+                       Foreground="Black"
                        x:Name="titleTB"/>
 
             <TextBlock Text="textTB"
                        Grid.Row="1"
                        FontWeight="Bold"
                        FontSize="14"
-                       Foreground="{StaticResource dark grey}"
+                       Foreground="Black"
                        x:Name="textTB"/>
 
             <Button Grid.Row="2"
                     BorderThickness="0"
                     Width="150"
                     Height="40"
-                    Background="{StaticResource red}"
-                    Foreground="White"
-                    Content="OK"
-                    FontWeight="Bold"
-                    FontSize="20"
-                    Click="Button_Click"/>
+                    Background="Transparent"
+                    Click="Button_Click">
+                <Image Source="pack://siteoforigin:,,,/Resources/valider.png" />
+            </Button>
         </Grid>
     </Grid>
 </Window>

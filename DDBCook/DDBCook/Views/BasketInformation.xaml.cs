@@ -71,7 +71,7 @@ namespace DDBCook.Views
                 {
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(3, GridUnitType.Star)
+                        Width = new GridLength(5, GridUnitType.Star)
                     },
                     new ColumnDefinition()
                     {
@@ -79,15 +79,15 @@ namespace DDBCook.Views
                     },
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(3, GridUnitType.Star)
+                        Width = new GridLength(1, GridUnitType.Star)
                     },
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(1, GridUnitType.Star)
+                        Width = new GridLength(2, GridUnitType.Star)
                     }, 
                     new ColumnDefinition()
                     {
-                        Width = new GridLength(1, GridUnitType.Star)
+                        Width = new GridLength(2, GridUnitType.Star)
                     }
                 }
             };            
@@ -95,10 +95,8 @@ namespace DDBCook.Views
             ContainerButton<Recipe> addButton = new ContainerButton<Recipe>()
             {
                 BorderThickness = new Thickness(0),
-                Background = new SolidColorBrush(Color.FromRgb(90, 193, 142)),
-                Content = "+",
-                Foreground = new SolidColorBrush(Colors.White),
-                FontSize = 16,
+                Background = new SolidColorBrush(Colors.Transparent),
+                Content = GetImage("ajouter.png"),
                 Value = recipe,
             };
             addButton.Click += (s, e) =>
@@ -112,10 +110,8 @@ namespace DDBCook.Views
             ContainerButton<Recipe> deletButton = new ContainerButton<Recipe>()
             {
                 BorderThickness = new Thickness(0),
-                Background = new SolidColorBrush(Color.FromRgb(245, 0, 0)),
-                Content = "-",
-                FontSize = 16,
-                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Colors.Transparent),
+                Content = GetImage("annuler.png"),
                 Value = recipe,
             };
             deletButton.Click += (s, e) =>
@@ -126,23 +122,43 @@ namespace DDBCook.Views
                 InitializationBasket();
             };
 
-            Border addBorder = GetBorder(addButton, new SolidColorBrush(Color.FromRgb(90, 193, 142)));
-            Border deletBorder = GetBorder(deletButton, new SolidColorBrush(Color.FromRgb(245, 0, 0)));
+            TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Colors.Black), FontWeights.Bold, 23);
+            Grid price = GetImageText($"{recipe.Price} cook", "label.png", 14, true);
 
-            TextBlock name = GetTextBlock(recipe.Name, new SolidColorBrush(Color.FromRgb(112, 111, 211)), FontWeights.Bold, 23);
-            TextBlock price = GetTextBlock($"{recipe.Price} cook", new SolidColorBrush(Colors.Black), FontWeights.Bold, 14);
-
-            grid.Children.Add(addBorder);
-            grid.Children.Add(deletBorder);
+            grid.Children.Add(addButton);
+            grid.Children.Add(deletButton);
             grid.Children.Add(name);
             grid.Children.Add(price);
 
-            Grid.SetColumn(addBorder, 4);
-            Grid.SetColumn(deletBorder, 3);
+            Grid.SetColumn(addButton, 4);
+            Grid.SetColumn(deletButton, 3);
             Grid.SetColumn(name, 0);
             Grid.SetColumn(price, 1);
             Grid.SetRow(name, 1);
             Grid.SetRow(price, 1);
+
+            return grid;
+        }
+        private Grid GetImageText(string text, string imageName, int size, bool center = false)
+        {
+            Grid grid = new Grid()
+            {
+                Margin = new Thickness(2)
+            };
+
+            Uri uri = new Uri($"pack://siteoforigin:,,,/Resources/{imageName}");
+            BitmapImage bitmap = new BitmapImage(uri);
+            Image image = new Image()
+            {
+                Source = bitmap,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            TextBlock textBlock = GetTextBlock(text, new SolidColorBrush(Colors.White), FontWeights.Bold, size);
+            textBlock.VerticalAlignment = VerticalAlignment.Center;
+            textBlock.HorizontalAlignment = center ? HorizontalAlignment.Center : HorizontalAlignment.Left;
+            grid.Children.Add(image);
+            grid.Children.Add(textBlock);
 
             return grid;
         }
@@ -155,6 +171,25 @@ namespace DDBCook.Views
                 BorderThickness = new Thickness(0),
                 Child = uIElement,
             };
+        }
+        private Grid GetImage(string imageName)
+        {
+            Grid grid = new Grid()
+            {
+                Margin = new Thickness(2)
+            };
+
+            Uri uri = new Uri($"pack://siteoforigin:,,,/Resources/{imageName}");
+            BitmapImage bitmap = new BitmapImage(uri);
+            Image image = new Image()
+            {
+                Source = bitmap,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            grid.Children.Add(image);
+
+            return grid;
         }
         private TextBlock GetTextBlock(string text, SolidColorBrush colorBrush, FontWeight fontWeight, int fontSize = 12)
         {
@@ -177,6 +212,7 @@ namespace DDBCook.Views
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontWeight = fontWeight,
                 Foreground = colorBrush,
+                FontFamily = titleTB.FontFamily,
             };
         }
 

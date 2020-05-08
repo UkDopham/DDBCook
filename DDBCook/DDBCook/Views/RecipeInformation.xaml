@@ -25,26 +25,15 @@
                         </Grid.ColumnDefinitions>
 
                         <!--home button-->
-                        <Button Margin="10,10"
-                        BorderThickness="0"
+                        <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                                 Click="Button_Click">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid>
 
-                                <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                                <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                       FontWeight="Bold"/>
+                            <Image Grid.Column="0"
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
+                                
                             </Grid>
                         </Button>
                     </Grid>
@@ -77,128 +66,76 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="4*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="1"
-                                       Margin="5" 
-                                      Background="#ffb3ba"
+                                      Background="Transparent"
                                       Visibility="{Binding IsHealthy}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="2*"/>
-                                    </Grid.RowDefinitions>
                                     <Image  
-                                        Margin="5"
                                        Source="pack://siteoforigin:,,,/Resources/healthy.png"/>
 
-                                    <TextBlock Text="Healthy"
-                                               Foreground="White"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Grid.Row="1"/>
+                                    
                                 </Grid>
 
                                 <Grid Grid.Column="2"
-                                       Margin="5" 
-                                      Background="#a7e5b4"
                                       Visibility="{Binding IsBio}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="2*"/>
-                                    </Grid.RowDefinitions>
                                     <Image  
-                                        Margin="5"
                                        Source="pack://siteoforigin:,,,/Resources/bio.png"/>
 
-                                    <TextBlock Text="Bio"
-                                               Foreground="White"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Grid.Row="1"/>
                                 </Grid>
 
                                 <Grid Grid.Column="3"
-                                       Margin="5" 
-                                      Background="#bae1ff"
                                       Visibility="{Binding IsVegan}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="2*"/>
-                                    </Grid.RowDefinitions>
                                     <Image  
-                                        Margin="5"
                                        Source="pack://siteoforigin:,,,/Resources/vegan.png"/>
 
-                                    <TextBlock Text="Vegan"
-                                               Foreground="White"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Grid.Row="1"/>
                                 </Grid>
 
                                 <Grid Grid.Column="4"
-                                       Margin="5" 
-                                      Background="#e5e5a7"
                                       Visibility="{Binding IsChimical}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="2*"/>
-                                    </Grid.RowDefinitions>
                                     <Image  
-                                        Margin="5"
-                                       Source="pack://siteoforigin:,,,/Resources/chimical.png"/>
+                                       Source="pack://siteoforigin:,,,/Resources/chimique.png"/>
 
-                                    <TextBlock Text="Chimique"
-                                               Foreground="White"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Grid.Row="1"/>
                                 </Grid>
 
                                 <Grid Grid.Column="5"
-                                       Margin="5" 
-                                      Background="#FFDFBA"
                                       Visibility="{Binding IsTrending}">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*"/>
-                                        <RowDefinition Height="2*"/>
+                                        
                                     </Grid.RowDefinitions>
                                     <Image  
-                                        Margin="5"
                                        Source="pack://siteoforigin:,,,/Resources/trending.png"/>
 
-                                    <TextBlock Text="Trending"
-                                               Foreground="White"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Grid.Row="1"/>
                                 </Grid>
 
                                 <Grid Grid.Column="6">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0"
+                                    <Grid Margin="2">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/label.png"/>
+
+                                        <TextBlock Grid.Column="0"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
                                                Text="{Binding RecipePrice}"
-                                               Foreground="{StaticResource orange}"
+                                               Foreground="White"
                                                FontWeight="Bold"
-                                               FontSize="14"/>
-                                    
+                                               FontSize="13"/>
+
+                                    </Grid>
                                     <Button Grid.Column="1"
-                                        Width="50"
-                                        Margin="10"
                                         HorizontalAlignment="Center"
                                         BorderThickness="0"
-                                        Background="{StaticResource purple}"
+                                        Background="Transparent"
+                                            Margin="2"
                                             Click="ShopButton_Click">
 
-                                        <Image Margin="2"
-                                    Source="pack://siteoforigin:,,,/Resources/whiteBasket.png"/>
+                                        <Image 
+                                    Source="pack://siteoforigin:,,,/Resources/panier.png"/>
                                     </Button>
                                 </Grid>
                                 
@@ -207,21 +144,21 @@
                                Margin="10,0"
                                FontSize="20"
                                FontWeight="Bold"
-                               Foreground="{StaticResource purple}"/>
+                               Foreground="{StaticResource purple}" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                             </Grid>
 
                             <StackPanel Grid.Row="1"
                                 Margin="10">
                                 <TextBlock Text="{Binding Recipe.RecipeType}"
                                    FontWeight="Bold"
-                                   Foreground="{StaticResource dark grey}"
-                                   FontSize="14"/>
+                                   Foreground="Black"
+                                   FontSize="14" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                                 <TextBlock Text="{Binding Recipe.Description}"
                                    FontWeight="Bold"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Left"
-                                   Width="500"/>
+                                   Width="500" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -235,10 +172,12 @@
 
                         <TextBlock Text="Les ingrédients : "
                                    VerticalAlignment="Center"
-                                   Margin="10"
+                                   Margin="10"                                   
                                    Foreground="{StaticResource purple}"
                                    FontWeight="Bold"
-                                   FontSize="15"/>
+                                   FontSize="20" 
+                                   x:Name="titleTB"
+                                   FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                         <ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Disabled"

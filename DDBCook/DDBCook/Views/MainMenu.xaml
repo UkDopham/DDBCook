@@ -26,25 +26,12 @@
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="10,10"
-                        BorderThickness="0"
+                <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
                         <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                        <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                   FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
                     </Grid>
                 </Button>
 
@@ -81,7 +68,8 @@
                             Click="CDRButton_Click">
                         <TextBlock Text="CDR"
                                    FontWeight="Bold"
-                                 Foreground="{StaticResource purple}"/>
+                                   FontSize="18"
+                                 Foreground="{StaticResource purple}" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                     </Button>
 
                     <Button Margin="5,10"
@@ -92,14 +80,13 @@
                             Click="LoginButton_Click"
                             x:Name="ClientButton">
                         <TextBlock Text="Connexion"
-                                   
+                                   FontSize="18"
                                  Foreground="{StaticResource purple}"
                                    FontWeight="Bold"
-                                   x:Name="ClientTextBlock"/>
+                                   x:Name="ClientTextBlock" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                     </Button>
 
-                    <Button Margin="5,10"
-                            Grid.Column="2"
+                    <Button  Grid.Column="2"
                             BorderThickness="1"
                             BorderBrush="{StaticResource grey}"
                             Background="Transparent"
@@ -107,19 +94,10 @@
                             Click="BasketButton_Click"
                             x:Name="BaksetButton">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
                                    Margin="0,4"
-                                   Source="pack://siteoforigin:,,,/Resources/basket.png"/>
-                            <TextBlock Text="Panier"
-                                       Grid.Column="1"
-                                       Margin="2,0"
-                                       Foreground="{StaticResource purple}"
-                                       VerticalAlignment="Center"/>
+                                   Source="pack://siteoforigin:,,,/Resources/panier.png"/>
                         </Grid>
                     </Button>
                 </Grid>
@@ -146,7 +124,7 @@
                               VerticalAlignment="Center"
                               Margin="10"
                               Header="Trier"
-                              IsExpanded="False">
+                              IsExpanded="False" FontFamily="/DDBCook;component/Resources/#Priborg Sans">
 
                         <Grid>
                             <Grid.RowDefinitions>
@@ -180,7 +158,7 @@
                               VerticalAlignment="Center"
                               Margin="10"
                               Header="Filtre"
-                              IsExpanded="False">
+                              IsExpanded="False" FontFamily="/DDBCook;component/Resources/#Priborg Sans">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

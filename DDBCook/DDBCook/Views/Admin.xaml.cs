@@ -250,6 +250,7 @@ namespace DDBCook.Views
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontWeight = fontWeight,
+                FontFamily = titleTB.FontFamily,
                 Foreground = colorBrush,
             };
         }

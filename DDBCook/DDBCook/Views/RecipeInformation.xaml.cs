@@ -80,6 +80,8 @@ namespace DDBCook.Views
             InitilizationProduct();
         }
 
+        
+
         /// <summary>
         /// Show the recipe products
         /// </summary>
@@ -137,6 +139,7 @@ namespace DDBCook.Views
                 Background = new SolidColorBrush(Colors.Transparent),
                 FontWeight = fontWeight,
                 Foreground = colorBrush,
+                FontFamily = titleTB.FontFamily
             };
         }
 

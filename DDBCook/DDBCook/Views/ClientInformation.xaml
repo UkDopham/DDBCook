@@ -27,26 +27,15 @@
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="10,10"
-                        BorderThickness="0"
+                <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                         Click="HomeButton_Click">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
                         <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                        <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                       FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
+                        
                     </Grid>
                 </Button>
 
@@ -54,18 +43,17 @@
                            Text="Information client"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           FontSize="20"
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"
+                           FontSize="25"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black"/>
 
                 <Button Grid.Column="4"
-                        Margin="30,10"
                         BorderThickness="0"
-                        Content="Créer"
-                        Background="{StaticResource green}"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="CreateButton_Click"/>
+                        Background="Transparent"
+                        Click="CreateButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/creer.png"/>
+                </Button>
             </Grid>
         </Border>
 
@@ -85,16 +73,21 @@
                 <TextBlock FontSize="30"
                            Grid.Column="0"
                        FontWeight="Bold"
-                       Foreground="{StaticResource dark grey}"
+                       Foreground="Black"
                        Text="{Binding GetName}"
                        Margin="10"/>
 
-                <TextBlock FontSize="28"
-                           Grid.Column="2"
+                <Grid Grid.Column="2"
+                      Margin="2">
+                    <Image Source="pack://siteoforigin:,,,/Resources/label.png"/>
+                    <TextBlock FontSize="28"
+                           
                        FontWeight="Bold"
-                       Foreground="{StaticResource green}"
+                       Foreground="White"
                        Text="{Binding Balance}"
                        Margin="10"/>
+                </Grid>
+                
             </Grid>
 
             <Grid Grid.Row="2" 
@@ -112,15 +105,16 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0"
-                            BorderBrush="{StaticResource dark grey}"
+                            BorderBrush="Black"
                             BorderThickness="0,0,0,1"
                             >
 
                         <TextBlock Grid.Row="0"
                                Text="Recettes crées"
-                               FontSize="26"
+                               FontSize="22"
                                FontWeight="Bold"
-                               Foreground="{StaticResource dark grey}"/>
+                               Foreground="Black" 
+                                   FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                     </Border>
                     
                     <ScrollViewer VerticalScrollBarVisibility="Auto"

@@ -25,26 +25,15 @@
                     </Grid.ColumnDefinitions>
 
                     <!--home button-->
-                    <Button Margin="10,10"
-                        BorderThickness="0"
+                    <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                             Click="Button_Click">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                            <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                       FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
+                            
                         </Grid>
                     </Button>
                 </Grid>

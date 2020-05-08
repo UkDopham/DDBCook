@@ -13,6 +13,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <TextBlock FontFamily="/DDBCook;component/Resources/#Priborg Sans" 
+                   x:Name="titleTB"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled"
                       Grid.Column="1">

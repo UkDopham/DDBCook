@@ -18,32 +18,31 @@
         <TextBlock Grid.Row="0"
                    Text="Connexion ou Inscription"
                    VerticalAlignment="Center"
-                   FontSize="30"
+                   FontSize="25"
                    Margin="10"
                    FontWeight="Bold"
-                   Foreground="{StaticResource dark grey}"/>
+                   Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBlock Grid.Row="1"
                    Text="Adresse email"
                    VerticalAlignment="Center"
                    FontSize="18"
-                   Margin="10,0"/>
+                   Margin="10,0" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBox Grid.Row="2"
                  VerticalAlignment="Center"
                  VerticalContentAlignment="Center"
-                 Margin="10"
+                 Margin="10"                 
                  Height="35"
-                 x:Name="EmailTextBox"/>
+                 x:Name="EmailTextBox" 
+                 FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <Button Grid.Row="4"
                 Margin="90,30"
                 BorderThickness="0"
-                Background="{StaticResource grey}"
-                Content="Continuer"
-                FontSize="22"
-                Foreground="White"
-                FontWeight="Bold"
-                Click="Button_Click"/>
+                Background="Transparent"
+                Click="Button_Click">
+            <Image Source="pack://siteoforigin:,,,/Resources/continuer.png"/>
+        </Button>
     </Grid>
 </UserControl>

@@ -27,26 +27,15 @@
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="10,10"
-                        BorderThickness="0"
+                <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                         Click="HomeButton_Click">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
                         <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                        <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                       FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
+                        
                     </Grid>
                 </Button>
 
@@ -56,24 +45,21 @@
                            HorizontalAlignment="Center"
                            FontSize="20"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black"/>
 
                 <Button Grid.Column="3"
-                        Margin="30,10"
+                        Background="Transparent"
                         BorderThickness="0"
-                        Content="Annuler"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="ExitButton_Click"/>
+                        Click="ExitButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/annuler.png" />
+                </Button>
 
                 <Button Grid.Column="4"
-                        Margin="30,10"
                         BorderThickness="0"
-                        Content="Valider"
-                        Background="{StaticResource green}"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="OkButton_Click"/>
+                        Background="Transparent"
+                        Click="OkButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/valider.png"/>
+                </Button>
             </Grid>
         </Border>
 
@@ -103,15 +89,16 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Nom de la recette"
-                               FontSize="18"
+                               FontSize="20"
                                FontWeight="Bold"
-                               Foreground="{StaticResource purple}"/>
+                               Foreground="{StaticResource purple}" FontFamily="/DDBCook;component/Resources/#Priborg Sans"
+                                   />
                         <TextBox Grid.Row="1"
                              VerticalAlignment="Center"
                              VerticalContentAlignment="Center"
-                             Foreground="{StaticResource dark grey}"
+                             Foreground="Black"
                              FontSize="14"
-                                 x:Name="NameTextBox"
+                                 x:Name="NameTextBox" FontFamily="/DDBCook;component/Resources/#Priborg Sans"
                              />
                     </Grid>
 
@@ -128,19 +115,19 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="Prix"
-                                       Foreground="{StaticResource dark grey}"
+                                       Foreground="Black"
                                        FontSize="18"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center"
-                                       HorizontalAlignment="Right"/>
+                                       HorizontalAlignment="Right" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                             <ComboBox Grid.Column="1"
                                       x:Name="PriceCB"
-                                      Margin="2"/>
+                                      Margin="2" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                         </Grid>
 
                         <ComboBox x:Name="CategoryComboBox"
                                   Grid.Row="1"
-                                  Margin="80,2">
+                                  Margin="80,2" FontFamily="/DDBCook;component/Resources/#Priborg Sans">
                             
                         </ComboBox>
                     </Grid>
@@ -155,10 +142,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Description"
-                               FontSize="16"
+                               FontSize="20"
                                FontWeight="Bold"
-                               Foreground="{StaticResource dark grey}"
-                           Margin="5"/>
+                               Foreground="Black"
+                           Margin="5" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -176,7 +163,7 @@
                          AcceptsTab="True"
                          HorizontalScrollBarVisibility="Disabled"
                          VerticalScrollBarVisibility="Auto"                         
-                         Foreground="{StaticResource dark grey}"/>
+                         Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                     <!-- Filtres -->
                     <Grid Grid.Column="1">
@@ -205,8 +192,8 @@
                                        Text="Bio"
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="{StaticResource dark grey}"/>
+                                       FontSize="16"
+                                       Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                         </Grid>
 
                         <Grid Margin="5"
@@ -224,8 +211,8 @@
                                        Text="Vegan"
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="{StaticResource dark grey}"/>
+                                       FontSize="16"
+                                       Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                         </Grid>
 
                         <Grid Margin="5"
@@ -243,8 +230,8 @@
                                        Text="Healthy"
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="{StaticResource dark grey}"/>
+                                       FontSize="16"
+                                       Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                         </Grid>
 
                         <Grid Margin="5"
@@ -262,8 +249,8 @@
                                        Text="Chimique"
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
-                                       FontSize="14"
-                                       Foreground="{StaticResource dark grey}"/>
+                                       FontSize="16"
+                                       Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
                         </Grid>
                     </Grid>
                     
@@ -287,13 +274,14 @@
                            Margin="10,0"
                            FontSize="16"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <ComboBox Margin="0,10"
                           Grid.Column="1"
                           x:Name="ProductsComboBox"
                           FontSize="10"
-                          SelectionChanged="ProductsComboBox_Selected">
+                          
+                          SelectionChanged="ProductsComboBox_Selected" FontFamily="/DDBCook;component/Resources/#Priborg Sans">
 
                 </ComboBox>
 
@@ -309,21 +297,20 @@
 
                 <TextBlock Grid.Column="3"
                            Margin="10"
-                           Foreground="{StaticResource dark grey}"
+                           Foreground="Black"
                            Text="unit"
                            VerticalAlignment="Center"
                            FontSize="15"
                            FontWeight="Bold"
-                           x:Name="UnitTextBlock"/>
+                           x:Name="UnitTextBlock" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <Button Margin="0,10"
                         Grid.Column="4"
                         BorderThickness="0"
-                        Background="{StaticResource green}"
-                        Foreground="White"
-                        Content="Ajouter"
-                        FontWeight="Bold"
-                        Click="AddButton_Click"/>
+                        Background="Transparent"
+                        Click="AddButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/ajouter.png"/>
+                </Button>
             </Grid>
 
             <ScrollViewer Grid.Row="3"

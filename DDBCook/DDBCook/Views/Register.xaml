@@ -27,36 +27,37 @@
                    VerticalAlignment="Center"
                    FontSize="16"
                    Margin="10"
-                   Foreground="{StaticResource dark grey}"
+                   Foreground="Black"
                    FontWeight="Bold"
-                   Text="Nom"/>
+                   Text="Nom" 
+                   FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontSize="16"
                    Margin="10"
-                   Foreground="{StaticResource dark grey}"
+                   Foreground="Black"
                    FontWeight="Bold"
-                   Text="Adresse"/>
+                   Text="Adresse" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
         
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontSize="16"
                    Margin="10"
-                   Foreground="{StaticResource dark grey}"
+                   Foreground="Black"
                    FontWeight="Bold"
-                   Text="Numero"/>
+                   Text="Numero" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBlock Grid.Row="3"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontSize="16"
                    Margin="10"
-                   Foreground="{StaticResource dark grey}"
+                   Foreground="Black"
                    FontWeight="Bold"
-                   Text="Mot de passe"/>
+                   Text="Mot de passe" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
         
         <!-- Textbox -->
         <TextBox Grid.Row="0"
@@ -68,7 +69,7 @@
                  FontSize="14"
                  VerticalAlignment="Center"
                  Height="40"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBox Grid.Row="1"
                  x:Name="adressTB"
@@ -79,7 +80,7 @@
                  FontSize="14"
                  VerticalAlignment="Center"
                  Height="40"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
@@ -90,7 +91,7 @@
                  FontSize="14"
                  VerticalAlignment="Center"
                  Height="40"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <PasswordBox Grid.Row="3"
                  Grid.Column="1"
@@ -101,17 +102,15 @@
                  FontSize="14"
                  VerticalAlignment="Center"
                  Height="40"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
         <Button Grid.Row="4"
                 Grid.Column="1"
                 Margin="30,10"
                 BorderThickness="0"
-                Background="{StaticResource grey}"
-                Content="Continuer"
-                FontSize="30"
-                Foreground="White"
-                FontWeight="Bold"
-                Click="Button_Click"/>
+                Background="Transparent"
+                Click="Button_Click">
+            <Image Source="pack://siteoforigin:,,,/Resources/continuer.png"/>
+        </Button>
     </Grid>
 </UserControl>

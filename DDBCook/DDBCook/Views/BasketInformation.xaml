@@ -27,26 +27,14 @@
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="10,10"
-                        BorderThickness="0"
+                <Button  BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                         Click="HomeButton_Click">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
                         <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                        <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                       FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
+                       
                     </Grid>
                 </Button>
 
@@ -54,26 +42,25 @@
                            Text="Panier"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           FontSize="20"
+                           FontSize="30"
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black"
+                           x:Name="titleTB"/>
 
                 <Button Grid.Column="3"
-                        Margin="30,10"
                         BorderThickness="0"
-                        Content="Vider"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="ClearButton_Click"/>
+                        Background="Transparent"
+                        Click="ClearButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/vider.png"/>
+                </Button>
 
                 <Button Grid.Column="4"
-                        Margin="30,10"
                         BorderThickness="0"
-                        Content="Valider"
-                        Background="{StaticResource green}"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        Click="BuyButton_Click"/>
+                        Background="Transparent"
+                        Click="BuyButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/valider.png"/>
+                </Button>
             </Grid>
         </Border>
 

@@ -24,9 +24,9 @@
                            VerticalAlignment="Center"
                            Margin="10"
                            Text="Mot de passe"
-                           FontSize="30"
+                           FontSize="35"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black" FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <PasswordBox Grid.Row="1"
                              x:Name="clientPasswordBox"
@@ -34,18 +34,17 @@
                          Margin="10,0"
                          Height="50"
                          FontSize="20"
+                             
                          VerticalContentAlignment="Center"
                          Foreground="{StaticResource purple}"/>
 
                 <Button Grid.Row="2"
-                Margin="90,30"
+                Margin="90,60"
                 BorderThickness="0"
-                Background="{StaticResource grey}"
-                Content="Continuer"
-                FontSize="30"
-                Foreground="White"
-                FontWeight="Bold"
-                Click="Button_Click"/>
+                Background="Transparent"
+                Click="Button_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/continuer.png"/>
+                </Button>
             </Grid>
         </Border>
     </Grid>

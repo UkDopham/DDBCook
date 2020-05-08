@@ -27,27 +27,13 @@
                 </Grid.ColumnDefinitions>
 
                 <!--home button-->
-                <Button Margin="10,10"
-                        BorderThickness="0"
+                <Button BorderThickness="0"
                         Grid.Column="0"
                         Background="Transparent"
                         Click="Button_Click">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
                         <Image Grid.Column="0"
-                               Source="pack://siteoforigin:,,,/Resources/shrimp.png"/>
-                        <TextBlock Grid.Column="1"
-                                   Margin="4,0"
-                                   Text="Crevet"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource purple}"
-                                   FontSize="13"
-                                   
-                                       FontWeight="Bold"/>
+                               Source="pack://siteoforigin:,,,/Resources/button.png"/>
                     </Grid>
                 </Button>
 
@@ -55,14 +41,16 @@
                            Text="Gestionnaire de l'application"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           FontSize="20"
+                           FontSize="25"
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"
                            FontWeight="Bold"
-                           Foreground="{StaticResource dark grey}"/>
+                           Foreground="Black"
+                           x:Name="titleTB"/>
             </Grid>
         </Border>
-        
+
         <!--Board -->
-        
+
         <Grid Grid.Row="1"
               Margin="10">
             <Grid.ColumnDefinitions>
@@ -87,15 +75,16 @@
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"
-                           FontSize="14"/>
-                
+                           FontSize="14" 
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
+
                 <TextBlock Grid.Row="2"
                            x:Name="CDRWeekTB"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"/>
-            </Grid>           
+            </Grid>
 
             <Grid Grid.Column="1"
                   Margin="10"
@@ -112,8 +101,9 @@
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"
-                           FontSize="16"/>
-                
+                           FontSize="18" 
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
+
                 <Grid Grid.Row="1"
                       x:Name="TopRecipeGrid">
                     <Grid.ColumnDefinitions>
@@ -124,7 +114,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    
+
                 </Grid>
             </Grid>
         </Grid>
@@ -135,7 +125,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-          
+
 
             <Grid Margin="10,10"
                   Grid.Column="0"
@@ -155,7 +145,8 @@
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"
-                           FontSize="14"/>
+                           FontSize="14" 
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <TextBlock Grid.Row="2"
                            x:Name="BestCDRAllTB"
@@ -180,7 +171,8 @@
                            HorizontalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"
-                           FontSize="16"/>
+                           FontSize="18" 
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"/>
 
                 <Grid Grid.Row="1"
                      x:Name="BestCDRRecipes" >
@@ -196,7 +188,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+
         <!--Delet-->
 
         <Grid Grid.Row="3">
@@ -220,66 +212,75 @@
                         BorderThickness="0,0,2,0">
 
                     <TextBlock 
-                           Text="Suppression recette"
+                           Text="Recette"
                            VerticalAlignment="Center"
+                           FontFamily="/DDBCook;component/Resources/#Priborg Sans"
                            Foreground="White"
                            FontWeight="Bold"
+                        FontSize="18"
                            HorizontalAlignment="Center"/>
                 </Border>
 
                 <ComboBox Grid.Column="1"
                           Margin="5"
-                          x:Name="recipeCB">
-                    
+                          x:Name="recipeCB"
+                          FontWeight="Bold"
+                          VerticalAlignment="Center"
+                          FontFamily="/DDBCook;component/Resources/#Priborg Sans">
+
                 </ComboBox>
 
                 <Button Grid.Column="3"
-                        Margin="5"
-                        BorderThickness="0"
-                        Background="{StaticResource red}"
-                        Content="Suppresion"
-                        FontWeight="Bold"
-                        Foreground="White" 
-                        Click="RecipeButton_Click"/>
+                        BorderThickness="0"                        
+                        Margin="2"
+                        Background="Transparent"
+                        Click="RecipeButton_Click">
+                    <Image Source="pack://siteoforigin:,,,/Resources/delete.png"/>
+                </Button>
             </Grid>
 
             <Grid Margin="5"
                   Grid.Row="1"
                   Background="{StaticResource purple}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="158*"/>
+                    <ColumnDefinition Width="316*"/>
+                    <ColumnDefinition Width="158*"/>
+                    <ColumnDefinition Width="129*"/>
+                    <ColumnDefinition Width="29*"/>
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0"
-                        Margin="5"
+                        Margin="5,5,5.4,4.6"
                         BorderBrush="White"
                         BorderThickness="0,0,2,0">
 
                     <TextBlock 
-                           Text="Suppression cdr"
+                        FontFamily="/DDBCook;component/Resources/#Priborg Sans"
+                           Text="CDR"
                            VerticalAlignment="Center"
                            Foreground="White"
                            FontWeight="Bold"
+                        FontSize="18"
                            HorizontalAlignment="Center"/>
                 </Border>
 
                 <ComboBox Grid.Column="1"
-                          Margin="5"
-                          x:Name="cdrCB">
+                          Margin="4.6,5,5.4,4.6"
+                          x:Name="cdrCB"                           
+                          FontWeight="Bold"
+                          VerticalAlignment="Center"
+                          FontFamily="/DDBCook;component/Resources/#Priborg Sans">
 
                 </ComboBox>
 
                 <Button Grid.Column="3"
-                        Margin="5"
+                        Margin="2.2,2,2.4,1.6"
                         BorderThickness="0"
-                        Background="{StaticResource red}"
-                        Content="Suppresion"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Click="CdrButton_Click"/>
+                        Background="Transparent"
+                        Click="CdrButton_Click" Grid.ColumnSpan="2">
+                    <Image Source="pack://siteoforigin:,,,/Resources/delete.png"/>
+                </Button>
             </Grid>
         </Grid>
     </Grid>
