@@ -22,20 +22,29 @@ namespace DDBCook.Views
     /// </summary>
     public partial class BasketInformation : UserControl
     {
+        private int _count = 0;
         public BasketInformation()
         {
             InitializeComponent();
             InitializationBasket();
+        }
+        private void UpdateBasket(int price)
+        {
+            titleTB.Text = $"Panier : {price} cooks";
         }
         /// <summary>
         /// Initilization of the visual
         /// </summary>
         private void InitializationBasket()
         {
+            this._count = 0;
+            UpdateBasket(this._count);
             BasketStackPanel.Children.Clear();
             foreach(Recipe recipe in Basket.Recipes)
             {
                 AddRow(recipe);
+                this._count += recipe.Price;
+                UpdateBasket(this._count);
             }
         }
         /// <summary>
@@ -225,6 +234,8 @@ namespace DDBCook.Views
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             Basket.Recipes.Clear();
+            this._count = 0;
+            UpdateBasket(this._count);
             BasketStackPanel.Children.Clear();
         }
 
